@@ -1,0 +1,167 @@
+.landing-page-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.landing-page-content {
+    position: relative;
+    width: 1200px;
+    max-width: 90dvw;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* gap: 10dvh; */
+    margin-top: 9rem;
+}
+
+/* hero section */
+.landing-page-hero-wrapper {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    padding-top: 8rem;
+    /* aspect-ratio: 16/8; */
+    font-family: 'francois', sans-serif;
+    /* background-color: red; */
+}
+
+.landing-page-hero-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #f8f7f0; */
+    border-radius: 1rem;
+    color: var(--basic-purple);
+    /* box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5); */
+}
+
+.landing-page-hero-content-text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    user-select: none;
+    /* background-color: red; */
+    /* gap: 1rem; */
+}
+
+.landing-page-hero-content h1 {
+    font-size: 2.5rem;
+}
+
+.landing-page-hero-highlight {
+    color: var(--basic-brick);
+    text-shadow: 1px 1px 0em var(--dark-brick);
+}
+
+
+.landing-page-hero-content-text-top {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.landing-page-CTA {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 1rem;
+    padding: 0.2em 1em;
+    border-radius: 5rem;
+    font-size: 1.6rem;
+    color: white;
+    background-color: var(--basic-purple);
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.landing-page-CTA:hover{
+    color: var(--basic-purple);
+    background-color: white;
+}
+
+.landing-page-CTA-text {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+
+/* zdog paper plane */
+.zdog-paper-plane-container {
+    position: absolute;
+    top: 5%;
+    right: 100%;
+    /* transform: translateY(-50%); */
+    height: 9rem;
+    aspect-ratio: 1/1;
+    filter: drop-shadow(2px 2px 4px var(--dark-eggshell));
+    /* background-color: red; */
+}
+
+.zdog-paper-plane {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* zdog chill sun */
+.landing-page-hero-chill-sun {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* liquid glass cursor */
+.liquid-glass-cursor-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.liquid-glass-cursor-fixed-block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+}
+
+.liquid-glass-cursor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10rem;
+    aspect-ratio: 1/1;
+    background-color: rgba(255, 255, 255, 0.137);
+    border-radius: 0%;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* foot print block */
+.foot-print-block-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgba(255, 0, 0, 0.233); */
+}

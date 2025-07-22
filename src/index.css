@@ -1,0 +1,66 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  /* background-color: #242424; */
+  background-color: var(--basic-ivory);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --primary-color: rgb(242, 251, 255);
+  --basic-ivory: #F4F1DE;
+  --basic-eggshell: #f8f7f0;
+  --dark-eggshell: #a39f92;
+  --eggshell-shadow: #f8f7f080;
+  --basic-brick: #E07A5F;
+  --dark-brick: #814433;
+  --brick-shadow: #81443380;
+  --basic-purple: #3D405B;
+  --dark-purple: #22243b;
+  --purple-shadow: #22243b80;
+  --basic-mint: #81B29A;
+  --basic-sunset: #F2CC8F;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100%;
+}
+
+button {
+  all: unset;
+}
+
+@font-face {
+  font-family: 'sriracha';
+  src: url('/fonts/Sriracha-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'roboto';
+  src: url('/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'francois';
+  src: url('/fonts/FrancoisOne-Regular.ttf') format('truetype');
+}
+/* h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+} */
