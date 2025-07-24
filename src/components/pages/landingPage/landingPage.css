@@ -155,6 +155,38 @@
     box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
 }
 
+/* oiiao cursor */
+.oiiao-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.oiiao-cursor-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+}
+
+.oiiao-cursor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6rem;
+    aspect-ratio: 1/1;
+    /* background-color: rgba(255, 255, 255, 0.137);
+    border-radius: 0%;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2); */
+    /* pointer-events: auto;
+    cursor: pointer; */
+}
+
+
 /* foot print block */
 .foot-print-block-container {
     position: relative;

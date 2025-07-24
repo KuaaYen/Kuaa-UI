@@ -3,7 +3,7 @@ import PaperPlane from '../paperPlane/PaperPlane';
 import HeroPopOut from './HeroPopOut';
 // import Wind from './Wind';
 
-const LandingHero = () => {
+const LandingHero = ({handleChangeOiiaoAnimation}: {handleChangeOiiaoAnimation: (type: 'spin' | 'swing') => void}) => {
 
     const createSplitText = (text: string, delay: number) => {
         const baseDelay = delay;
@@ -45,7 +45,11 @@ const LandingHero = () => {
                             <span className='landing-page-hero-highlight'>{createSplitText('unique', 1.4)}</span>
                             <span> React components</span>
                         </div>
-                        <button className='landing-page-CTA'>
+                        <button 
+                            className='landing-page-CTA'
+                            onPointerEnter={() => handleChangeOiiaoAnimation('swing')}
+                            onPointerLeave={() => handleChangeOiiaoAnimation('spin')}
+                        >
                             <div className='landing-page-CTA-text'>
                                 <span>Get Started</span>
                             </div>

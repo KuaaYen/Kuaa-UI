@@ -1,6 +1,8 @@
 import FootPrints from "./FootPrints";
 
 const FootPrintBlock = () => {
+
+    // 之後當screen size context設定完成後，要根據畫面減少腳印的數量，否則當外框自適應的時候腳印會擠在一起
     const footPrintDataArray = [
         {right: '18%', top: '-15%', rotate: '-125deg', stepLength: 70, color: '#585b71'},
         {right: '30%', top: '15%', rotate: '-125deg', stepLength: 80, color: '#52556c'},
