@@ -40,9 +40,9 @@ const LandingHero = ({handleChangeOiiaoAnimation}: {handleChangeOiiaoAnimation: 
                             {/* <Wind/> */}
                         </div>
                         <div>
-                            <span className='landing-page-hero-highlight'>{createSplitText('creative', 0.9)}</span>
+                            <span className='landing-page-brick-highlight'>{createSplitText('creative', 0.9)}</span>
                             <span> and </span>
-                            <span className='landing-page-hero-highlight'>{createSplitText('unique', 1.4)}</span>
+                            <span className='landing-page-brick-highlight'>{createSplitText('unique', 1.4)}</span>
                             <span> React components</span>
                         </div>
                         <button 

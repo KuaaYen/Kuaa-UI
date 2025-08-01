@@ -58,7 +58,7 @@
     font-size: 2.5rem;
 }
 
-.landing-page-hero-highlight {
+.landing-page-brick-highlight {
     color: var(--basic-brick);
     text-shadow: 1px 1px 0em var(--dark-brick);
 }
@@ -124,6 +124,9 @@
     width: 100%;
     height: 100%;
     cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
 }
 
 /* liquid glass cursor */
@@ -163,6 +166,7 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
+    z-index: 3;
 }
 
 .oiiao-cursor-wrapper {
@@ -195,5 +199,158 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
     /* background-color: rgba(255, 0, 0, 0.233); */
+}
+
+/* slogan block */
+.landing-page-slogan-block {
+    position: relative;
+    width: 90%;
+    height: 700px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* padding-top: 5%; */
+    /* background-color: var(--basic-sunset); */
+    z-index: 1;
+    /* background-color: blue; */
+}
+
+.landing-page-slogan-block-content-wrapper {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 5%;
+    /* transform: translateY(10%); */
+    /* background-color: red; */
+}
+
+.landing-page-slogan-block-card-interactive-wrapper {
+    position: relative;
+    width: 500px;
+    aspect-ratio: 5/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    cursor: grab;
+}
+
+.landing-page-slogan-block-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25em;
+    color: var(--basic-purple);
+    font-size: 2rem;
+    background-color: var(--basic-eggshell);
+    /* border: 4px solid var(--basic-purple); */
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2),
+                inset 2px 2px 3px 0 rgb(255, 255, 255);
+    border-radius: 1rem;
+    transform-style: preserve-3d;
+}
+
+.landing-page-slogan-block-card-paste-ready-wrapper {
+    /* position: relative;
+    width: 50%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* background-color: green; */
+    position: relative;
+    width: 400px;
+    aspect-ratio: 5/3;
+    perspective: 1000px;
+    cursor: grab;
+    /* transform: translateY(40%); */
+}
+
+/* .landing-page-info-block-first-card {
+    position: relative;
+    height: 220px;
+    aspect-ratio: 5/3;
+    perspective: 1000px;
+    transform: translateY(30%);
+} */
+
+/* .landing-page-slogan-block-card-paste-ready{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25em;
+    border-radius: 1rem;
+    color: var(--basic-purple);
+    font-size: 2rem;
+    background-color: var(--basic-eggshell);
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2),
+                inset 2px 2px 3px 0 rgb(255, 255, 255);
+    transform-style: preserve-3d;
+    transform: rotateY(-20deg);
+} */
+
+.landing-page-slogan-and-text {
+    position: relative;
+    font-size: 3rem;
+    color: var(--basic-purple);
+    font-family: 'francois', sans-serif;
+}
+
+/* landing page card helicpoter */
+.landing-page-card-helicpoter {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    aspect-ratio: 1/1;
+    /* border: 3px solid rgb(255, 179, 37); */
+}
+
+/* landing page dashboard */
+.landing-page-dashboard-container {
+    position: relative;
+    width: 100%;
+    height: 800px;
+    max-height: 90dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--basic-eggshell);
+}
+
+.landing-page-dashboard {
+    position: relative;
+    width: 90%;
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: var(--basic-purple); */
+}
+
+.landing-page-dashboard-content-wrapper-left {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background-color: var(--basic-purple);
+}
+
+.landing-page-dashboard-content-wrapper-right {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background-color: var(--basic-purple);
 }

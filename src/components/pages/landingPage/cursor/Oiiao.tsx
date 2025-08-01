@@ -64,10 +64,10 @@ const Oiiao = forwardRef<OiiaoRef>((_, ref) => {
 
 
         if(oiiaoAnimationType === 'spin') {
-            console.log('spin');
+            // console.log('spin');
             spinAnimate();
         } else if(oiiaoAnimationType === 'swing') {
-            console.log('swing');
+            // console.log('swing');
             waveAnimate();
         }
 

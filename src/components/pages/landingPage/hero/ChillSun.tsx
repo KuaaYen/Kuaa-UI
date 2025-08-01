@@ -88,14 +88,6 @@ const ChillSun = () => {
                     delay: 0,
                 }
             }}
-            // animate={{
-            //     transform: 'translate(0%, 0%)',
-            //     transition: {
-            //         duration: 1.2,
-            //         ease: 'easeInOut',
-            //         delay: 0,
-            //     }
-            // }}
             whileInView={{
                 transform: 'translate(0%, 0%)',
                 transition: {
