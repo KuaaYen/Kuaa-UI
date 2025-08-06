@@ -1,6 +1,17 @@
 import FootPrints from "./FootPrints";
 
-const FootPrintBlock = ({footPrintData}: {footPrintData: {right: string, top: string, rotate: string, stepLength: number, color: string}[]}) => {
+interface FootPrintBlockProps {
+    footPrintData: {
+        right: string;
+        top: string;
+        rotate: string;
+        stepLength: number;
+        color: string;
+    }[];
+    blockHeight?: number;
+}
+
+const FootPrintBlock = ({footPrintData, blockHeight=300}: FootPrintBlockProps) => {
 
     // 之後當screen size context設定完成後，要根據畫面減少腳印的數量，否則當外框自適應的時候腳印會擠在一起
     // const footPrintData = [
@@ -30,7 +41,12 @@ const FootPrintBlock = ({footPrintData}: {footPrintData: {right: string, top: st
     }
 
     return (
-        <div className="foot-print-block-container">
+        <div 
+            className="foot-print-block-container"
+            style={{
+                height: `${blockHeight}px`,
+            }}
+        >
             {createFootPrints()}
         </div>
     )

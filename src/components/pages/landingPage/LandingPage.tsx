@@ -30,6 +30,12 @@ const LandingPage = () => {
         {right: '35%', top: '75%', rotate: '145deg', stepLength: 120, color: '#444761'},
         // {right: '30%', top: '120%', rotate: '160deg', stepLength: 90, color: '#3D405B'},
     ];
+
+    const footPrintData3 = [
+        {right: '20%', top: '12%', rotate: '205deg', stepLength: 90, color: '#444761'},
+        {right: '32%', top: '48%', rotate: '230deg', stepLength: 100, color: '#444761'},
+        {right: '45%', top: '90%', rotate: '210deg', stepLength: 100, color: '#444761'},
+    ];
     
     return (
         <div className="landing-page-container">
@@ -39,8 +45,9 @@ const LandingPage = () => {
                 <FootPrintBlock footPrintData={footPrintData1} />
                 <Slogan />
                 <FootPrintBlock footPrintData={footPrintData2} />
-                {/* <Slogan /> */}
                 <Dashboard />
+                <FootPrintBlock footPrintData={footPrintData3} blockHeight={400} />
+                <Slogan />
             </div>
             {/* <LiquidGlassCursor /> */}
             <Oiiao ref={oiiaoRef} />

@@ -26,6 +26,7 @@
   --purple-shadow: #22243b80;
   --basic-mint: #81B29A;
   --basic-sunset: #F2CC8F;
+  --dark-sunset: #a37d4e;
 }
 
 * {
@@ -64,3 +65,11 @@ button {
   font-size: 3.2em;
   line-height: 1.1;
 } */
+
+.position-absotlue-full-size {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
