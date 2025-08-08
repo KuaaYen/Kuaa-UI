@@ -35,8 +35,8 @@ const Dashboard = () => {
 
     return (
         <div className="landing-page-dashboard-container" ref={ref}>
-            <div className="landing-page-dashboard">
-                <div className="landing-page-dashboard-content-wrapper">
+            <article className="landing-page-dashboard">
+                <section className="landing-page-dashboard-content-wrapper">
                     <div className="landing-page-dashboard-content-full">
                         <ArrowUp />
                         <h2 className="landing-page-dashboard-content-text-container">
@@ -44,6 +44,7 @@ const Dashboard = () => {
                                 <NumberFlow
                                     value={block1Value}
                                     suffix="+"
+                                    willChange={true}
                                     transformTiming={{
                                         duration: 300,
                                         easing: "ease-in-out",
@@ -54,15 +55,16 @@ const Dashboard = () => {
                             <p className="desc">Updated continuously, including icons and filters</p>
                         </h2>
                     </div>
-                </div>
+                </section>
                 <div className="landing-page-dashboard-content-wrapper">
-                    <div className="landing-page-dashboard-content-half">
+                    <section className="landing-page-dashboard-content-half">
                         <Magnifier />
                         <h2 className="landing-page-dashboard-content-text-container">
                             <p className="landing-page-brick-highlight main">
                                 <NumberFlow
                                     value={block2Value}
                                     suffix="%"
+                                    willChange={true}
                                     transformTiming={{
                                         duration: 300,
                                         easing: "ease-in-out",
@@ -72,13 +74,14 @@ const Dashboard = () => {
                             <p className="sub">Free and Open Source</p>
                             <p className="desc">Safe and no hidden fees</p>
                         </h2>
-                    </div>
-                    <div className="landing-page-dashboard-content-half">
+                    </section>
+                    <section className="landing-page-dashboard-content-half">
                         <LanguagesIcon />
                         <h2 className="landing-page-dashboard-content-text-container">
                             <p className="landing-page-brick-highlight main">
                                 <NumberFlow
                                     value={block3Value}
+                                    willChange={true}
                                     transformTiming={{
                                         duration: 300,
                                         easing: "ease-in-out",
@@ -89,9 +92,9 @@ const Dashboard = () => {
                             <p className="desc">Use your favorite language, select JSX or TSX as you like</p>
                         </h2>                        
                         
-                    </div>
+                    </section>
                 </div>
-            </div>
+            </article>
         </div>
     )
 }

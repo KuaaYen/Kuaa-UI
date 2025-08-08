@@ -7,7 +7,7 @@ import CardInteractive from './CardInteractive';
 const Slogan = () => {
 
     return (
-        <div className='landing-page-slogan-block'>
+        <article className='landing-page-slogan-block'>
             <div className='landing-page-slogan-block-content-wrapper'>
                 <CardInteractive />
                 <div className='landing-page-slogan-and-text'>
@@ -15,7 +15,7 @@ const Slogan = () => {
                 </div>
                 <CardPasteReady />
             </div>
-        </div>  
+        </article>  
     )
 }
 

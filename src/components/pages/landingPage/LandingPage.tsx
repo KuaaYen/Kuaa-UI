@@ -1,11 +1,12 @@
 import './landingPage.css';
+import { useRef } from 'react';
 import LandingHero from './hero/LandingHero';
 import FootPrintBlock from './bridge/FootPrintBlock';
 // import LiquidGlassCursor from './cursor/LiquidGlassCursor';
 import Oiiao, { OiiaoRef } from './cursor/Oiiao';
 import Slogan from './slogan/Slogan';
 import Dashboard from './dashboard/Dashboard';
-import { useRef } from 'react';
+import StartExploring from './startExploring/StartExploring';
 
 const LandingPage = () => {
     const oiiaoRef = useRef<OiiaoRef>(null);
@@ -47,7 +48,8 @@ const LandingPage = () => {
                 <FootPrintBlock footPrintData={footPrintData2} />
                 <Dashboard />
                 <FootPrintBlock footPrintData={footPrintData3} blockHeight={400} />
-                <Slogan />
+                {/* <Slogan /> */}
+                <StartExploring handleChangeOiiaoAnimation={handleChangeOiiaoAnimation} />
             </div>
             {/* <LiquidGlassCursor /> */}
             <Oiiao ref={oiiaoRef} />

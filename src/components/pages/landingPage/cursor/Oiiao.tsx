@@ -84,7 +84,7 @@ const Oiiao = forwardRef<OiiaoRef>((_, ref) => {
 
 
     return (
-        <div className="oiiao-container">
+        <section className="oiiao-container">
             <div className="oiiao-cursor-wrapper">
                 <motion.div
                     className="oiiao-cursor"
@@ -391,7 +391,7 @@ const Oiiao = forwardRef<OiiaoRef>((_, ref) => {
                     </Illustration>
                 </motion.div>
             </div>
-        </div>
+        </section>
     )
 });
 

@@ -78,7 +78,7 @@ const ChillSun = () => {
     }
 
     return (
-        <motion.div 
+        <motion.section 
             className="landing-page-hero-chill-sun"
             initial={{
                 transform: 'translate(0%, 100%)',
@@ -209,7 +209,7 @@ const ChillSun = () => {
                     </Anchor>
                 </Illustration>
             </motion.div>
-        </motion.div>
+        </motion.section>
     )
 }
 

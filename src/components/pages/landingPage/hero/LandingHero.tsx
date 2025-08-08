@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import PaperPlane from '../paperPlane/PaperPlane';
+import PaperPlane from './paperPlane/PaperPlane';
 import HeroPopOut from './HeroPopOut';
 // import Wind from './Wind';
 

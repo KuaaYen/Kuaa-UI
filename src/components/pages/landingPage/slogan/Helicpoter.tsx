@@ -92,10 +92,7 @@ const Helicpoter = ({tiltSide = 'left', speed = 3}: {tiltSide?: 'left' | 'right'
 
     return (
         <div className='landing-page-card-helicpoter'>
-            <Illustration
-                dragRotate={true}
-                style={{width: '100%', height: '100%'}}
-            >
+            <Illustration style={{width: '100%', height: '100%'}}>
                 <Anchor 
                     rotate={tiltRotate}
                     translate={{x: 0, y: 20, z: 0}}

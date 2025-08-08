@@ -1,7 +1,7 @@
 import NavBar from './components/nav/NavBar';
 import NoiseMask from './components/mask/NoiseMask';
 import LandingPage from './components/pages/landingPage/LandingPage';
-
+import Footer from './components/footer/Footer';
 import './app.css';
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
       <NavBar />
       <NoiseMask />
       <LandingPage />
+      <Footer />
     </div>
   )
 }

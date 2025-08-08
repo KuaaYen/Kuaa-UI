@@ -41,14 +41,14 @@ const FootPrintBlock = ({footPrintData, blockHeight=300}: FootPrintBlockProps) =
     }
 
     return (
-        <div 
+        <section 
             className="foot-print-block-container"
             style={{
                 height: `${blockHeight}px`,
             }}
         >
             {createFootPrints()}
-        </div>
+        </section>
     )
 }
 

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { motion, useMotionValue, useTransform, useAnimationFrame } from 'motion/react';
 import Helicpoter from './Helicpoter';
 
@@ -25,7 +26,7 @@ const CardInteractive = () => {
     });
 
     return (
-        <motion.div 
+        <motion.section 
             className='landing-page-slogan-block-card-interactive-wrapper'
             drag={true}
             dragConstraints={{
@@ -70,8 +71,8 @@ const CardInteractive = () => {
                 <span>and</span>
                 <span className='landing-page-brick-highlight'> Customizable</span> 
             </motion.div>
-        </motion.div>
+        </motion.section>
     )
 }
 
-export default CardInteractive;
+export default memo(CardInteractive);

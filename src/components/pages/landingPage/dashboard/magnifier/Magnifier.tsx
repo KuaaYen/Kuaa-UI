@@ -18,7 +18,7 @@ const Magnifier = () => {
             if(deltaTime > 1000 / 60) {
                 const elapsed = currentTime - startTime;
                 const newX = Math.sin(elapsed * 0.002) * 45 + 12;
-                const newY = Math.cos(elapsed * 0.002) * 63 + 5;
+                const newY = Math.cos(elapsed * 0.002) * 63 + 12;
                 setMagnifierPosition({ x: newX, y: newY });
                 lastTime = currentTime;
             }
@@ -97,7 +97,7 @@ const Magnifier = () => {
                             <feConvolveMatrix 
                                 in="blurred"
                                 order="3"
-                                // kernelMatrix="-0.8 -0.8 -0.8 -0.8 9 -0.8 -0.8 -0.8 -0.8"
+                                // 強度更高的銳化
                                 kernelMatrix="-1 -1 -1 -1 9 -1 -1 -1 -1"
                             />
                         </filter>

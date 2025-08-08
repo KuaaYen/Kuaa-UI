@@ -1,3 +1,4 @@
+import { memo } from "react";
 import ArrowStroke from "./ArrowStroke";
 // import ArrowPointer from "./ArrowPointer";
 
@@ -10,4 +11,4 @@ const ArrowUp = () => {
     );
 };
 
-export default ArrowUp;
+export default memo(ArrowUp);

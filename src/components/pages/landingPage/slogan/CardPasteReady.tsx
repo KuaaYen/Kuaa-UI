@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Helicpoter from './Helicpoter';
 import { motion, useMotionValue, useTransform, useAnimationFrame } from 'motion/react';
 
@@ -25,7 +26,7 @@ const CardPasteReady = () => {
     });
 
     return (
-        <motion.div 
+        <motion.section 
             className='landing-page-slogan-block-card-paste-ready-wrapper'
             drag={true}
             dragConstraints={{
@@ -72,9 +73,9 @@ const CardPasteReady = () => {
                 </motion.div>
             {/* </div> */}
             {/* <div className='landing-page-info-block-first-card'></div> */}
-        </motion.div>
+        </motion.section>
     )
 
 }
 
-export default CardPasteReady;
+export default memo(CardPasteReady);

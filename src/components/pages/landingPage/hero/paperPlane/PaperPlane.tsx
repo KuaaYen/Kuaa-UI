@@ -25,7 +25,7 @@ const PaperPlane = () => {
     }, [TAU]);
 
     return (
-        <motion.div 
+        <motion.section 
             className="zdog-paper-plane-container"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -77,7 +77,7 @@ const PaperPlane = () => {
                     </Anchor>
                 </Illustration>
             </motion.div>
-        </motion.div>
+        </motion.section>
     )
 }
 
