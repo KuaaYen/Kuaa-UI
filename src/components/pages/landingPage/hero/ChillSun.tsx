@@ -1,55 +1,31 @@
-import { motion } from "motion/react";
+import { motion, useAnimationFrame } from "motion/react";
 import { Illustration, Shape, Anchor } from "react-zdog";
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
+// import { useState, useEffect, useRef } from "react";
+// import { useLocation } from "react-router-dom";
 
 const ChillSun = () => {
     const TAU = Math.PI * 2;
     const [rotationX, setRotationX] = useState(0);
     const [triangleRotate, setTriangleRotate] = useState(0);
 
-    useEffect(() => {
-        let sunAnimationId: number;
-        const startTime = Date.now();
-        
-        const animate = () => {
-            const elapsed = Date.now() - startTime;
-            // 控制點頭幅度 (0.15) 和速度 (0.002)
-            const newRotationX = Math.sin(elapsed * 0.006) * 0.12;
-            setRotationX(newRotationX);
-            
-            sunAnimationId = requestAnimationFrame(animate);
-        };
-        
-        animate();
-        
-        return () => {
-            if (sunAnimationId) {
-                cancelAnimationFrame(sunAnimationId);
-            }
-        };
-    }, []);
-    
-    useEffect(() => {
-        let triangleAnimationId: number;
-        const startTime = Date.now();
-        
-        const animate = () => {
-            const elapsed = Date.now() - startTime;
-            const newTriangleRotate = elapsed * 0.0002;
-            setTriangleRotate(newTriangleRotate);
+    const lastUpdate = useRef(0);
+    const throttleDelay = 1000 / 60; 
 
-            triangleAnimationId = requestAnimationFrame(animate);
-        };
-        
-        animate();
-        
-        return () => {
-            if (triangleAnimationId) {
-                cancelAnimationFrame(triangleAnimationId);
-            }
-        };
-    }, []);
+    useAnimationFrame((time) => {
+        if (time - lastUpdate.current < throttleDelay) {
+            return;
+        }
+        lastUpdate.current = time;
 
+        // sun 動畫
+        const newRotationX = Math.sin(time * 0.006) * 0.12;
+        setRotationX(newRotationX);
+        
+        // triangle 動畫
+        const newTriangleRotate = time * 0.0002
+        setTriangleRotate(newTriangleRotate);
+    });
 
     const createTriangles = (number: number) => {
         const triangles = [];
@@ -117,10 +93,7 @@ const ChillSun = () => {
                     }
                 }}
             >
-
-                <Illustration
-                    // dragRotate={true}
-                >
+                <Illustration>
                     <Anchor 
                         translate={{x: 0, y: 0, z: 0}}
                         rotate={{

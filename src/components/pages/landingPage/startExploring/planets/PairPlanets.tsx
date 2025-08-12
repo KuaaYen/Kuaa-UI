@@ -1,5 +1,7 @@
 import { Illustration, Shape, Anchor } from "react-zdog";
-import { useState, useEffect, memo } from "react";
+import { useState, memo, useRef } from "react";
+import { useAnimationFrame } from "motion/react";
+
 
 const PairPlanets = () => {
 
@@ -7,29 +9,45 @@ const PairPlanets = () => {
     const [rotateY, setRotateY] = useState(0);
     const [rotateZ, setRotateZ] = useState(0);
 
-    useEffect(() => {
-        let animateId: number;
-        const startTime = Date.now();
-        const TAU = Math.PI * 2;
+    const lastUpdate = useRef(0);
+    const throttleDelay = 1000 / 60; 
+
+    useAnimationFrame((time) => {
+
+        if (time - lastUpdate.current < throttleDelay) {
+            return;
+        }
+        lastUpdate.current = time;
+
+        const newRotateY = time * 0.0001 * TAU;
+        const newRotateZ = Math.sin(time * 0.001) * (TAU/4) * 0.1;
+        setRotateY(newRotateY);
+        setRotateZ(newRotateZ);
+    })
+
+    // useEffect(() => {
+    //     let animateId: number;
+    //     const startTime = Date.now();
+    //     const TAU = Math.PI * 2;
         
-        const animate = () => {
-            const elapsed = Date.now() - startTime;
-            const newRotateY = elapsed * 0.0001 * TAU;
-            const newRotateZ = Math.sin(elapsed * 0.001) * (TAU/4) * 0.1;
-            setRotateY(newRotateY);
-            setRotateZ(newRotateZ);
+    //     const animate = () => {
+    //         const elapsed = Date.now() - startTime;
+    //         const newRotateY = elapsed * 0.0001 * TAU;
+    //         const newRotateZ = Math.sin(elapsed * 0.001) * (TAU/4) * 0.1;
+    //         setRotateY(newRotateY);
+    //         setRotateZ(newRotateZ);
 
-            animateId = requestAnimationFrame(animate);
-        }
+    //         animateId = requestAnimationFrame(animate);
+    //     }
 
-        animate();
+    //     animate();
 
-        return () => {
-            if (animateId) {
-                cancelAnimationFrame(animateId);
-            }
-        }
-    }, []);
+    //     return () => {
+    //         if (animateId) {
+    //             cancelAnimationFrame(animateId);
+    //         }
+    //     }
+    // }, []);
 
     
     return (

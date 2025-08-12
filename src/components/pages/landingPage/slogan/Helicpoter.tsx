@@ -1,35 +1,50 @@
 import { Illustration, Anchor, Shape, Ellipse} from "react-zdog";
-import { useEffect, useState } from "react";
+import { useState, useRef } from "react";
+import { useAnimationFrame } from "motion/react";
 
 const Helicpoter = ({tiltSide = 'left', speed = 3}: {tiltSide?: 'left' | 'right', speed?: number}) => {
     const TAU = Math.PI * 2;
     const [rotation, setRotation] = useState({x: 0, y: 0, z: 0});
 
+    const lastUpdate = useRef(0);
+    const throttleDelay = 1000 / 60; 
     const tiltRotate = {x: (TAU / 4) * 1.2, y: (TAU / 4) * 0.1 * (tiltSide === 'left' ? 1 : -1), z: 0}
 
-    useEffect(() => {
-        let animationId: number;
-
-        const startTime = Date.now();
-        const animate = () => {
-            const time = Date.now();
-            const elapsed = time - startTime;
-            const spinSpeed = speed * 0.001;
-            const rotate = elapsed * -spinSpeed;
-
-            setRotation({x: 0, y: 0, z: rotate});
-
-            animationId = requestAnimationFrame(animate);
+    useAnimationFrame((time) => {
+        if (time - lastUpdate.current < throttleDelay) {
+            return;
         }
+        lastUpdate.current = time;
 
-        animate();
+        const spinSpeed = speed * 0.001;
+        const rotate = time * -spinSpeed;
 
-        return () => {
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
-        };
-    }, [speed])
+        setRotation({x: 0, y: 0, z: rotate});
+    })
+
+    // useEffect(() => {
+    //     let animationId: number;
+
+    //     const startTime = Date.now();
+    //     const animate = () => {
+    //         const time = Date.now();
+    //         const elapsed = time - startTime;
+    //         const spinSpeed = speed * 0.001;
+    //         const rotate = elapsed * -spinSpeed;
+
+    //         setRotation({x: 0, y: 0, z: rotate});
+
+    //         animationId = requestAnimationFrame(animate);
+    //     }
+
+    //     animate();
+
+    //     return () => {
+    //         if (animationId) {
+    //             cancelAnimationFrame(animationId);
+    //         }
+    //     };
+    // }, [speed])
 
     const createLeaf = () => {
         const leafPath = [

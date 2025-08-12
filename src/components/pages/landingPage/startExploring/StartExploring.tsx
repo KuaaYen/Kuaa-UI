@@ -1,14 +1,21 @@
 import { motion, useInView } from "motion/react";
-
+import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import SpaceContainer from "./SpaceContainer";
 // import SpaceShip from "./spaceShip/SpaceShip";
 
 const StartExploring = ({ handleChangeOiiaoAnimation }: { handleChangeOiiaoAnimation: (type: 'spin' | 'swing') => void }) => {
+    const navigate = useNavigate();
+    
     const containerRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(containerRef, {
         margin: '0px 0px -350px 0px',
     });
+
+    const handleStartExploringClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        navigate('/documents');
+    }
 
 
     return (
@@ -42,8 +49,9 @@ const StartExploring = ({ handleChangeOiiaoAnimation }: { handleChangeOiiaoAnima
                         onPointerEnter={() => handleChangeOiiaoAnimation('swing')}
                         onPointerLeave={() => handleChangeOiiaoAnimation('spin')}
                     >   
-                        <motion.div 
+                        <motion.a 
                             className="start-exploring-content-text"
+                            onClick={(e) => handleStartExploringClick(e)}
                             initial={{
                                 backgroundImage: 'linear-gradient(0deg, var(--basic-brick) 0%, var(--basic-sunset) 100%)',
                             }}
@@ -62,7 +70,7 @@ const StartExploring = ({ handleChangeOiiaoAnimation }: { handleChangeOiiaoAnima
                             }}
                         >
                             Start Exploring
-                        </motion.div>
+                        </motion.a>
                     </div>
                     <motion.div className="start-exploring-content-text-border"
                         initial={{

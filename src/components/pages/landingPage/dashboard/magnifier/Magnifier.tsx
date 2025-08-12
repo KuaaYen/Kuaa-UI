@@ -1,35 +1,17 @@
-// import { motion } from 'motion/react';
-import { memo , useState, useEffect} from 'react';
+import { useAnimationFrame } from 'motion/react';
+import { memo , useState} from 'react';
 import MagnifierOutline from './MagnifierOutline';
 import DocsIcon from './DocsIcon';
 
 const Magnifier = () => {
     const [magnifierPosition, setMagnifierPosition] = useState({ x: 0, y: 0 });
 
-    useEffect(() => {
-        let magnifierAnimationId: number;
-        const startTime = Date.now();
-        let lastTime = 0;
-
-        const animate = () => {
-            const currentTime = Date.now();
-            const deltaTime = currentTime - lastTime;
-            // console.log({currentTime: currentTime, lastTime: lastTime, deltaTime: deltaTime});
-            if(deltaTime > 1000 / 60) {
-                const elapsed = currentTime - startTime;
-                const newX = Math.sin(elapsed * 0.002) * 45 + 12;
-                const newY = Math.cos(elapsed * 0.002) * 63 + 12;
-                setMagnifierPosition({ x: newX, y: newY });
-                lastTime = currentTime;
-            }
-            magnifierAnimationId = requestAnimationFrame(animate);
-
-        }
-
-        animate();
-
-        return () => cancelAnimationFrame(magnifierAnimationId);
-    },[])
+    
+    useAnimationFrame((time) => {
+        const newX = Math.sin(time * 0.002) * 45 + 12;
+        const newY = Math.cos(time * 0.002) * 63 + 12;
+        setMagnifierPosition({ x: newX, y: newY });
+    })
 
 
     const createMapURI = () => {

@@ -1,9 +1,17 @@
 import { motion } from 'motion/react';
 import PaperPlane from './paperPlane/PaperPlane';
 import HeroPopOut from './HeroPopOut';
+import { memo } from 'react';
+import { useNavigate } from 'react-router-dom';
 // import Wind from './Wind';
 
 const LandingHero = ({handleChangeOiiaoAnimation}: {handleChangeOiiaoAnimation: (type: 'spin' | 'swing') => void}) => {
+    const navigate = useNavigate();
+
+    const handleGetStartedClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        navigate('/documents');
+    }
 
     const createSplitText = (text: string, delay: number) => {
         const baseDelay = delay;
@@ -45,15 +53,16 @@ const LandingHero = ({handleChangeOiiaoAnimation}: {handleChangeOiiaoAnimation: 
                             <span className='landing-page-brick-highlight'>{createSplitText('unique', 1.4)}</span>
                             <span> React components</span>
                         </div>
-                        <button 
+                        <a 
                             className='landing-page-CTA'
                             onPointerEnter={() => handleChangeOiiaoAnimation('swing')}
                             onPointerLeave={() => handleChangeOiiaoAnimation('spin')}
+                            onClick={(e) => handleGetStartedClick(e)}
                         >
                             <div className='landing-page-CTA-text'>
                                 <span>Get Started</span>
                             </div>
-                        </button>
+                        </a>
                     </div>
                 </motion.h1>
             </motion.div>
@@ -61,4 +70,4 @@ const LandingHero = ({handleChangeOiiaoAnimation}: {handleChangeOiiaoAnimation: 
     )
 }
 
-export default LandingHero;
+export default memo(LandingHero);

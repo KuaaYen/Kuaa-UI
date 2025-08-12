@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, time, useAnimationFrame } from "motion/react";
 import { useEffect, useState, useRef, forwardRef, useImperativeHandle} from "react";
 import { Illustration, Box, Anchor, Shape, Cone, Ellipse } from "react-zdog";
 
@@ -6,16 +6,38 @@ export interface OiiaoRef {
     setAnimationType: (type: 'spin' | 'swing') => void;
 }
 
-// interface OiiaoProps {
-//     animationType: 'spin' | 'wave';
-// }
+interface OiiaoProps {
+    throttleFPS?: number;
+}
 
-const Oiiao = forwardRef<OiiaoRef>((_, ref) => {
+const Oiiao = forwardRef<OiiaoRef, OiiaoProps>(({throttleFPS = 60}, ref) => {
     const TAU = Math.PI * 2;
     const [pointerPosition, setPointerPosition] = useState({x: 0, y: 0});
     const [oiiaoAnimationType, setOiiaoAnimationType] = useState<'spin' | 'swing'>('spin');
     const [oiiaoRotateZ, setOiiaoRotateZ] = useState(0);
     const [oiiaoRotateY, setOiiaoRotateY] = useState(0);
+
+    const lastMovementUpdateTime = useRef(0);
+    const lastPositionUpdateTime = useRef(0);
+    const updateInterval = 1000 / throttleFPS;
+
+    useAnimationFrame((time) => {
+        if(time - lastMovementUpdateTime.current < updateInterval) {
+            return;
+        }
+        lastMovementUpdateTime.current = time;
+
+        const TAU = Math.PI *2;
+        if(oiiaoAnimationType === 'spin') {
+            const newRotationY = time * 0.005;
+            setOiiaoRotateY(newRotationY);
+            setOiiaoRotateZ(0);
+        } else if(oiiaoAnimationType === 'swing') {
+            const newRotateZ = Math.sin(time * 0.005) * 0.25;
+            setOiiaoRotateZ(newRotateZ);
+            setOiiaoRotateY((TAU / 4) * 0.3);
+        }
+    });
 
     const cursorRef = useRef<HTMLDivElement>(null);
 
@@ -25,10 +47,17 @@ const Oiiao = forwardRef<OiiaoRef>((_, ref) => {
         }
     }));
 
-    useEffect(() => {
 
+    useEffect(() => {
         const handlePointerMove = (e: MouseEvent) => {
             if(cursorRef.current === null) return;
+            const currentTime = time.now();
+
+            if(currentTime - lastPositionUpdateTime.current < updateInterval) {
+                return;
+            }
+            lastPositionUpdateTime.current = currentTime;
+
             const centeredPosition = {
                 x: e.clientX + 20,
                 y: e.clientY + 20
@@ -37,50 +66,7 @@ const Oiiao = forwardRef<OiiaoRef>((_, ref) => {
         }
         window.addEventListener('mousemove', handlePointerMove);
         return () => window.removeEventListener('mousemove', handlePointerMove);
-    }, []);
-
-    useEffect(() => {
-        let spinAnimationId: number;
-        let waveAnimationId: number;
-        const startTime = Date.now();
-        const useEffectTAU = Math.PI * 2;
-
-        const spinAnimate = () => {
-            const elapsed = Date.now() - startTime;
-            const rotateY = elapsed * 0.005;
-            setOiiaoRotateY(rotateY);
-            setOiiaoRotateZ(0);
-
-            spinAnimationId = requestAnimationFrame(spinAnimate);
-        }
-
-        const waveAnimate = () => {
-            const elapsed = Date.now() - startTime;
-            const rotateZ = Math.sin(elapsed * 0.005) * 0.25;
-            setOiiaoRotateZ(rotateZ);
-            setOiiaoRotateY((useEffectTAU / 4) * 0.3);
-            waveAnimationId = requestAnimationFrame(waveAnimate);
-        }
-
-
-        if(oiiaoAnimationType === 'spin') {
-            // console.log('spin');
-            spinAnimate();
-        } else if(oiiaoAnimationType === 'swing') {
-            // console.log('swing');
-            waveAnimate();
-        }
-
-
-        return () => {
-            if (spinAnimationId) {
-                cancelAnimationFrame(spinAnimationId);
-            }
-            if (waveAnimationId) {
-                cancelAnimationFrame(waveAnimationId);
-            }
-        };
-    },[oiiaoAnimationType]);
+    }, [throttleFPS, updateInterval]);
 
 
     return (
@@ -102,13 +88,13 @@ const Oiiao = forwardRef<OiiaoRef>((_, ref) => {
                             opacity: {
                                 duration: 0.5,
                                 ease: 'easeInOut',
-                                delay: 2
+                                delay: 0.8
                             },
                             scale: {
                                 type: 'spring',
                                 stiffness: 100,
                                 damping: 10,
-                                delay: 2.3
+                                delay: 1
                             },
                             x: {
                                 type: 'tween',

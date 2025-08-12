@@ -1,28 +1,29 @@
 import { Illustration, Shape, Anchor } from "react-zdog";
-import { motion } from "motion/react";
-import { useState, useEffect } from "react";
+import { motion, useAnimationFrame } from "motion/react";
+import { useState, useRef } from "react";
 
 const PaperPlane = () => {
     const TAU = Math.PI * 2;
     const [rotation, setRotation] = useState({ x: TAU / 4, z: 0, y: 0 });
+    const lastUpdate = useRef(0);
+    const throttleDelay = 1000 / 60; 
 
-    useEffect(() => {
-        const animate = () => {
-            const time = Date.now();
-            const tiltZ = Math.sin(time * 0.002) * 0.3;
-            const tiltX = Math.sin(time * 0.0015) * 0.1;
-            const tiltY = Math.sin(time * 0.001) * 0.1;
-            
-            setRotation({
-                x: (TAU / 4) * 0.7 + tiltX,
-                y: tiltY,
-                z: -(TAU / 8) + tiltZ,
-            });
-        };
+    useAnimationFrame((time) => {
+        if (time - lastUpdate.current < throttleDelay) {
+            return;
+        }
+        lastUpdate.current = time;
 
-        const interval = setInterval(animate, 32); // ~60fps
-        return () => clearInterval(interval);
-    }, [TAU]);
+        const tiltX = Math.sin(time * 0.0015) * 0.1;
+        const tiltY = Math.sin(time * 0.001) * 0.1;
+        const tiltZ = Math.sin(time * 0.002) * 0.3;
+
+        setRotation({
+            x: (TAU / 4) * 0.7 + tiltX,
+            y: tiltY,
+            z: -(TAU / 8) + tiltZ,
+        });
+    });
 
     return (
         <motion.section 

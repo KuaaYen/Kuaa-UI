@@ -1,5 +1,6 @@
 import { Illustration, Ellipse, Shape, Anchor } from "react-zdog";
-import { useState, useEffect, memo } from "react";
+import { useState, memo, useRef } from "react";
+import { useAnimationFrame } from "motion/react";
 
 interface PlanetProps {
     tiltSide?: 'left' | 'right';
@@ -24,30 +25,45 @@ const Planet = ({
     const TAU = Math.PI * 2;
     const [ringRotateY, setRingRotateY] = useState(0);
 
-    useEffect(() => {
-        let animateId: number;
-        const startTime = Date.now();
-        let lastTime = 0;
-        const trottle = 1000 / 60;
-        const TAU = Math.PI * 2;
+    const lastUpdate = useRef(0);
+    const throttleDelay = 1000 / 60; 
+
+    useAnimationFrame((time) => {
+
+        if (time - lastUpdate.current < throttleDelay) {
+            return;
+        }
+        lastUpdate.current = time;
         const speed = tiltSpeed / 1000;
 
-        const animate = () => {
-            const currentTime = Date.now();
-            const deltaTime = currentTime - lastTime;
-            if(deltaTime > trottle) {
-                lastTime = currentTime;
-                const time = currentTime - startTime;
-                const angle = Math.sin(time * speed) * TAU/4 * 0.1 + 0.5;
-                setRingRotateY(angle);
-            }
-            animateId = requestAnimationFrame(animate);
-        }
+        const newRingRotateY = Math.sin(time * speed) * TAU/4 * 0.1 + 0.5;
+        setRingRotateY(newRingRotateY);
+    })
 
-        animate();
+    // useEffect(() => {
+    //     let animateId: number;
+    //     const startTime = Date.now();
+    //     let lastTime = 0;
+    //     const trottle = 1000 / 60;
+    //     const TAU = Math.PI * 2;
+    //     const speed = tiltSpeed / 1000;
 
-        return () => cancelAnimationFrame(animateId);
-    }, [tiltSpeed]);
+    //     const animate = () => {
+    //         const currentTime = Date.now();
+    //         const deltaTime = currentTime - lastTime;
+    //         if(deltaTime > trottle) {
+    //             lastTime = currentTime;
+    //             const time = currentTime - startTime;
+    //             const angle = Math.sin(time * speed) * TAU/4 * 0.1 + 0.5;
+    //             setRingRotateY(angle);
+    //         }
+    //         animateId = requestAnimationFrame(animate);
+    //     }
+
+    //     animate();
+
+    //     return () => cancelAnimationFrame(animateId);
+    // }, [tiltSpeed]);
 
     const tiltMultiplier = tiltSide === 'left' ? 1 : -1;
 

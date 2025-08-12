@@ -1,5 +1,6 @@
     import { Illustration, Anchor, Hemisphere, Cylinder, Cone, Ellipse} from "react-zdog";
-    import { useEffect, useState, memo } from "react";
+    import { useState, memo, useRef } from "react";
+    import { useAnimationFrame } from "motion/react";
 
 
     const SpaceShip = () => {
@@ -9,31 +10,49 @@
         const [rotateZ, setRotateZ] = useState(0);
         const [translateY, setTranslateY] = useState(0);
 
-        useEffect(() => {
-            let animateId: number;
-            const TAU = Math.PI * 2;
-            const startTime = Date.now();
-            const animate = () => {
-                const elapsed = Date.now() - startTime;
-                const newRotateX = Math.sin(elapsed * 0.002) * (TAU/4) * 0.08 + (TAU/4 * -0.3);
-                const newRotateZ = Math.cos(elapsed * 0.002) * (TAU/4) * 0.03 + (TAU/4 * -0.2);
-                const newTranslateY = Math.sin(elapsed * 0.002) * 5 -30;
-                setRotateX(newRotateX);
-                setRotateZ(newRotateZ);
-                setTranslateY(newTranslateY);
-                animateId = requestAnimationFrame(animate);
+        const lastUpdate = useRef(0);
+        const throttleDelay = 1000 / 60; 
+
+        useAnimationFrame((time) => {
+
+            if (time - lastUpdate.current < throttleDelay) {
+                return;
             }
+            lastUpdate.current = time;
 
-            animate();
+            const newRotateX = Math.sin(time * 0.002) * (TAU/4) * 0.08 + (TAU/4 * -0.3);
+            const newRotateZ = Math.cos(time * 0.002) * (TAU/4) * 0.03 + (TAU/4 * -0.2);
+            const newTranslateY = Math.sin(time * 0.002) * 5 -30;
+            setRotateX(newRotateX);
+            setRotateZ(newRotateZ);
+            setTranslateY(newTranslateY);
+        })
 
-            return () => {
-                if (animateId) {
-                    cancelAnimationFrame(animateId);
-                }
-            }
+        // useEffect(() => {
+        //     let animateId: number;
+        //     const TAU = Math.PI * 2;
+        //     const startTime = Date.now();
+        //     const animate = () => {
+        //         const elapsed = Date.now() - startTime;
+        //         const newRotateX = Math.sin(elapsed * 0.002) * (TAU/4) * 0.08 + (TAU/4 * -0.3);
+        //         const newRotateZ = Math.cos(elapsed * 0.002) * (TAU/4) * 0.03 + (TAU/4 * -0.2);
+        //         const newTranslateY = Math.sin(elapsed * 0.002) * 5 -30;
+        //         setRotateX(newRotateX);
+        //         setRotateZ(newRotateZ);
+        //         setTranslateY(newTranslateY);
+        //         animateId = requestAnimationFrame(animate);
+        //     }
+
+        //     animate();
+
+        //     return () => {
+        //         if (animateId) {
+        //             cancelAnimationFrame(animateId);
+        //         }
+        //     }
 
 
-        },[])
+        // },[])
 
         
         return (
