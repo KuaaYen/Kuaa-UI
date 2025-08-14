@@ -1,10 +1,12 @@
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import KuaaIcon from './KuaaIcon'
+import useMediaTypeContext from '../../context/useMediaTypeContext';
 // import { startTransition } from 'react';
 
 const NavBar = () => {
-
+    const mediaType = useMediaTypeContext();
+    const isMobile = mediaType === 'mobile';
     const navigate = useNavigate();
     
     const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>, path: string) => {
@@ -17,6 +19,7 @@ const NavBar = () => {
        
     }
 
+    // console.log(mediaType);
 
   return (
     <header className="navbar-container">
@@ -24,18 +27,18 @@ const NavBar = () => {
             <motion.a 
                 href="/" 
                 onClick={(e) => handleLinkClick(e, '/')}
-                className="navbar-home" 
+                className={isMobile ? 'navbar-home-mobile' : 'navbar-home'} 
                 title="back to home"
                 initial={{scale: 0.7, opacity: 0}}
                 animate={{scale: 1, opacity: 1}}
                 transition={{ delay: 0.2, type: 'spring', stiffness: 100, damping: 10}}
             > 
                 <KuaaIcon />
-                <div>Kuaa UI</div>
+                <div>KuaaUI</div>
             </motion.a>
  
             <motion.nav 
-                className="navbar-links"
+                className={isMobile ? 'navbar-links-mobile' : 'navbar-links'}
                 initial={{scale: 0.7, opacity: 0}}
                 animate={{scale: 1, opacity: 1}}
                 transition={{ delay: 0.4, type: 'spring', stiffness: 100, damping: 10}}

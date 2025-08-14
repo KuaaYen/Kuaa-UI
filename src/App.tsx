@@ -1,10 +1,11 @@
 import { createBrowserRouter, RouterProvider, useLocation, useOutlet } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
 import React from 'react';
+import MediaTypeProvider from './context/MediaTypeProvider';
 import NavBar from './components/nav/NavBar';
 import NoiseMask from './components/mask/NoiseMask';
 import LandingPage from './components/pages/landingPage/LandingPage';
-import Footer from './components/footer/Footer';
+// import Footer from './components/footer/Footer';
 import ArtsPage from './components/pages/artsPage/ArtsPage';
 import DocumentsPage from './components/pages/documentsPage/DocumentsPage';
 import './app.css';
@@ -24,12 +25,14 @@ function App() {
 
   const RootLayout = () => {
     return (
-      <div className='app-container'>
+      <>
         <NavBar />
-        <NoiseMask />
-        <AnimatedOutlet />
-        <Footer />
+        <div className='app-container'>
+          <NoiseMask />
+          <AnimatedOutlet />
+          {/* <Footer /> */}
       </div>
+    </>
     );
   };
 
@@ -58,13 +61,9 @@ function App() {
 
 
   return (
-    <div>
+    <MediaTypeProvider>
       <RouterProvider router={router} />
-      {/* <NavBar />
-      <NoiseMask />
-      <LandingPage />
-      <Footer /> */}
-    </div>
+    </MediaTypeProvider>
   )
 }
 

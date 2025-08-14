@@ -3,7 +3,8 @@ import { memo , useState} from 'react';
 import MagnifierOutline from './MagnifierOutline';
 import DocsIcon from './DocsIcon';
 
-const Magnifier = () => {
+const Magnifier = ({mediaType = 'pc'}: {mediaType?: 'pc' | 'mobile' | 'tablet'}) => {
+
     const [magnifierPosition, setMagnifierPosition] = useState({ x: 0, y: 0 });
 
     
@@ -14,6 +15,7 @@ const Magnifier = () => {
     })
 
 
+    if(mediaType === 'mobile') return null;
     const createMapURI = () => {
         const mapText = `
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">

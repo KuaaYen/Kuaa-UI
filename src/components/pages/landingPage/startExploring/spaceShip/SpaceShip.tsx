@@ -3,7 +3,7 @@
     import { useAnimationFrame } from "motion/react";
 
 
-    const SpaceShip = () => {
+    const SpaceShip = ({ zoom = 0.8 }: { zoom: number }) => {
 
         const TAU = Math.PI * 2;
         const [rotateX, setRotateX] = useState(0);
@@ -57,7 +57,7 @@
         
         return (
             <div className="space-ship-container">
-                <Illustration zoom={0.8}>
+                <Illustration zoom={zoom}>
                     <Anchor rotate={{x: rotateX, z: rotateZ}} translate={{y: translateY}}>
                         <Hemisphere
                             diameter={80}

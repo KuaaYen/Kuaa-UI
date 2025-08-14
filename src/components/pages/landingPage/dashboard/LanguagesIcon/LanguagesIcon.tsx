@@ -1,9 +1,15 @@
 import { motion } from 'motion/react';
 
-const LanguagesIcon = () => {
+const LanguagesIcon = ({mediaType = 'pc'}: {mediaType?: 'pc' | 'mobile' | 'tablet'}) => {
+    if(mediaType === 'mobile') return null;
     return (
         <div className="landing-page-dashboard-content-icon">
-            <div className="landing-page-languages-icon-wrapper">
+            <div 
+                className="landing-page-languages-icon-wrapper"
+                style={{
+                    height: mediaType === 'tablet' ? '45%' : '35%',
+                }}
+            >
                 <motion.div 
                     className="landing-page-languages-icon"
                     initial={{

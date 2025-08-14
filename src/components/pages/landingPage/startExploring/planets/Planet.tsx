@@ -10,6 +10,7 @@ interface PlanetProps {
     ringColor?: string;
     ringStroke?: number;
     ringSize?: number;
+    zoom?: number;
 }
 
 
@@ -21,6 +22,7 @@ const Planet = ({
     ringColor = '#3D405B',
     ringStroke = 10,
     ringSize = 100,
+    zoom = 1,
 }: PlanetProps) => {
     const TAU = Math.PI * 2;
     const [ringRotateY, setRingRotateY] = useState(0);
@@ -69,7 +71,7 @@ const Planet = ({
 
     return (
         <div className="planet-wrapper">
-            <Illustration>
+            <Illustration zoom={zoom}>
                 <Anchor rotate={{y: tiltMultiplier *ringRotateY, x: TAU/6, z: TAU/4}}>
                     <Ellipse 
                         diameter={ringSize}

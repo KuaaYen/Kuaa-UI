@@ -2,7 +2,7 @@ import { memo } from 'react';
 import Helicpoter from './Helicpoter';
 import { motion, useMotionValue, useTransform, useAnimationFrame } from 'motion/react';
 
-const CardPasteReady = () => {
+const CardPasteReady = ({mediaType, draggable = true}: {mediaType: 'pc' | 'mobile' | 'tablet', draggable?: boolean}) => {
     const progress1 = useMotionValue(0);
     // const progress2 = useMotionValue(0);
     // const progress3 = useMotionValue(0);
@@ -28,7 +28,10 @@ const CardPasteReady = () => {
     return (
         <motion.section 
             className='landing-page-slogan-block-card-paste-ready-wrapper'
-            drag={true}
+            style={{
+                width: mediaType === 'pc' ? '400px' : '330px',
+            }}
+            drag={draggable}
             dragConstraints={{
                 top: 0,
                 left: 0,

@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { motion, useMotionValue, useTransform, useAnimationFrame } from 'motion/react';
 import Helicpoter from './Helicpoter';
 
-const CardInteractive = () => {
+const CardInteractive = ({mediaType, draggable = true}: {mediaType: 'pc' | 'mobile' | 'tablet', draggable?: boolean}) => {
 
     const progress1 = useMotionValue(0);
     // const progress2 = useMotionValue(0);
@@ -28,7 +28,10 @@ const CardInteractive = () => {
     return (
         <motion.section 
             className='landing-page-slogan-block-card-interactive-wrapper'
-            drag={true}
+            style={{
+                width: mediaType === 'pc' ? '500px' : '330px',
+            }}
+            drag={draggable}
             dragConstraints={{
                 top: 0,
                 left: 0,
@@ -47,6 +50,7 @@ const CardInteractive = () => {
                     y: y1,
                     rotateX: rotateX1,
                     rotateY: rotateY1,
+                    flexDirection: mediaType === 'pc' ? 'row' : 'column',
                 }}
                 initial={{
                     scale: 0.3,

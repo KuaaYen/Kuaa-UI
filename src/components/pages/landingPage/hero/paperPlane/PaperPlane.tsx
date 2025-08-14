@@ -2,11 +2,13 @@ import { Illustration, Shape, Anchor } from "react-zdog";
 import { motion, useAnimationFrame } from "motion/react";
 import { useState, useRef } from "react";
 
-const PaperPlane = () => {
+const PaperPlane = ({mediaType = 'pc'}: {mediaType?: 'pc' | 'mobile' | 'tablet'}) => {
     const TAU = Math.PI * 2;
     const [rotation, setRotation] = useState({ x: TAU / 4, z: 0, y: 0 });
     const lastUpdate = useRef(0);
     const throttleDelay = 1000 / 60; 
+
+    const isPc = mediaType === 'pc';
 
     useAnimationFrame((time) => {
         if (time - lastUpdate.current < throttleDelay) {
@@ -27,7 +29,7 @@ const PaperPlane = () => {
 
     return (
         <motion.section 
-            className="zdog-paper-plane-container"
+            className={isPc ? 'zdog-paper-plane-container' : 'zdog-paper-plane-container-mobile'}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -40,8 +42,8 @@ const PaperPlane = () => {
                 transition={{ duration: 0.8, delay: 0.6 }}
             >
                 <Illustration
-                    zoom={1.1}
-                    dragRotate={true}
+                    zoom={1}
+                    dragRotate={isPc ? true : false}
                     style={{width: '100%', height: '100%'}}
                 >
                     <Anchor 

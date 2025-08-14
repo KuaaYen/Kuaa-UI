@@ -3,9 +3,11 @@ import PaperPlane from './paperPlane/PaperPlane';
 import HeroPopOut from './HeroPopOut';
 import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useMediaTypeContext from '../../../../context/useMediaTypeContext';
 // import Wind from './Wind';
 
 const LandingHero = ({handleChangeOiiaoAnimation}: {handleChangeOiiaoAnimation: (type: 'spin' | 'swing') => void}) => {
+    const mediaType = useMediaTypeContext();
     const navigate = useNavigate();
 
     const handleGetStartedClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -29,6 +31,64 @@ const LandingHero = ({handleChangeOiiaoAnimation}: {handleChangeOiiaoAnimation: 
         ))
     }
 
+    const createHeroContent = () => {
+        if(mediaType === 'pc') {
+            return (
+                <div className='landing-page-hero-content-text-container'>
+                    <PaperPlane />
+                    <div className='landing-page-hero-content-text'>
+                        Build your project with
+                        <HeroPopOut/>
+                    </div>
+                    <div>
+                        <span className='landing-page-brick-highlight'>{createSplitText('creative', 0.9)}</span>
+                        <span> and </span>
+                        <span className='landing-page-brick-highlight'>{createSplitText('unique', 1.4)}</span>
+                        <span> React components</span>
+                    </div>
+                    <a 
+                        className='landing-page-CTA'
+                        onPointerEnter={() => handleChangeOiiaoAnimation('swing')}
+                        onPointerLeave={() => handleChangeOiiaoAnimation('spin')}
+                        onClick={(e) => handleGetStartedClick(e)}
+                    >
+                        <div className='landing-page-CTA-text'>
+                            <span>Get Started</span>
+                        </div>
+                    </a>
+                </div>
+            )
+        } else {
+            return (
+                <div className='landing-page-hero-content-text-container'>
+                    <div className='landing-page-hero-content-text-mobile'>
+                        Build your project with
+                    </div>
+                    <div className='landing-page-hero-content-text-mobile'>
+                        <span className='landing-page-brick-highlight'>{createSplitText('creative', 0.9)}</span>
+                        <span> and </span>
+                        <span className='landing-page-brick-highlight'>{createSplitText('unique', 1.4)}</span>
+                        <span> React components</span>
+                    </div>
+                    <div className='landing-page-hero-CTA-mobile-wrapper'>
+                        <a 
+                            className='landing-page-CTA-mobile'
+                            onPointerEnter={() => handleChangeOiiaoAnimation('swing')}
+                            onPointerLeave={() => handleChangeOiiaoAnimation('spin')}
+                            onClick={(e) => handleGetStartedClick(e)}
+                        >
+                            <div className='landing-page-CTA-text'>
+                                <span>Get Started</span>
+                            </div>
+                        </a>
+                            
+                        <PaperPlane mediaType={mediaType}/>
+                    </div>
+                </div>
+            )
+        }
+    }
+
     return (
         <article 
             className="landing-page-hero-wrapper"
@@ -40,12 +100,12 @@ const LandingHero = ({handleChangeOiiaoAnimation}: {handleChangeOiiaoAnimation: 
                 transition={{duration: 1.2, delay: 0.6, type: 'spring', stiffness: 100, damping: 12}}      
             >
                 <motion.h1>
-                    <div className='landing-page-hero-content-text'>
+                    {createHeroContent()}
+                    {/* <div className='landing-page-hero-content-text'>
                         <PaperPlane />
                         <div className='landing-page-hero-content-text-top'>
                             Build your project with
                             <HeroPopOut/>
-                            {/* <Wind/> */}
                         </div>
                         <div>
                             <span className='landing-page-brick-highlight'>{createSplitText('creative', 0.9)}</span>
@@ -63,7 +123,7 @@ const LandingHero = ({handleChangeOiiaoAnimation}: {handleChangeOiiaoAnimation: 
                                 <span>Get Started</span>
                             </div>
                         </a>
-                    </div>
+                    </div> */}
                 </motion.h1>
             </motion.div>
         </article>
