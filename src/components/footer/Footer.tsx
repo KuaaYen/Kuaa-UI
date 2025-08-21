@@ -10,10 +10,11 @@ const Footer = () => {
 
     const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
         e.preventDefault();
-        if(path === '/') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        // if(path === '/') {
+        //     window.scrollTo({ top: 0, behavior: 'smooth' });
+        // }
         navigate(path);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         
     }
 

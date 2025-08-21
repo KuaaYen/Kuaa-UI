@@ -9,6 +9,8 @@ import LandingPage from './components/pages/landingPage/LandingPage';
 import ArtsPage from './components/pages/artsPage/ArtsPage';
 import DocumentsPage from './components/pages/documentsPage/DocumentsPage';
 import './app.css';
+import SplitText from './components/pages/documentsPage/Informations/splitText/SplitText';
+import InfoBlock from './components/pages/documentsPage/Informations/InfoBlock';
 
 function App() {
 
@@ -16,9 +18,15 @@ function App() {
     const location = useLocation();
     const outlet = useOutlet();
     
+    // 只取第一層路徑作為 key
+    const getAnimationKey = (pathname: string) => {
+      const segments = pathname.split('/').filter(Boolean);
+      return segments.length > 0 ? `/${segments[0]}` : '/';
+    };
+    
     return (
       <AnimatePresence mode='wait'>
-        {outlet && React.cloneElement(outlet, { key: location.pathname })}
+        {outlet && React.cloneElement(outlet, { key: getAnimationKey(location.pathname) })}
       </AnimatePresence>
     );
   };
@@ -53,6 +61,20 @@ function App() {
         {
           path: 'documents',
           element: <DocumentsPage />,
+          children: [
+            {
+              index: true,
+              element: <SplitText />, // 預設顯示的組件
+            },
+            {
+              path: 'splittext',
+              element: <SplitText />,
+            },
+            {
+              path: 'test',
+              element: <InfoBlock />,
+            },
+          ]
         },
       ],
     },

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import KuaaIcon from './KuaaIcon'
 import useMediaTypeContext from '../../context/useMediaTypeContext';
 // import { startTransition } from 'react';
@@ -8,22 +8,41 @@ const NavBar = () => {
     const mediaType = useMediaTypeContext();
     const isMobile = mediaType === 'mobile';
     const navigate = useNavigate();
-    
+    const location = useLocation();
     const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>, path: string) => {
         event.preventDefault();
         
-        if ( path === '/') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } 
+        // if ( path === '/') {
+        //     window.scrollTo({ top: 0, behavior: 'smooth' });
+        // } 
         navigate(path);
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
        
     }
+
+    const getFirstLayerPath = (path: string) => {
+        const pathArray = path.split('/');
+        return pathArray[1];
+    }
+
+    const firstLayerPath = getFirstLayerPath(location.pathname);
 
     // console.log(mediaType);
 
   return (
-    <header className="navbar-container">
-        <div className="navbar-content">
+    <header 
+        className="navbar-container"
+        style={{
+            height: isMobile ? '6rem' : '8rem',
+        }}
+    >
+        <div 
+            className="navbar-content"
+            style={{
+                width: firstLayerPath === 'documents' ? '1400px' : '1250px',
+            }}
+        >
             <motion.a 
                 href="/" 
                 onClick={(e) => handleLinkClick(e, '/')}

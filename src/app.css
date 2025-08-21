@@ -54,6 +54,7 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 2rem 0rem;
+    transition: all 0.3s ease-in-out;
     /* margin-top: 2rem; */
     /* background-color: #5caedd60; */
 }

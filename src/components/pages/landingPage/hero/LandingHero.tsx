@@ -13,6 +13,7 @@ const LandingHero = ({handleChangeOiiaoAnimation}: {handleChangeOiiaoAnimation: 
     const handleGetStartedClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         navigate('/documents');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     const createSplitText = (text: string, delay: number) => {

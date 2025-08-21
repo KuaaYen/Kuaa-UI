@@ -10,12 +10,13 @@ const StartExploring = ({ handleChangeOiiaoAnimation }: { handleChangeOiiaoAnima
     const mediaType = useMediaTypeContext();
     const containerRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(containerRef, {
-        margin: '0px 0px -350px 0px',
+        margin: '0px 0px -250px 0px',
     });
 
     const handleStartExploringClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         navigate('/documents');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     const getButtonSize = () => {
