@@ -15,21 +15,21 @@ const ComponentList = () => {
             path: '/documents/splitText',
         },  
         {
-            name: 'test',
-            path: '/documents/test',
+            name: 'maskReveal',
+            path: '/documents/maskReveal',
         },
     ];
 
-    const componentList2 = [
-        {
-            name: 'splitText',
-            path: '/documents/splitText',
-        },  
-        {
-            name: 'test',
-            path: '/documents/test',
-        },
-    ];
+    // const componentList2 = [
+    //     {
+    //         name: 'splitText',
+    //         path: '/documents/splitText',
+    //     },  
+    //     {
+    //         name: 'test',
+    //         path: '/documents/test',
+    //     },
+    // ];
 
     return (
         <nav 
@@ -40,7 +40,7 @@ const ComponentList = () => {
         >
             <div className='documents-page-component-list-group-container'>
                 <ComponentsGroup componentList={componentList1} groupName='Text & Number' />
-                <ComponentsGroup componentList={componentList2} groupName='Components' />
+                {/* <ComponentsGroup componentList={componentList2} groupName='Components' /> */}
                 {/* <ComponentsGroup componentList={componentList1} groupName='Text & Number' />
                 <ComponentsGroup componentList={componentList2} groupName='Components' />
                 <ComponentsGroup componentList={componentList1} groupName='Text & Number' />

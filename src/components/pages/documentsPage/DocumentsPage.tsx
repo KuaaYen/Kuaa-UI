@@ -1,12 +1,8 @@
-import { motion, AnimatePresence } from 'motion/react';
 import './documentsPage.css';
-import ComponentList from './componentsList/ComponentList';
-// import SplitText from './Informations/splitText/SplitText';
-// import { Outlet } from 'react-router-dom';
-// import InfoBlock from './Informations/InfoBlock';
-// import { useState } from 'react';
 import React from 'react';
 import { useLocation, useOutlet } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
+import ComponentList from './componentsList/ComponentList';
 
 const DocumentsPage = () => {
     const DocumentsAnimatedOutlet = () => {

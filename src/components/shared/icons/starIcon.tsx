@@ -1,4 +1,4 @@
-const StarIcon = ({ spinDirection = 'clockwise' }: { spinDirection?: 'clockwise' | 'counter-clockwise' }) => {
+const StarIcon = ({ spinDirection = 'clockwise', color = '#F2CC8F' }: { spinDirection?: 'clockwise' | 'counter-clockwise', color?: string }) => {
     return (
         <span className="footer-info-inline-icon-wrapper">
             <div className="footer-info-inline-icon" style={{
@@ -20,8 +20,8 @@ const StarIcon = ({ spinDirection = 'clockwise' }: { spinDirection?: 'clockwise'
                     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                         <path 
                             d="M 50 20 L 60 39 L 81 42 L 68 59 L 71 80 L 50 71 L 29 80 L 33 59 L 19 42 L 40 39 L 50 20"
-                            fill="#F2CC8F"
-                            stroke="#F2CC8F"
+                            fill={color}
+                            stroke={color}
                             strokeWidth="8"
                             strokeLinecap="round"
                             strokeLinejoin="round"

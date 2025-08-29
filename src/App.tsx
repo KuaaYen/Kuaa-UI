@@ -10,7 +10,8 @@ import ArtsPage from './components/pages/artsPage/ArtsPage';
 import DocumentsPage from './components/pages/documentsPage/DocumentsPage';
 import './app.css';
 import SplitText from './components/pages/documentsPage/Informations/splitText/SplitText';
-import InfoBlock from './components/pages/documentsPage/Informations/InfoBlock';
+import MaskReveal from './components/pages/documentsPage/Informations/MaskReveal/MaskReveal';
+import ToTopButton from './components/shared/components/buttons/toTopButton/ToTopButton';
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
         <div className='app-container'>
           <NoiseMask />
           <AnimatedOutlet />
+          <ToTopButton targetType='page' initialColor='rgb(172, 175, 177)' hoverColor='var(--basic-purple)' />
           {/* <Footer /> */}
       </div>
     </>
@@ -71,8 +73,8 @@ function App() {
               element: <SplitText />,
             },
             {
-              path: 'test',
-              element: <InfoBlock />,
+              path: 'maskreveal',
+              element: <MaskReveal />,
             },
           ]
         },

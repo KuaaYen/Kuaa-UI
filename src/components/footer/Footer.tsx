@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import StarIcon from "./icons/starIcon";
+import StarIcon from "../shared/icons/starIcon";
 import useMediaTypeContext from "../../context/useMediaTypeContext";
 
 const Footer = () => {

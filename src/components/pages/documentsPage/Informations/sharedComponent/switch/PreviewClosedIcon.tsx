@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 
-const PreviewClosedIcon = () => {
+const PreviewClosedIcon = ({ isHover }: { isHover: boolean }) => {
     return (
         <motion.div
             style={{
@@ -37,13 +37,23 @@ const PreviewClosedIcon = () => {
                 }}
             >
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-                    <path 
+                    <motion.path 
                         d="M 6 50 C 17 64 32 76 50 76 C 72 76 89 56 92 50 M 25 68 L 18 76 M 50 76 L 50 86 M 76 67 L 83 74"
                         fill="transparent"
                         stroke="#ffffff"
                         strokeWidth="10"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        initial={{
+                            stroke: '#ffffff',
+                        }}
+                        animate={{
+                            stroke: isHover ? '#F2CC8F' : '#ffffff',
+                        }}
+                        transition={{
+                            duration: 0.2,
+                            ease: 'easeInOut',
+                        }}
                     />
                 </svg>   
             </div>

@@ -1,10 +1,10 @@
 import {  motion } from "motion/react";
 import useMediaTypeContext from "../../../../../context/useMediaTypeContext";
-import SplitTextContent from "./content/SplitTextContent";
+import MaskRevealContent from "./content/MaskRevealContent";
 import LinkButtons from "../sharedComponent/buttons/linkButtons/LinkButtons";
 
 
-const SplitText = () => {
+const MaskReveal = () => {
     
     const mediaType = useMediaTypeContext();
 
@@ -19,7 +19,7 @@ const SplitText = () => {
             transition={{duration: 0.2, ease: 'easeInOut',}}
         >
             <div className='documents-page-component-info-title'>
-                Split Text
+                Mask Reveal
                 <LinkButtons links={[{text: 'motion/react', link: 'https://motion.dev/', title: 'go to motion.dev'}]} />
             </div>
             <div className='documents-page-component-info-container'>
@@ -28,7 +28,7 @@ const SplitText = () => {
                         key='preview'
                         className='documents-page-component-preview-container'
                     >
-                        <SplitTextContent />
+                        <MaskRevealContent />
                     </motion.div>
                 </div>
             </div>
@@ -36,4 +36,4 @@ const SplitText = () => {
     );
 }
 
-export default SplitText;
+export default MaskReveal;
