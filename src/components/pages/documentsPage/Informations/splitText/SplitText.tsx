@@ -20,7 +20,7 @@ const SplitText = () => {
         >
             <div className='documents-page-component-info-title'>
                 Split Text
-                <LinkButtons links={[{text: 'motion/react', link: 'https://motion.dev/', title: 'go to motion.dev'}]} />
+                <LinkButtons links={[{text: 'motion/react', link: 'https://motion.dev/', title: 'build with motion'}]} />
             </div>
             <div className='documents-page-component-info-container'>
                 <div className='documents-page-component-info-content'>

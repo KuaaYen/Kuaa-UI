@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import PropsTable from "../../sharedComponent/table/PropsTable";
+import PropsTable from "./PropsTable";
 
 interface tableProps {
     headers: string[];

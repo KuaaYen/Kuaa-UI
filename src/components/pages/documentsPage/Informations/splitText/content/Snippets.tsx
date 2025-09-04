@@ -2,7 +2,7 @@ import Snippet from "../../sharedComponent/snippets/Snippet";
 
 const Snippets = () => {
     const installationSnippet = `
-    # This is made with motion/react, please do install it first
+    # This is made with motion/react, remember to install it first
     npm install motion/react
     `
 
@@ -13,9 +13,19 @@ const Snippets = () => {
 
     // Use the SplitText component
     <SplitText
+        // If the prop has default value, it is optional
         text="Check this out!"
         splitType="chars"
-        // Other props you want to pass
+        delay={0}
+        stagger={0.05}
+        triggerType="auto"
+        triggerMargin={0}
+        once={false}
+        amount={1}
+        startAnimate={false}
+        initial={opacity: 0, y: '1em'}
+        animate={opacity: 1, y: '0em'}
+        onComplete={() => {}}
     />
     `
 
@@ -167,6 +177,7 @@ export default SplitText;
     display: flex;
     gap: 0.2em;
     flex-wrap: wrap;
+    text-shadow: 2px 2px 0px #a39f92;
     /* I use Francois One font for this demo, you can find it in Google Fonts */
     /* font-family: 'Francois One', sans-serif; */
 }

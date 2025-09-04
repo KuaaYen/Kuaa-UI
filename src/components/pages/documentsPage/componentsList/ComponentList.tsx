@@ -9,27 +9,27 @@ const ComponentList = () => {
     // const [selectedComponent, setSelectedComponent] = useState<string>('test1');
 
     
-    const componentList1 = [
+    const textAndNumberList = [
         {
-            name: 'splitText',
+            name: 'Split Text',
             path: '/documents/splitText',
         },  
         {
-            name: 'maskReveal',
+            name: 'Rolling Numbers',
+            path: '/documents/rollingNumbers',
+        },
+    ];
+    const maskAndFilterList = [
+        {
+            name: 'Mask Reveal',
             path: '/documents/maskReveal',
+        },
+        {
+            name: 'Glitch Effect',
+            path: '/documents/glitchEffect',
         },
     ];
 
-    // const componentList2 = [
-    //     {
-    //         name: 'splitText',
-    //         path: '/documents/splitText',
-    //     },  
-    //     {
-    //         name: 'test',
-    //         path: '/documents/test',
-    //     },
-    // ];
 
     return (
         <nav 
@@ -39,14 +39,8 @@ const ComponentList = () => {
             }}
         >
             <div className='documents-page-component-list-group-container'>
-                <ComponentsGroup componentList={componentList1} groupName='Text & Number' />
-                {/* <ComponentsGroup componentList={componentList2} groupName='Components' /> */}
-                {/* <ComponentsGroup componentList={componentList1} groupName='Text & Number' />
-                <ComponentsGroup componentList={componentList2} groupName='Components' />
-                <ComponentsGroup componentList={componentList1} groupName='Text & Number' />
-                <ComponentsGroup componentList={componentList2} groupName='Components' />
-                <ComponentsGroup componentList={componentList1} groupName='Text & Number' />
-                <ComponentsGroup componentList={componentList2} groupName='Components' /> */}
+                <ComponentsGroup componentList={textAndNumberList} groupName='Text & Number' />
+                <ComponentsGroup componentList={maskAndFilterList} groupName='Masks & Filters' />
             </div>
         </nav>
     );

@@ -263,12 +263,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     border: 1px solid var(--basic-purple);
     border-radius: 1rem;
     padding: 1rem;
     font-size: 4rem;
     color: white;
     background-color: rgba(0, 128, 0, 0.205);
+}
+
+.documents-page-component-demo-remark{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+    color: rgb(172, 175, 177);
 }
 
 .documents-page-component-switch-button{
@@ -343,6 +356,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.2em;
+    text-shadow: 2px 2px 0px var(--dark-eggshell);
 }
 
 .documents-page-component-props-table-container{
@@ -392,7 +406,7 @@
     max-width: 22rem;
     background-color: var(--primary-color);
     padding: 8px 12px; 
-    text-align: center;
+    text-align: start;
 }
 
 .documents-page-component-props-table th {
@@ -426,7 +440,7 @@
     min-width: 22rem;
 }
 
-.documents-page-component-props-table-desc-container{
+.table-desc-container{
     position: relative;
     width: 100%;
     height: fit-content;
@@ -434,26 +448,42 @@
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    padding: 0px 12px;
+    /* padding: 0px 12px; */
     /* padding:  0rem 0.5rem; */
     /* background-color: red; */
 }
 
-.documents-page-component-props-table-desc-item{
+.table-desc-item{
     position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 1rem;
+    gap: 0.6rem;
 }
 
-.documents-page-component-props-table-desc-item-title{
+.table-desc-item-title{
     position: relative;
     width: 3rem;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     /* background-color: red; */
+}
+
+.table-desc-first-tab{
+    position: relative;
+}
+
+.table-desc-second-tab{
+    position: relative;
+    margin-left: 1rem;
+    text-wrap: nowrap;
+}
+
+.table-desc-third-tab{
+    position: relative;
+    margin-left: 2rem;
+    text-wrap: nowrap;
 }
 
 .value-input-container{
@@ -468,7 +498,6 @@
     background-color: rgb(59, 59, 59);
     border-radius: 0.3rem;
     overflow: hidden;
-    padding: 0.2rem 0.4rem;
 }
 
 .value-input-string{
@@ -487,6 +516,8 @@
     overflow: hidden;        
     white-space: nowrap;     
     caret-color: var(--primary-color);
+    
+    margin: 0.2rem 0.4rem;
 }
 
 .value-input-number{
@@ -505,6 +536,7 @@
     overflow: hidden;        
     white-space: nowrap;     
     caret-color: var(--primary-color);
+    margin: 0.2rem 0.4rem;
 }
 
 .value-input-switch-container{
@@ -517,6 +549,16 @@
     color: var(--primary-color);
     user-select: none;
     cursor: pointer;
+}
+
+.value-input-switch-option{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
 }
 
 .documents-page-link-buttons-container{
@@ -739,16 +781,16 @@
     flex-direction: row;
 }
 
-.footer-link-btn{
+.highlight-link-btn{
     position: relative;
     display: inline-block;
     color: var(--basic-brick);
     font-weight: bold;
-    margin-left: 0.3em;
+    /* margin-left: 0.3em; */
     cursor: pointer;
 }
 
-.footer-link-btn::after{
+.highlight-link-btn::after{
     content: '';
     position: absolute;
     bottom: 0;
@@ -760,7 +802,7 @@
     transition: transform 0.2s ease-in-out;
 }
 
-.footer-link-btn:hover::after{
+.highlight-link-btn:hover::after{
     transform: scaleX(1);
 }
 

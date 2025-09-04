@@ -501,6 +501,13 @@
     /* background-color: red; */
 }
 
+.landing-page-dashboard-content-text-container div.main {
+    font-size: 5rem;
+    color: var(--basic-brick);
+    /* background-color: red; */
+}
+
+
 .landing-page-dashboard-content-text-container p.sub {
     font-size: 1.6rem;
     color: var(--basic-purple);

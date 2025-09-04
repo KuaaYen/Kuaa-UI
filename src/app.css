@@ -212,5 +212,26 @@ a {
     animation: indicator-jump 0.7s ease-in-out infinite;
 }
 
+.rolling-numbers-container {
+    position: relative;
+    display: inline-block;
+}
 
+.rolling-numbers {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2em;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    transition: all 0.2s ease-in-out;
+}
 
+.rolling-numbers-value-wrapper {
+    position: relative;
+    display: flex;
+}
+
+.rolling-numbers-value{
+    display: block;
+}

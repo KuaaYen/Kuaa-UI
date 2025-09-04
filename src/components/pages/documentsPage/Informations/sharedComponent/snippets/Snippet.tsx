@@ -9,11 +9,13 @@ const Snippet = ({
     snippet, 
     language,
     delay = 0,
+    id = '',
 }: {
     title: string, 
     snippet: string, 
     language: string,
     delay?: number,
+    id?: string,
 }) => {
     const [shouldRender, setShouldRender] = useState(false);
     const [showToTop, setShowToTop] = useState(false);
@@ -56,7 +58,7 @@ const Snippet = ({
 
 
     return (
-        <section className="documents-page-component-section">
+        <section className="documents-page-component-section" id={id}>
             <div className="documents-page-component-section-title">
                 {title}
             </div>

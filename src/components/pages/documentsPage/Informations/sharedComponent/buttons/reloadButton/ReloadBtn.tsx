@@ -1,7 +1,7 @@
 import { motion, useAnimation } from "framer-motion";
 import ReloadIcon from "./ReloadIcon";
 
-const ReloadBtn = ({handler}: {handler: () => void}) => {
+const ReloadBtn = ({handler, color}: {handler: () => void, color?: string}) => {
     const controls = useAnimation();
 
     const handleClick = () => {
@@ -25,7 +25,8 @@ const ReloadBtn = ({handler}: {handler: () => void}) => {
             }}
             animate={controls}
         >
-            <ReloadIcon />
+            <ReloadIcon color={color} />
+            {/* <ReloadIcon color="rgb(242, 251, 255)" /> */}
         </motion.button>
     )
 }

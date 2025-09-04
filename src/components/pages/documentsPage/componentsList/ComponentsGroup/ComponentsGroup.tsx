@@ -59,15 +59,6 @@ const ComponentsGroup = ({componentList, groupName}: {componentList: {name: stri
                             {component.name}
                         </div>
                     ))}
-                    {/* <div className={`documents-page-component-list-item ${checkIfCurrent('splitText')}`} onClick={() => handleNavigate('splitText')}>
-                        list item 1
-                    </div>
-                    <div className={`documents-page-component-list-item ${checkIfCurrent('test')}`} onClick={() => handleNavigate('test')}>
-                        list item 2
-                    </div>
-                    <div className={`documents-page-component-list-item ${checkIfCurrent('test')}`} onClick={() => handleNavigate('test')}>
-                        list item 3
-                    </div> */}
                 </div>
             </div>
         </div>

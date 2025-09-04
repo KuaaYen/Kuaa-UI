@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import SplitTextDemo from "./SplitTextDemo";
 import ReloadBtn from "../../sharedComponent/buttons/reloadButton/ReloadBtn";
 import ValueInput from "../../sharedComponent/input/ValueInput";
-import Props from "./Props";
+import Props from "../../sharedComponent/table/Props";
 // import Usage from "./Usage";
 import Snippets from "./Snippets";
 import ComponentFooter from "../../sharedComponent/footer/ComponentFooter";
@@ -43,10 +43,10 @@ const SplitTextContent = () => {
 
     const TriggerTypeDesc = () => {
         return (
-            <div className="documents-page-component-props-table-desc-container">
-                <div className="documents-page-component-props-table-desc-item"><div className="documents-page-component-props-table-desc-item-title">InView:</div> Animate when in view.</div>
-                <div className="documents-page-component-props-table-desc-item"><div className="documents-page-component-props-table-desc-item-title">Manual:</div> Animate when startAnimate is true.</div>
-                <div className="documents-page-component-props-table-desc-item"><div className="documents-page-component-props-table-desc-item-title">Auto:</div> Animate immediately.</div>
+            <div className="table-desc-container">
+                <div className="table-desc-item"><div className="table-desc-item-title">InView:</div> Animate when in view.</div>
+                <div className="table-desc-item"><div className="table-desc-item-title">Manual:</div> Animate when startAnimate is true.</div>
+                <div className="table-desc-item"><div className="table-desc-item-title">Auto:</div> Animate immediately.</div>
             </div>
         )
     }
@@ -90,6 +90,13 @@ const SplitTextContent = () => {
             <TriggerTypeDesc />
         ],
         [
+            'startAnimate',
+            'boolean',
+            <ValueInput  demoProps={demoProps} propName='startAnimate' onChange={setDemoProps} inputType='boolean' />,
+            'false',
+            'Whether to start the animation, only works when triggerType is manual.'
+        ],
+        [
             'triggerMargin',
             'number',
             <ValueInput  demoProps={demoProps} propName='triggerMargin' onChange={setDemoProps} inputType='number' step={1}/>,
@@ -109,13 +116,6 @@ const SplitTextContent = () => {
             <ValueInput  demoProps={demoProps} propName='amount' onChange={setDemoProps} inputType='number' step={0.1} min={0} max={1}/>,
             '1',
             'The amount of the element should enter the viewport to be considered as in view, only works when triggerType is inView.'
-        ],
-        [
-            'startAnimate',
-            'boolean',
-            <ValueInput  demoProps={demoProps} propName='startAnimate' onChange={setDemoProps} inputType='boolean' />,
-            'false',
-            'Whether to start the animation, only works when triggerType is manual.'
         ],
         [
             'initial',

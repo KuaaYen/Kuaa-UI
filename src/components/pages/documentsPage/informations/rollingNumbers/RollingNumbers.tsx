@@ -1,11 +1,11 @@
 import {  motion } from "motion/react";
-import './MaskReveal.css';
+import './RollingNumbers.css';
 import useMediaTypeContext from "../../../../../context/useMediaTypeContext";
-import MaskRevealContent from "./content/MaskRevealContent";
+import RollingNumbersContent from "./content/RollingNumbersContent";
 import LinkButtons from "../sharedComponent/buttons/linkButtons/LinkButtons";
 
 
-const MaskReveal = () => {
+const RollingNumbers = () => {
     
     const mediaType = useMediaTypeContext();
 
@@ -20,13 +20,13 @@ const MaskReveal = () => {
             transition={{duration: 0.2, ease: 'easeInOut',}}
         >
             <div className='documents-page-component-info-title'>
-                Mask Reveal
+                Rolling Numbers
                 <LinkButtons links={[{text: 'motion/react', link: 'https://motion.dev/', title: 'build with motion'}]} />
             </div>
             <div className='documents-page-component-info-container'>
                 <div className='documents-page-component-info-content'>
                     <div className='documents-page-component-preview-container'>
-                        <MaskRevealContent />
+                        <RollingNumbersContent />
                     </div>
                 </div>
             </div>
@@ -34,4 +34,4 @@ const MaskReveal = () => {
     );
 }
 
-export default MaskReveal;
+export default RollingNumbers;

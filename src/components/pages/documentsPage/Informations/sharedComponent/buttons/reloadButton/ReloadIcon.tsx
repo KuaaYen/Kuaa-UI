@@ -1,4 +1,4 @@
-const ReloadIcon = () => {
+const ReloadIcon = ({color = ' #22243b'}: {color?: string}) => {
     return (
         <div
             style={{
@@ -13,7 +13,7 @@ const ReloadIcon = () => {
                 <path 
                     d="M 20 50 A 30 30 0 0 0 50 80 A 30 30 0 0 0 80 50 A 30 30 0 0 0 29 28 M 31 17 L 29 28 L 40 30"
                     fill="transparent"
-                    stroke="#22243b"
+                    stroke={color}
                     strokeWidth="8"
                     strokeLinecap="round"
                     strokeLinejoin="round"

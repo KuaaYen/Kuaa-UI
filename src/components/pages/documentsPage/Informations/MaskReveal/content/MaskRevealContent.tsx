@@ -1,172 +1,135 @@
-// import { useState, useEffect } from "react";
+import { useState } from "react";
 import MaskRevealDemo from "./MaskRevealDemo";
-// import SplitTextDemo from "./SplitTextDemo";
-// import ReloadBtn from "../../sharedComponent/buttons/reloadButton/ReloadBtn";
-// import ValueInput from "../../sharedComponent/input/ValueInput";
-// import Props from "./Props";
-// import Usage from "./Usage";
-// import Snippets from "./Snippets";
+import MaskRevealDemoBg from "./MaskRevealDemoBg";
+import ReloadBtn from "../../sharedComponent/buttons/reloadButton/ReloadBtn";
+import ValueInput from "../../sharedComponent/input/ValueInput";
+import Props from "../../sharedComponent/table/Props";
+import Snippets from "./Snippets";
 import ComponentFooter from "../../sharedComponent/footer/ComponentFooter";
+import Remark from "../../sharedComponent/remark/Remark";
 
-// interface DemoProps {
-//     text: string;
-//     splitType: 'words' | 'chars';
-//     delay: number;
-//     stagger: number;
-//     startAnimate: boolean;
-//     triggerType: 'inView' | 'manual' | 'auto';
-//     triggerMargin: number;
-//     once: boolean;
-//     amount: number;
-// }
+interface CircleConfig {
+    x: number;
+    y: number;
+    duration?: number;
+    ease?: string;
+    delay?: number;
+}
+
+interface StopConfig {
+    duration?: number;
+    ease?: string;
+    delay?: number;
+}
+
+interface DemoProps {
+    isRevealed: boolean;
+    revealConfigs: CircleConfig[];
+    stopConfig: StopConfig;
+    reverseMask: boolean;
+}
 
 const MaskRevealContent = () => {
-    // const [reloadKey, setReloadKey] = useState(0);
-    // const [demoProps, setDemoProps] = useState<DemoProps>({
-    //     text: 'Check this out!',
-    //     splitType: 'chars',
-    //     delay: 0,
-    //     stagger: 0.05,
-    //     startAnimate: false,
-    //     triggerType: 'inView',
-    //     triggerMargin: -100,
-    //     once: false,
-    //     amount: 1,
-    // });
 
-    // useEffect(() => {
-    //     setReloadKey(prev => prev + 1);
-    // },[demoProps.text, demoProps.splitType, demoProps.triggerType, demoProps.triggerMargin])
+    const [reloadKey, setReloadKey] = useState(0);
+    const [demoProps, setDemoProps] = useState<DemoProps>({
+        isRevealed: true,
+        revealConfigs: [
+            {x: 1, y: 0, duration: 2.5, delay: 0},
+            {x: 0, y: 1, duration: 2, delay: 0.3},
+        ],
+        stopConfig: {
+            duration: 2,
+            ease: "easeInOut",
+            delay: 0
+        },
+        reverseMask: false,
+    });
 
-    // const handleReload = () => {
-    //     setReloadKey(prev => prev + 1);
-    // }
+    const handleReload = () => {
+        setReloadKey(prev => prev + 1);
+    }
 
-    // const TriggerTypeDesc = () => {
-    //     return (
-    //         <div className="documents-page-component-props-table-desc-container">
-    //             <div className="documents-page-component-props-table-desc-item"><div className="documents-page-component-props-table-desc-item-title">InView:</div> Animate when in view.</div>
-    //             <div className="documents-page-component-props-table-desc-item"><div className="documents-page-component-props-table-desc-item-title">Manual:</div> Animate when startAnimate is true.</div>
-    //             <div className="documents-page-component-props-table-desc-item"><div className="documents-page-component-props-table-desc-item-title">Auto:</div> Animate immediately.</div>
-    //         </div>
-    //     )
-    // }
+    const RevealConfigsDefault = () => {
+        return (
+            <div className="table-desc-container">
+                <div className="table-desc-first-tab">{"["}</div>
+                <div className="table-desc-second-tab">{`{x: 1, y: 0, duration: 2.5, delay: 0}`}</div>
+                <div className="table-desc-second-tab">{`{x: 0, y: 1, duration: 2, delay: 0.3}`}</div>
+                <div className="table-desc-first-tab">{"]"}</div>
+            </div>
+        )
+    }
+
+    const RevealConfigsDesc = () => {
+        return (
+            <div className="table-desc-container">
+                <div className="table-desc-item">This property controls reveal areas configs, you can have multiple reveal areas revealing at the same time.</div>
+                <div className="table-desc-item"><div className="table-desc-item-title" style={{width: 'fit-content'}}>x:</div> x position, available from 0 to 1.</div>
+                <div className="table-desc-item"><div className="table-desc-item-title" style={{width: 'fit-content'}}>y:</div> y position, available from 0 to 1.</div>
+                <div className="table-desc-item"><div className="table-desc-item-title" style={{width: 'fit-content'}}>duration:</div> Animate duration, in seconds.</div>
+                <div className="table-desc-item"><div className="table-desc-item-title" style={{width: 'fit-content'}}>delay:</div> Animate delay, in seconds.</div>
+            </div>
+        )
+    }
 
 
-    // const tableHeaders = ['Prop', 'Type','Value', 'Default', 'Description'];
-    // const tableData = [
-    //     [
-    //         'text', 
-    //         'string', 
-    //         <ValueInput  demoProps={demoProps} propName='text' onChange={setDemoProps} inputType='string' />,
-    //         '\'\'',
-    //         'The text to split'
-    //     ],
-    //     [
-    //         'splitType',
-    //         '\'words\' | \'chars\'',
-    //         <ValueInput  demoProps={demoProps} propName='splitType' onChange={setDemoProps} inputType='switch' options={['chars', 'words']} />,
-    //         '\'chars\'',
-    //         'Split by words or characters, make sure there are spaces between words.'
-    //     ],
-    //     [
-    //         'delay',
-    //         'number',
-    //         <ValueInput  demoProps={demoProps} propName='delay' onChange={setDemoProps} inputType='number' step={0.1} min={0}/>,
-    //         '0',
-    //         'The delay before the animation starts.'
-    //     ],
-    //     [
-    //         'stagger',
-    //         'number',
-    //         <ValueInput  demoProps={demoProps} propName='stagger' onChange={setDemoProps} inputType='number' step={0.01} min={0}/>,
-    //         '0.05',
-    //         'The stagger delay between each word or character.'
-    //     ],
-    //     [
-    //         'triggerType',
-    //         '\'inView\' | \'manual\' | \'auto\'',
-    //         <ValueInput  demoProps={demoProps} propName='triggerType' onChange={setDemoProps} inputType='switch' options={['inView', 'manual', 'auto']} />,
-    //         '\'auto\'',
-    //         <TriggerTypeDesc />
-    //     ],
-    //     [
-    //         'triggerMargin',
-    //         'number',
-    //         <ValueInput  demoProps={demoProps} propName='triggerMargin' onChange={setDemoProps} inputType='number' step={1}/>,
-    //         '0',
-    //         'The margin between viewport and detection area, only works when triggerType is inView.'
-    //     ],
-    //     [
-    //         'once',
-    //         'boolean',
-    //         <ValueInput  demoProps={demoProps} propName='once' onChange={setDemoProps} inputType='boolean' />,
-    //         'false',
-    //         'If true, the animation will only play once on first sight, only works when triggerType is inView.'
-    //     ],
-    //     [
-    //         'amount',
-    //         'number',
-    //         <ValueInput  demoProps={demoProps} propName='amount' onChange={setDemoProps} inputType='number' step={0.1} min={0} max={1}/>,
-    //         '1',
-    //         'The amount of the element should enter the viewport to be considered as in view, only works when triggerType is inView.'
-    //     ],
-    //     [
-    //         'startAnimate',
-    //         'boolean',
-    //         <ValueInput  demoProps={demoProps} propName='startAnimate' onChange={setDemoProps} inputType='boolean' />,
-    //         'false',
-    //         'Whether to start the animation, only works when triggerType is manual.'
-    //     ],
-    //     [
-    //         'initial',
-    //         'object',
-    //         `{opacity:0, y:'1em'}`,
-    //         `{opacity:0, y:'1em'}`,
-    //         'The initial state of the animation, this should follow the rules of motion/react animation props.'
-    //     ],
-    //     [
-    //         'animate',
-    //         'object',
-    //         `{opacity:1, y:'0em'}`,
-    //         `{opacity:1, y:'0em'}`,
-    //         'The final state of the animation, this should follow the rules of motion/react animation props.'
-    //     ],
-    //     [
-    //         'onComplete',
-    //         'function',
-    //         'undefined',
-    //         'undefined',
-    //         'The function to be called when the animation is complete.'
-    //     ],
-    // ];
+
+    const tableHeaders = ['Prop', 'Type','Value', 'Default', 'Description'];
+    const tableData = [
+        [
+            'children',
+            'React.ReactNode',
+            'undefined',
+            'undefined',
+            'The content to be revealed.'
+        ],
+        [
+            'isRevealed', 
+            'boolean', 
+            <ValueInput  demoProps={demoProps} propName='isRevealed' onChange={setDemoProps} inputType='boolean' />,
+            'false',
+            'Whether to reveal content.'
+        ],
+        [
+            'revealConfigs',
+            'object[]',
+            <RevealConfigsDefault />,
+            <RevealConfigsDefault />,
+            <RevealConfigsDesc />
+        ],
+        [
+            'reverseMask',
+            'boolean',
+            <ValueInput  demoProps={demoProps} propName='reverseMask' onChange={setDemoProps} inputType='boolean' />,
+            `false`,
+            'Reverse mask color, this means the revealed part and the unrevealed part are reversed.'
+        ],
+    ];
 
     return (
         <>
             <section className="documents-page-component-section">
-                {/* <div className="documents-page-component-section-title">
-                    Preview
-                </div> */}
                 <div className='documents-page-component-demo'>
-                    <MaskRevealDemo />
-                    {/* <SplitTextDemo 
+                    <MaskRevealDemo 
                         key={reloadKey} 
-                        text={demoProps.text || 'Check this out!'} 
-                        splitType={demoProps.splitType} 
-                        startAnimate={demoProps.startAnimate} 
-                        triggerType={demoProps.triggerType}
-                        delay={demoProps.delay}
-                        stagger={demoProps.stagger}
-                        once={demoProps.once}
-                        amount={demoProps.amount}
-                        triggerMargin={demoProps.triggerMargin}
-                    /> */}
-                    {/* <ReloadBtn handler={handleReload} /> */}
+                        isRevealed={demoProps.isRevealed} 
+                        revealConfigs={demoProps.revealConfigs} 
+                        reverseMask={demoProps.reverseMask}
+                    >
+                        <MaskRevealDemoBg isRevealed={demoProps.isRevealed} />
+                    </MaskRevealDemo>
+                    <ReloadBtn handler={handleReload} />
                 </div>
+                <Remark>
+                    SVG Masks are not supported in some patch of safari, becareful to use.
+                </Remark>
+                <Remark>
+                    This component doesn't include the card, you may pass in the content you want as children.
+                </Remark>
             </section>
-            {/* <Props headers={tableHeaders} data={tableData} /> */}
-            {/* <Usage /> */}
-            {/* <Snippets /> */}
+            <Props headers={tableHeaders} data={tableData} />
+            <Snippets />
             <ComponentFooter />
         </>
     )

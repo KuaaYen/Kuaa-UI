@@ -1,11 +1,12 @@
 import {  motion } from "motion/react";
-import './MaskReveal.css';
+import './GlitchEffect.css';
 import useMediaTypeContext from "../../../../../context/useMediaTypeContext";
-import MaskRevealContent from "./content/MaskRevealContent";
+import GlitchEffectContent from "./content/GlitchEffectContent";
+// import MaskRevealContent from "./content/MaskRevealContent";
 import LinkButtons from "../sharedComponent/buttons/linkButtons/LinkButtons";
 
 
-const MaskReveal = () => {
+const GlitchEffect = () => {
     
     const mediaType = useMediaTypeContext();
 
@@ -20,13 +21,13 @@ const MaskReveal = () => {
             transition={{duration: 0.2, ease: 'easeInOut',}}
         >
             <div className='documents-page-component-info-title'>
-                Mask Reveal
+                Glitch Effect
                 <LinkButtons links={[{text: 'motion/react', link: 'https://motion.dev/', title: 'build with motion'}]} />
             </div>
             <div className='documents-page-component-info-container'>
                 <div className='documents-page-component-info-content'>
                     <div className='documents-page-component-preview-container'>
-                        <MaskRevealContent />
+                        <GlitchEffectContent />
                     </div>
                 </div>
             </div>
@@ -34,4 +35,4 @@ const MaskReveal = () => {
     );
 }
 
-export default MaskReveal;
+export default GlitchEffect;
