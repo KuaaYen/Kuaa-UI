@@ -21,22 +21,6 @@ const ComponentsGroup = ({componentList, groupName}: {componentList: {name: stri
         }
     }
 
-
-    // const componentList = [
-    //     {
-    //         name: 'splitText',
-    //         path: '/documents/splitText',
-    //     },  
-    //     {
-    //         name: 'test',
-    //         path: '/documents/test',
-    //     },
-    //     {
-    //         name: 'test',
-    //         path: '/documents/test',
-    //     },
-    // ];
-
     const currentIndex = componentList.findIndex(component => component.path === location.pathname);
     const ifSelectedComponentInList = componentList.find(component => component.path === location.pathname);
 

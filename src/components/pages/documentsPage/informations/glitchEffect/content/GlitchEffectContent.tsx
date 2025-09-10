@@ -118,9 +118,6 @@ const GlitchEffectContent = () => {
                 <Remark>
                     SVG filters are not supported in some patch of safari, becareful to use.
                 </Remark>
-                {/* <Remark>
-                    This component does not include font styles, only includes the animation.
-                </Remark> */}
             </section>
             <Props headers={tableHeaders} data={tableData} />
             <Snippets />

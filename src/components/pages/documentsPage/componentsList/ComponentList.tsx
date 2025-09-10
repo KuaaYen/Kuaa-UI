@@ -18,6 +18,10 @@ const ComponentList = () => {
             name: 'Rolling Numbers',
             path: '/documents/rollingNumbers',
         },
+        {
+            name: 'Decode Text',
+            path: '/documents/decodeText',
+        },
     ];
     const maskAndFilterList = [
         {
@@ -27,6 +31,12 @@ const ComponentList = () => {
         {
             name: 'Glitch Effect',
             path: '/documents/glitchEffect',
+        },
+    ];
+    const componentItemList = [
+        {
+            name: 'Carousel',
+            path: '/documents/carousel',
         },
     ];
 
@@ -41,6 +51,7 @@ const ComponentList = () => {
             <div className='documents-page-component-list-group-container'>
                 <ComponentsGroup componentList={textAndNumberList} groupName='Text & Number' />
                 <ComponentsGroup componentList={maskAndFilterList} groupName='Masks & Filters' />
+                <ComponentsGroup componentList={componentItemList} groupName='Components' />
             </div>
         </nav>
     );

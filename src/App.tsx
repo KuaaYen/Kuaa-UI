@@ -13,6 +13,8 @@ import SplitText from './components/pages/documentsPage/informations/splitText/S
 import MaskReveal from './components/pages/documentsPage/informations/maskReveal/MaskReveal';
 import RollingNumbers from './components/pages/documentsPage/informations/rollingNumbers/RollingNumbers';
 import GlitchEffect from './components/pages/documentsPage/informations/glitchEffect/GlitchEffect';
+import Carousel from './components/pages/documentsPage/informations/carousel/Carousel';
+import DecodeText from './components/pages/documentsPage/informations/decodeText/DecodeText';
 import ToTopButton from './components/shared/components/buttons/toTopButton/ToTopButton';
 
 function App() {
@@ -85,6 +87,14 @@ function App() {
             {
               path: 'glitcheffect',
               element: <GlitchEffect />,
+            },
+            {
+              path: 'carousel',
+              element: <Carousel />,
+            },
+            {
+              path: 'decodetext',
+              element: <DecodeText />,
             },
           ]
         },

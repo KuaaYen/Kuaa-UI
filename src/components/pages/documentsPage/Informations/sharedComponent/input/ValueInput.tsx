@@ -5,7 +5,7 @@ interface ValueInputProps<T> {
     demoProps: T,
     propName: keyof T,
     onChange: (props: T) => void,
-    inputType: 'string' | 'number' | 'boolean' | 'switch',
+    inputType: 'string' | 'number' | 'boolean' | 'switch' | 'color',
     options?: string[],
     step?: number,
     min?: number,
@@ -26,7 +26,7 @@ const ValueInput = <T,>({
     const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
 
 
-    const handleChange = ({e, propType = 'string'}: {e: React.ChangeEvent<HTMLInputElement>, propType?: 'string' | 'number'}) => {
+    const handleChange = ({e, propType = 'string'}: {e: React.ChangeEvent<HTMLInputElement>, propType?: 'string' | 'number' | 'color'}) => {
         let newValue;
         if(propType === 'number') {
             newValue = Number(e.target.value);
@@ -130,11 +130,28 @@ const ValueInput = <T,>({
                         </AnimatePresence>
                     </div>
                 )
+            case 'color':
+                return (
+                    <div className="value-input-color-container">
+                        <input 
+                            className="value-input-color" 
+                            type="color" 
+                            value={String(demoProps[propName])} 
+                            onChange={(e) => handleChange({e, propType: 'color'})} 
+                        />
+                    </div>
+                )
         }
     }
 
     return (
-        <div className="value-input-container">
+        <div 
+            className="value-input-container"
+            style={{
+                backgroundColor: inputType === 'color' ? 'transparent' : 'rgb(59, 59, 59)',
+                // minWidth: inputType === 'number' ? '0' : '5rem',
+            }}
+        >
             {CreateInput()}
         </div>
     )
