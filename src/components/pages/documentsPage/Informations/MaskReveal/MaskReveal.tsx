@@ -20,7 +20,7 @@ const MaskReveal = () => {
             transition={{duration: 0.2, ease: 'easeInOut',}}
         >
             <div className='documents-page-component-info-title'>
-                Mask Reveal
+                <span> Mask Reveal</span>
                 <LinkButtons links={[{text: 'motion/react', link: 'https://motion.dev/', title: 'build with motion'}]} />
             </div>
             <div className='documents-page-component-info-container'>

@@ -118,10 +118,9 @@ const CarouselContent = () => {
                 <Remark>
                     Try different number of items and see how it works.
                     <ValueInput  demoProps={demoProps} propName='itemNumbers' onChange={setDemoProps} inputType='number' step={1} min={1} max={20} />
-
                 </Remark>
                 <Remark>
-                    If you feel a little bit laggy at the beginning, it's because code block below is loading. Don't worry, it's will be loaded soon.
+                    If you feel a little bit laggy at the beginning, it's because code block below is loading. Don't worry, it will be loaded soon.
                 </Remark>
                 <Remark>
                     Better looking with darker background, but this is not mandatory.

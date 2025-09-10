@@ -22,7 +22,7 @@ const RollingNumbersContent = () => {
     const [demoProps, setDemoProps] = useState<DemoProps>({
         value: 77777,
         suffix: '',
-        prefix: '',
+        prefix: '$',
         gap: 0.2,
         direction: 'up',
     });
@@ -91,7 +91,7 @@ const RollingNumbersContent = () => {
                         gap={demoProps.gap}
                         direction={demoProps.direction}
                     />
-                    <ReloadBtn handler={handleReload} />
+                    <ReloadBtn handler={handleReload} color='rgb(242, 251, 255)'/>
                 </div>
                 <Remark>
                     If you want the number to add one by one, please refer to the 

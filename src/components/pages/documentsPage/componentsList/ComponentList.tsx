@@ -11,13 +11,13 @@ const ComponentList = () => {
     
     const textAndNumberList = [
         {
-            name: 'Split Text',
-            path: '/documents/splitText',
-        },  
-        {
             name: 'Rolling Numbers',
             path: '/documents/rollingNumbers',
         },
+        {
+            name: 'Split Text',
+            path: '/documents/splitText',
+        },  
         {
             name: 'Decode Text',
             path: '/documents/decodeText',

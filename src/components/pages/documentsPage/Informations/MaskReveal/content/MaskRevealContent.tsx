@@ -119,7 +119,7 @@ const MaskRevealContent = () => {
                     >
                         <MaskRevealDemoBg isRevealed={demoProps.isRevealed} />
                     </MaskRevealDemo>
-                    <ReloadBtn handler={handleReload} />
+                    <ReloadBtn handler={handleReload} color='rgb(242, 251, 255)'/>
                 </div>
                 <Remark>
                     SVG Masks are not supported in some patch of safari, becareful to use.

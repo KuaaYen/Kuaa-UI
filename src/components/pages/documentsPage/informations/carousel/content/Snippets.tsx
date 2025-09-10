@@ -20,7 +20,7 @@ const Snippets = () => {
 
     // Use the Carousel component
     <Carousel 
-        // If the prop has default value, it is optional
+        // every prop is optional, but you should set at least one item to be able to see the carousel
         itemHeight={280}
         dotColor={'#E07A5F'}
         rollInterval={500}

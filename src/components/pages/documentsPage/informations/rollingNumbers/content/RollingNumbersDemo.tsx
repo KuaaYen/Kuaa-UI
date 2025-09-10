@@ -15,13 +15,17 @@ const RollingNumbersDemo = ({value, prefix, suffix, gap, direction}: {value: num
             <div className="rolling-numbers-demo">
                 <div className="rolling-numbers-demo-value">
                     <div className="rolling-numbers-demo-title">Default</div>
-                    <RollingNumbers value={value} prefix={prefix} suffix={suffix} gap={gap} direction={direction} />
+                    <div style={{textShadow: '2px 2px 0px var(--dark-eggshell)'}}>
+                        <RollingNumbers value={value} prefix={prefix} suffix={suffix} gap={gap} direction={direction} />
+                    </div>
                 </div>
             </div>
             <div className="rolling-numbers-demo">
                 <div className="rolling-numbers-demo-value">
                     <div className="rolling-numbers-demo-title">With hook</div>
-                    <RollingNumbers value={smoothValue} prefix={prefix} suffix={suffix} gap={gap} direction={direction} />
+                    <div style={{textShadow: '2px 2px 0px var(--dark-eggshell)'}}>
+                        <RollingNumbers value={smoothValue} prefix={prefix} suffix={suffix} gap={gap} direction={direction} />
+                    </div>
                 </div>
             </div>
         </div>

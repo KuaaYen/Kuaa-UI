@@ -206,11 +206,17 @@
 
 .documents-page-component-info-title{
     position: relative;
+    margin-bottom: 1rem;
+    /* background-color: red; */
+}
+
+.documents-page-component-info-title span {
     font-family: 'passion-one-regular';
     font-size: 4rem;
     font-weight: 600;
+    line-height: 1;
     color: var(--basic-purple);
-    text-shadow: 2px 2px 0px rgba(61, 64, 91, 0.2);
+    text-shadow: 2px 2px 0px white, 3px 3px 1px var(--basic-brick), 4px 4px 2px rgba(99, 99, 99, 0.5);
 }
 
 .documents-page-component-info-container{
@@ -270,7 +276,8 @@
     padding: 1rem;
     font-size: 4rem;
     color: white;
-    background-color: rgba(0, 128, 0, 0.205);
+    /* background-color: rgba(0, 128, 0, 0.205); */
+    background-color: var(--basic-purple);
 }
 
 .documents-page-component-demo-remark{
@@ -404,10 +411,10 @@
 
 .documents-page-component-props-table td,
 .documents-page-component-props-table th {
-    max-width: 22rem;
+    max-width: 24rem;
     background-color: var(--primary-color);
     padding: 8px 12px; 
-    text-align: start;
+    /* text-align: start; */
 }
 
 .documents-page-component-props-table th {
@@ -492,7 +499,7 @@
     width: fit-content;
     min-width: 5rem;
     /* max-width: 8rem; */
-    height: 1.8rem;
+    height: 1.7rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -517,15 +524,15 @@
     overflow: hidden;        
     white-space: nowrap;     
     caret-color: var(--primary-color);
-    
     margin: 0.2rem 0.4rem;
 }
 
 .value-input-number{
     position: relative;
-    min-width: 2rem;        
-    max-width: 4rem;      
-    width: auto;            
+    width: 5rem;
+    /* min-width: 2rem;        
+    max-width: 5rem;       */
+    /* width: auto;             */
     height: 80%;
     color: var(--primary-color);
     font-family: 'francois', 'sans-serif';
@@ -537,7 +544,8 @@
     overflow: hidden;        
     white-space: nowrap;     
     caret-color: var(--primary-color);
-    margin-left: 0.5rem;
+    padding-left: 0.5rem;
+    /* margin-left: 0.5rem; */
     /* background-color: red; */
     /* margin: 0.2rem 0rem 0.2rem 0.2rem; */
 }

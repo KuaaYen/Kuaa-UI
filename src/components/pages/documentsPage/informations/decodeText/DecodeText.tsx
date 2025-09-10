@@ -20,7 +20,7 @@ const DecodeText = () => {
             transition={{duration: 0.2, ease: 'easeInOut',}}
         >
             <div className='documents-page-component-info-title'>
-                Decode Text
+                <span> Decode Text </span>
                 <LinkButtons links={[{text: 'motion/react', link: 'https://motion.dev/', title: 'build with motion'}]} />
             </div>
             <div className='documents-page-component-info-container'>

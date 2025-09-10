@@ -1,98 +1,151 @@
-import { ReactNode, useState, useEffect } from "react";
+import { useState } from "react";
 import DecodeTextDemo from "./DecodeTextDemo";
 import ReloadBtn from "../../sharedComponent/buttons/reloadButton/ReloadBtn";
 import ValueInput from "../../sharedComponent/input/ValueInput";
 import Props from "../../sharedComponent/table/Props";
-// import Snippets from "./Snippets";
+import Snippets from "./Snippet";
 import ComponentFooter from "../../sharedComponent/footer/ComponentFooter";
 import Remark from "../../sharedComponent/remark/Remark";
 
 
 interface DemoProps {
-    dotColor?: string;
-    rollInterval?: number;
-    rollDuration?: number;
-    itemHeight?: number;
-    items?: ReactNode[];
-    itemNumbers?: number;
+    text?: string;
+    triggerType?: 'inView' | 'manual' | 'auto';
+    decode?: boolean;
+    triggerMargin?: number;
+    once?: boolean;
+    amount?: number;
+    delay?: number;
+    interval?: number;
+    randomChars?: string;
+    onDecodeComplete?: () => void;
+    onEncodeComplete?: () => void;
 }
+
+const defaultRandomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
 
 const DecodeTextContent = () => {
 
     const [reloadKey, setReloadKey] = useState(0);
     const [demoProps, setDemoProps] = useState<DemoProps>({
-        dotColor: '#E07A5F',
-        rollInterval: 500,
-        rollDuration: 1000,
-        itemHeight: 280,
-        itemNumbers: 15,
+        text: 'Decode Text',
+        triggerType: 'inView',
+        decode: true,
+        triggerMargin: -100,
+        once: false,
+        amount: 1,
+        delay: 0,
+        interval: 90,
+        randomChars: defaultRandomChars,
+        onDecodeComplete: () => {},
+        onEncodeComplete: () => {},
     });
-
-    useEffect(() => {
-        setReloadKey(prev => prev + 1);
-    }, [demoProps.itemNumbers]);
 
     const handleReload = () => {
         setReloadKey(prev => prev + 1);
     }
     
-    
-    // const itemsData = [
-    //     'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 
-    //     'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth', 
-    //     'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 
-    //     'eighteenth', 'nineteenth', 'twentieth',
-    // ];
 
-    // const items = itemsData
-    //     .slice(0, demoProps.itemNumbers || itemsData.length) // 先切片到需要的數量
-    //     .map((item, index) => (
-    //         <div className='carousel-demo-item-content'>
-    //             <div className='carousel-demo-item-title'>
-    //                 {`Item ${index + 1}`}
-    //             </div>
-    //             <div className='carousel-demo-item-desc'>
-    //                 {`This is the ${item} item`}
-    //             </div>
-    //         </div>
-    //     ));
+    const TriggerTypeDesc = () => {
+        return (
+            <div className="table-desc-container">
+                <div className="table-desc-item"><div className="table-desc-item-title">InView:</div> Decode when in view.</div>
+                <div className="table-desc-item"><div className="table-desc-item-title">Manual:</div> Decode/Encode when decode is true/false.</div>
+                <div className="table-desc-item"><div className="table-desc-item-title">Auto:</div> Decode immediately.</div>
+            </div>
+        )
+    }
 
     const tableHeaders = ['Prop', 'Type','Value', 'Default', 'Description'];
     const tableData = [
         [
-            'itemHeight', 
-            'number', 
-            <ValueInput  demoProps={demoProps} propName='itemHeight' onChange={setDemoProps} inputType='number' step={1} min={150} max={520} />,
-            '280',
-            'The height of each item. (in pixels) Item aspect ratio is 16:9. Limit is only for demo purposes. You can set it freely.'
-        ],
-        [
-            'dotColor', 
+            'text', 
             'string', 
-            <ValueInput  demoProps={demoProps} propName='dotColor' onChange={setDemoProps} inputType='color' />,
-            '\'#E07A5F\'',
-            'Color of the circle that indicates the current item.'
+            <ValueInput  demoProps={demoProps} propName='text' onChange={setDemoProps} inputType='string' />,
+            'Decode Text',
+            'The text to decode.'
         ],
         [
-            'rollInterval', 
+            'triggerType', 
+            '\'inView\' | \'manual\' | \'auto\'', 
+            <ValueInput  demoProps={demoProps} propName='triggerType' onChange={setDemoProps} inputType='switch' options={['inView', 'manual', 'auto']} />,
+            'inView',
+            <TriggerTypeDesc />
+        ],
+        [
+            'decode', 
             'number', 
-            <ValueInput  demoProps={demoProps} propName='rollInterval' onChange={setDemoProps} inputType='number' step={1} min={0} />,
-            '500',
-            'The interval between each roll. (in milliseconds) The smaller the value, the faster the you can roll.'
+            <ValueInput  demoProps={demoProps} propName='decode' onChange={setDemoProps} inputType='boolean'/>,
+            'true',
+            'Whether to decode the text.'
         ],
         [
-            'rollDuration', 
+            'triggerMargin', 
             'number', 
-            <ValueInput  demoProps={demoProps} propName='rollDuration' onChange={setDemoProps} inputType='number' step={1} min={0} />,
-            '1000',
-            'The animation duration of each roll. (in milliseconds) The smaller the value, the faster the animation end.'
+            <ValueInput  demoProps={demoProps} propName='triggerMargin' onChange={setDemoProps} inputType='number' step={1} />,
+            '-100',
+            'The margin between viewport and detection area (px), only works when triggerType is inView.'
         ],
         [
-            'items', 
-            'ReactNode[]', 
+            'once', 
+            'boolean', 
+            <ValueInput  demoProps={demoProps} propName='once' onChange={setDemoProps} inputType='boolean' />,
+            'false',
+            'If true, component will only decode once on first sight, only works when triggerType is inView.'
+        ],
+        [
+            'amount', 
+            'number', 
+            <ValueInput  demoProps={demoProps} propName='amount' onChange={setDemoProps} inputType='number' step={0.1} min={0} max={1} />,
+            '1',
+            'The amount of the element should enter the viewport to be considered as in view, only works when triggerType is inView.'
+        ],
+        [
+            'delay', 
+            'number', 
+            <ValueInput  demoProps={demoProps} propName='delay' onChange={setDemoProps} inputType='number' step={100} min={0} />,
+            '0',
+            'The delay before every decode/encode starts. (in milliseconds)'
+        ],
+        [
+            'interval', 
+            'number', 
+            <ValueInput  demoProps={demoProps} propName='interval' onChange={setDemoProps} inputType='number' step={1} min={0} />,
+            '90',
+            'The interval between each character decodes/encodes. (in milliseconds) The smaller the value, the faster the animation.'
+        ],
+        [
+            'randomChars', 
+            'string', 
+            <ValueInput  demoProps={demoProps} propName='randomChars' onChange={setDemoProps} inputType='string' />,
+            <>
+                <div>{'ABCDEFGHIJKLMNOPQRS'}</div>
+                <div>{'TUVWXYZabcdefghijklmnop'}</div>
+                <div>{'qrstuvwxyz0123456789'}</div>
+                <div>{'!@#$%^&*()_+-=[]{}|;:,.<>?'}</div>
+            </>,
+            'The characters to use for the random text.'
+        ],
+        [
+            'onDecodeComplete', 
+            'function', 
             'undefined',
             'undefined',
-            'Items to display. Each item will be wrapped in a carousel card.'
+            'The function to be called when decode completes.'
+        ],
+        [
+            'onEncodeComplete', 
+            'function', 
+            'undefined',
+            'undefined',
+            'The function to be called when encode completes.'
+        ],
+        [
+            'className', 
+            'string', 
+            'undefined',
+            'undefined',
+            'The class name of this component (p tag), cutomize your own style.'
         ],
     ];
 
@@ -103,33 +156,29 @@ const DecodeTextContent = () => {
                     className='documents-page-component-demo'
                     // style={{backgroundColor: 'var(--basic-purple)'}}
                 >
-                    <DecodeTextDemo key={reloadKey} text="Decode Text" />
-                    {/* <CarouselDemo 
+                    <DecodeTextDemo 
                         key={reloadKey} 
-                        itemHeight={demoProps.itemHeight}
-                        dotColor={demoProps.dotColor}
-                        rollInterval={demoProps.rollInterval}
-                        rollDuration={demoProps.rollDuration}
-                        items={items}
-                    /> */}
+                        text={demoProps.text || 'Decode Text'}
+                        triggerType={demoProps.triggerType}
+                        decode={demoProps.decode}
+                        triggerMargin={demoProps.triggerMargin}
+                        once={demoProps.once}
+                        amount={demoProps.amount}
+                        delay={demoProps.delay}
+                        interval={demoProps.interval}
+                        randomChars={demoProps.randomChars || defaultRandomChars}
+                        className="decode-text-demo"
+                    />
                     <ReloadBtn handler={handleReload}
                         color="rgb(242, 251, 255)"
                     />
                 </div>
                 <Remark>
-                    Try different number of items and see how it works.
-                    <ValueInput  demoProps={demoProps} propName='itemNumbers' onChange={setDemoProps} inputType='number' step={1} min={1} max={20} />
-
-                </Remark>
-                <Remark>
-                    If you feel a little bit laggy at the beginning, it's because code block below is loading. Don't worry, it's will be loaded soon.
-                </Remark>
-                <Remark>
-                    Better looking with darker background, but this is not mandatory.
+                    This component does not include styles, use className prop to customize your own style.
                 </Remark>
             </section>
             <Props headers={tableHeaders} data={tableData} />
-            {/* <Snippets /> */}
+            <Snippets />
             <ComponentFooter />
         </>
     )

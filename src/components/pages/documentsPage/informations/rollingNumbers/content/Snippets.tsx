@@ -22,7 +22,7 @@ const Snippets = () => {
 
     // Use the RollingNumbers component
     <RollingNumbers 
-        // If the prop has default value, it is optional
+        // every prop is optional
         value={smoothValue} // or any number you want
         prefix={prefix}
         suffix={suffix}
@@ -186,9 +186,6 @@ interface useSmoothNumberProps {
 }
 
 const useSmoothNumber = (
-    // whether to start animation
-    // if true, currentValue will be animated from currentValue to endValue, this means you can change endValue dynamically
-    // if false, currentValue will be set to startValue and animation will not be started whatsoever
     shouldAnimate: boolean = true,
     options?: useSmoothNumberProps
 ) => {
@@ -245,13 +242,23 @@ const useSmoothNumber = (
         }
 
         const currentStartValue = animationStartValue.current || startValue;
-        const newValue = Math.floor(currentStartValue + (endValue - currentStartValue) * easedProgress);
+        const rawValue = currentStartValue + (endValue - currentStartValue) * easedProgress;
+        
+        const threshold = Math.abs(endValue - currentStartValue) * 0.01;
+        const minThreshold = 0.5;
+        const actualThreshold = Math.max(threshold, minThreshold);
+        
+        if (Math.abs(rawValue - endValue) <= actualThreshold) {
+            setCurrentValue(endValue);
+            return;
+        }
+        
+        const newValue = Math.round(rawValue);
         setCurrentValue(newValue);
 
         lastUpdateTime.current = time;
     });
-
-    return { currentValue };
+    return currentValue;
 };
 
 export default useSmoothNumber;

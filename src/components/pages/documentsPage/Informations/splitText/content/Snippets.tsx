@@ -13,7 +13,7 @@ const Snippets = () => {
 
     // Use the SplitText component
     <SplitText
-        // If the prop has default value, it is optional
+        // every prop is optional
         text="Check this out!"
         splitType="chars"
         delay={0}

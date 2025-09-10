@@ -70,7 +70,7 @@ function App() {
           children: [
             {
               index: true,
-              element: <SplitText />, // 預設顯示的組件
+              element: <RollingNumbers />, // 預設顯示的組件
             },
             {
               path: 'splittext',

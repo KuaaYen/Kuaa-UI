@@ -80,12 +80,24 @@ const useSmoothNumber = (
 
         // 使用動態起始值計算新值
         const currentStartValue = animationStartValue.current || startValue;
-        const newValue = Math.floor(currentStartValue + (endValue - currentStartValue) * easedProgress);
+        const rawValue = currentStartValue + (endValue - currentStartValue) * easedProgress;
+        
+        // 新增：當非常接近目標值時，直接跳轉到目標值
+        const threshold = Math.abs(endValue - currentStartValue) * 0.01; // 1% 的閾值
+        const minThreshold = 0.5; // 最小閾值，避免閾值過小
+        const actualThreshold = Math.max(threshold, minThreshold);
+        
+        if (Math.abs(rawValue - endValue) <= actualThreshold) {
+            setCurrentValue(endValue);
+            return;
+        }
+        
+        const newValue = Math.round(rawValue); // 改用 Math.round 而不是 Math.floor
         setCurrentValue(newValue);
 
         lastUpdateTime.current = time;
     });
-
+    // console.log(currentValue);
     return currentValue;
 };
 

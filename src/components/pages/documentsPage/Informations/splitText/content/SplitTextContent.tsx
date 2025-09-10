@@ -71,9 +71,9 @@ const SplitTextContent = () => {
         [
             'delay',
             'number',
-            <ValueInput  demoProps={demoProps} propName='delay' onChange={setDemoProps} inputType='number' step={0.1} min={0}/>,
+            <ValueInput  demoProps={demoProps} propName='delay' onChange={setDemoProps} inputType='number' step={100} min={0}/>,
             '0',
-            'The delay before the animation starts.'
+            'The delay before the animation starts. (in milliseconds)'
         ],
         [
             'stagger',
@@ -101,7 +101,7 @@ const SplitTextContent = () => {
             'number',
             <ValueInput  demoProps={demoProps} propName='triggerMargin' onChange={setDemoProps} inputType='number' step={1}/>,
             '0',
-            'The margin between viewport and detection area, only works when triggerType is inView.'
+            'The margin between viewport and detection area (px), only works when triggerType is inView.'
         ],
         [
             'once',
@@ -159,7 +159,7 @@ const SplitTextContent = () => {
                         amount={demoProps.amount}
                         triggerMargin={demoProps.triggerMargin}
                     />
-                    <ReloadBtn handler={handleReload} />
+                    <ReloadBtn handler={handleReload} color='rgb(242, 251, 255)'/>
                 </div>
             </section>
             <Props headers={tableHeaders} data={tableData} />

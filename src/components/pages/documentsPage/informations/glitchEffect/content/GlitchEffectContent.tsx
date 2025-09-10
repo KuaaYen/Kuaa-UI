@@ -70,14 +70,14 @@ const GlitchEffectContent = () => {
         [
             'glitchDuration', 
             'number', 
-            <ValueInput  demoProps={demoProps} propName='glitchDuration' onChange={setDemoProps} inputType='number' step={0.1} min={0} />,
+            <ValueInput  demoProps={demoProps} propName='glitchDuration' onChange={setDemoProps} inputType='number' step={100} min={0} />,
             '1000',
             'How fast the glitch effect will finish a routine. (in milliseconds) You have to press the reload button (top right) to see the difference.'
         ],
         [
             'glitchRest', 
             'number', 
-            <ValueInput  demoProps={demoProps} propName='glitchRest' onChange={setDemoProps} inputType='number' step={0.1} min={0} />,
+            <ValueInput  demoProps={demoProps} propName='glitchRest' onChange={setDemoProps} inputType='number' step={100} min={0} />,
             '2000',
             'How long the glitch effect will rest after a routine. (in milliseconds) You have to press the reload button (top right) to see the difference.'
         ],
@@ -91,7 +91,7 @@ const GlitchEffectContent = () => {
         [
             'fuzzInterval', 
             'number', 
-            <ValueInput  demoProps={demoProps} propName='fuzzInterval' onChange={setDemoProps} inputType='number' step={0.1} min={0} />,
+            <ValueInput  demoProps={demoProps} propName='fuzzInterval' onChange={setDemoProps} inputType='number' step={1} min={0} />,
             '125',
             'Fuzz Effect Interval (in milliseconds). The smaller the value, the faster the effect.'
         ],

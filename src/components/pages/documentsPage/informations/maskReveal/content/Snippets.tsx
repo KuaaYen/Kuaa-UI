@@ -13,7 +13,7 @@ const Snippets = () => {
 
     // Use the MaskReveal component
     <MaskReveal
-        // If the prop has default value, it is optional
+        // every prop is optional
         isRevealed={true} 
         revealConfigs={revealConfigs}
         reverseMask={reverseMask}

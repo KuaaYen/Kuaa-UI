@@ -13,7 +13,7 @@ const Snippets = () => {
 
     // Use the GlitchEffect component
     <GlitchEffect 
-        // If the prop has default value, it is optional
+        // every prop is optional
         triggerType="always" 
         startAnimate={true}
         glitchDuration={1000}
