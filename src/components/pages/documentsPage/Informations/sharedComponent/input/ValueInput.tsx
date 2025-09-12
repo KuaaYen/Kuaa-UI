@@ -5,7 +5,7 @@ interface ValueInputProps<T> {
     demoProps: T,
     propName: keyof T,
     onChange: (props: T) => void,
-    inputType: 'string' | 'number' | 'boolean' | 'switch' | 'color',
+    inputType: 'string' | 'number' | 'boolean' | 'switch' | 'color' | 'slider',
     options?: string[],
     step?: number,
     min?: number,
@@ -30,6 +30,12 @@ const ValueInput = <T,>({
         let newValue;
         if(propType === 'number') {
             newValue = Number(e.target.value);
+            if(max !== undefined && newValue > max) {
+                newValue = max;
+            }
+            if(min !== undefined && newValue < min) {
+                newValue = min;
+            }
         } else {
             newValue = e.target.value;
         }
@@ -141,6 +147,30 @@ const ValueInput = <T,>({
                         />
                     </div>
                 )
+            case 'slider':
+                return (
+                    <div className="value-input-slider-container">
+                        <input 
+                            className="value-input-slider" 
+                            type="range" 
+                            value={Number(demoProps[propName])} 
+                            onChange={(e) => handleChange({e, propType: 'number'})}
+                            {...(step !== undefined && { step })}
+                            {...(min !== undefined && { min })}
+                            {...(max !== undefined && { max })}
+                        />
+                        <input 
+                            className="value-input-slider-value"
+                            type="number"
+                            value={Number(demoProps[propName])}
+                            onChange={(e) => handleChange({e, propType: 'number'})}
+                            {...(step !== undefined && { step })}
+                            {...(min !== undefined && { min })}
+                            {...(max !== undefined && { max })}
+                        >
+                        </input>
+                    </div>
+                )
         }
     }
 
@@ -148,7 +178,7 @@ const ValueInput = <T,>({
         <div 
             className="value-input-container"
             style={{
-                backgroundColor: inputType === 'color' ? 'transparent' : 'rgb(59, 59, 59)',
+                backgroundColor: inputType === 'color' || inputType === 'slider' ? 'transparent' : 'rgb(59, 59, 59)',
                 // minWidth: inputType === 'number' ? '0' : '5rem',
             }}
         >

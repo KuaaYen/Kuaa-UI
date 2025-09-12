@@ -15,6 +15,8 @@ import RollingNumbers from './components/pages/documentsPage/informations/rollin
 import GlitchEffect from './components/pages/documentsPage/informations/glitchEffect/GlitchEffect';
 import Carousel from './components/pages/documentsPage/informations/carousel/Carousel';
 import DecodeText from './components/pages/documentsPage/informations/decodeText/DecodeText';
+import TypeText from './components/pages/documentsPage/informations/typeText/TypeText';
+import Blob from './components/pages/documentsPage/informations/blob/Blob';
 import ToTopButton from './components/shared/components/buttons/toTopButton/ToTopButton';
 
 function App() {
@@ -95,6 +97,14 @@ function App() {
             {
               path: 'decodetext',
               element: <DecodeText />,
+            },
+            {
+              path: 'typeText',
+              element: <TypeText />,
+            },
+            {
+              path: 'blob',
+              element: <Blob />,
             },
           ]
         },

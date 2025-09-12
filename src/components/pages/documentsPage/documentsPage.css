@@ -609,6 +609,56 @@
 }
 
 
+.value-input-slider-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.value-input-slider{
+    all: unset;
+    width: 80%;
+    height: 2px;
+    background-color: var(--basic-purple);
+    cursor: pointer;
+}
+
+.value-input-slider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 4px;
+    height: 0.8em;
+    background-color: var(--basic-purple);
+    box-shadow: 1px 1px 0px 0px white, 2px 2px 1px 0px var(--basic-brick);
+    /* border-radius: 0; */
+}
+
+.value-input-slider-value{
+    position: relative;
+    all: unset;
+    width: 1.4rem;
+    font-size: 0.9rem;
+    line-height: 0.9rem;
+    padding: 0rem 0.2rem;
+    text-align: center;
+    /* border: 1px solid var(--basic-purple);
+    border-radius: 0.2rem; */
+}
+
+/* 隱藏 number input 的上下箭頭（spinner） */
+.value-input-slider-value::-webkit-outer-spin-button,
+.value-input-slider-value::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.value-input-slider-value[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
 
 .documents-page-link-buttons-container{
     position: absolute;

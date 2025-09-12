@@ -1,0 +1,28 @@
+.type-text-demo {
+    position: relative;
+    font-family: 'francois';
+    padding-right: 0.5em;
+    min-width: 1px; /* very important, to not shrink when display text is empty*/
+    min-height: 1em;
+    line-height: 1em;
+}
+
+.type-text-caret {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.2em;
+    height: 1em;
+    background-color: white;
+    animation: blink 1s infinite steps(1);
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}

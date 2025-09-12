@@ -1,4 +1,4 @@
-const RemarkIcon = () => {
+const RemarkIcon = ({iconColor = 'rgb(172, 175, 177)'}: {iconColor?: string}) => {
     return (
         <div
             style={{
@@ -21,8 +21,8 @@ const RemarkIcon = () => {
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                     <path 
                         d="M 20 30 L 80 71 M 50 14 L 50 86 M 80 30 L 20 70"
-                        fill="rgb(172, 175, 177)"
-                        stroke="rgb(172, 175, 177)"
+                        fill={iconColor}
+                        stroke={iconColor}
                         strokeWidth="12"
                         strokeLinecap="butt"
                         strokeLinejoin="miter"

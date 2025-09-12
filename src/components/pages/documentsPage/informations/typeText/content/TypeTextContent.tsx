@@ -1,44 +1,46 @@
 import { useState } from "react";
-import DecodeTextDemo from "./DecodeTextDemo";
+// import DecodeTextDemo from "./DecodeTextDemo";
 import ReloadBtn from "../../sharedComponent/buttons/reloadButton/ReloadBtn";
 import ValueInput from "../../sharedComponent/input/ValueInput";
 import Props from "../../sharedComponent/table/Props";
 import Snippets from "./Snippets";
 import ComponentFooter from "../../sharedComponent/footer/ComponentFooter";
 import Remark from "../../sharedComponent/remark/Remark";
+import TypeTextDemo from "./TypeTextDemo";
 
 
 interface DemoProps {
     text?: string;
+    typing?: boolean;
+    caretColor?: string;
+    blinkDuration?: number;
     triggerType?: 'inView' | 'manual' | 'auto';
-    decode?: boolean;
     triggerMargin?: number;
     once?: boolean;
     amount?: number;
     delay?: number;
     interval?: number;
-    randomChars?: string;
-    onDecodeComplete?: () => void;
-    onEncodeComplete?: () => void;
+    onTypingComplete?: () => void;
+    onDeletingComplete?: () => void;
 }
 
-const defaultRandomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
 
-const DecodeTextContent = () => {
+const TypeTextContent = () => {
 
     const [reloadKey, setReloadKey] = useState(0);
     const [demoProps, setDemoProps] = useState<DemoProps>({
-        text: 'Decode Text',
+        text: 'Type Text Animation',
+        typing: true,
+        caretColor:'#ffffff',
+        blinkDuration: 1,
         triggerType: 'inView',
-        decode: true,
         triggerMargin: -100,
         once: false,
         amount: 1,
         delay: 0,
         interval: 90,
-        randomChars: defaultRandomChars,
-        onDecodeComplete: () => {},
-        onEncodeComplete: () => {},
+        onTypingComplete: () => {},
+        onDeletingComplete: () => {},
     });
 
     const handleReload = () => {
@@ -49,9 +51,9 @@ const DecodeTextContent = () => {
     const TriggerTypeDesc = () => {
         return (
             <div className="table-desc-container">
-                <div className="table-desc-item"><div className="table-desc-item-title">InView:</div> Decode when in view.</div>
-                <div className="table-desc-item"><div className="table-desc-item-title">Manual:</div> Decode/Encode when decode is true/false.</div>
-                <div className="table-desc-item"><div className="table-desc-item-title">Auto:</div> Decode immediately.</div>
+                <div className="table-desc-item"><div className="table-desc-item-title">InView:</div> Type when in view.</div>
+                <div className="table-desc-item"><div className="table-desc-item-title">Manual:</div> Type/Delete when typing is true/false.</div>
+                <div className="table-desc-item"><div className="table-desc-item-title">Auto:</div> Type immediately.</div>
             </div>
         )
     }
@@ -62,8 +64,29 @@ const DecodeTextContent = () => {
             'text', 
             'string', 
             <ValueInput  demoProps={demoProps} propName='text' onChange={setDemoProps} inputType='string' />,
-            'Decode Text',
-            'The text to decode.'
+            'Type Text Animation',
+            'The text to type.'
+        ],
+        [
+            'typing', 
+            'number', 
+            <ValueInput  demoProps={demoProps} propName='typing' onChange={setDemoProps} inputType='boolean'/>,
+            'true',
+            'Whether to type the text.'
+        ],
+        [
+            'caretColor', 
+            'string', 
+            <ValueInput  demoProps={demoProps} propName='caretColor' onChange={setDemoProps} inputType='color' />,
+            '\'#ffffff\'',
+            'The color of the caret.'
+        ],
+        [
+            'blinkDuration', 
+            'number', 
+            <ValueInput  demoProps={demoProps} propName='blinkDuration' onChange={setDemoProps} inputType='number' step={0.1} min={0} />,
+            '1',
+            'The duration of the blink animation.'
         ],
         [
             'triggerType', 
@@ -71,13 +94,6 @@ const DecodeTextContent = () => {
             <ValueInput  demoProps={demoProps} propName='triggerType' onChange={setDemoProps} inputType='switch' options={['inView', 'manual', 'auto']} />,
             'inView',
             <TriggerTypeDesc />
-        ],
-        [
-            'decode', 
-            'number', 
-            <ValueInput  demoProps={demoProps} propName='decode' onChange={setDemoProps} inputType='boolean'/>,
-            'true',
-            'Whether to decode the text.'
         ],
         [
             'triggerMargin', 
@@ -91,7 +107,7 @@ const DecodeTextContent = () => {
             'boolean', 
             <ValueInput  demoProps={demoProps} propName='once' onChange={setDemoProps} inputType='boolean' />,
             'false',
-            'If true, component will only decode once on first sight, only works when triggerType is inView.'
+            'If true, component will only type once on first sight, only works when triggerType is inView.'
         ],
         [
             'amount', 
@@ -105,47 +121,35 @@ const DecodeTextContent = () => {
             'number', 
             <ValueInput  demoProps={demoProps} propName='delay' onChange={setDemoProps} inputType='number' step={100} min={0} />,
             '0',
-            'The delay before every decode/encode starts. (in milliseconds)'
+            'The delay before every type/delete starts. (in milliseconds)'
         ],
         [
             'interval', 
             'number', 
             <ValueInput  demoProps={demoProps} propName='interval' onChange={setDemoProps} inputType='number' step={1} min={0} />,
             '90',
-            'The interval between each character decodes/encodes. (in milliseconds) The smaller the value, the faster the animation.'
+            'The interval between each character types/deletes. (in milliseconds) The smaller the value, the faster the animation.'
         ],
         [
-            'randomChars', 
-            'string', 
-            <ValueInput  demoProps={demoProps} propName='randomChars' onChange={setDemoProps} inputType='string' />,
-            <>
-                <div>{'ABCDEFGHIJKLMNOPQRS'}</div>
-                <div>{'TUVWXYZabcdefghijklmnop'}</div>
-                <div>{'qrstuvwxyz0123456789'}</div>
-                <div>{'!@#$%^&*()_+-=[]{}|;:,.<>?'}</div>
-            </>,
-            'The characters to use for the random text.'
-        ],
-        [
-            'onDecodeComplete', 
+            'onTypingComplete', 
             'function', 
             'undefined',
             'undefined',
-            'The function to be called when decode completes.'
+            'The function to be called when type animation completes.'
         ],
         [
-            'onEncodeComplete', 
+            'onDeletingComplete', 
             'function', 
             'undefined',
             'undefined',
-            'The function to be called when encode completes.'
+            'The function to be called when delete animation completes.'
         ],
         [
             'className', 
             'string', 
             '\'\'',
             '\'\'',
-            'The class name of this component (p tag), cutomize your own style.'
+            'The class name of this component (p tag), this will override the default style if they have same properties.'
         ],
     ];
 
@@ -156,18 +160,9 @@ const DecodeTextContent = () => {
                     className='documents-page-component-demo'
                     // style={{backgroundColor: 'var(--basic-purple)'}}
                 >
-                    <DecodeTextDemo 
-                        key={reloadKey} 
-                        text={demoProps.text || 'Decode Text'}
-                        triggerType={demoProps.triggerType}
-                        decode={demoProps.decode}
-                        triggerMargin={demoProps.triggerMargin}
-                        once={demoProps.once}
-                        amount={demoProps.amount}
-                        delay={demoProps.delay}
-                        interval={demoProps.interval}
-                        randomChars={demoProps.randomChars || defaultRandomChars}
-                        className="decode-text-demo"
+                    <TypeTextDemo 
+                        key={reloadKey}
+                        {...demoProps}
                     />
                     <ReloadBtn handler={handleReload}
                         color="rgb(242, 251, 255)"
@@ -184,4 +179,4 @@ const DecodeTextContent = () => {
     )
 }
 
-export default DecodeTextContent;
+export default TypeTextContent;

@@ -8,7 +8,7 @@ const Snippets = () => {
 
 
     const usageSnippet = `
-    // Import DecodeTex component, your path may be different
+    // Import DecodeText component, your path may be different
     import { DecodeText } from './DecodeTextDemo';
 
     // Use the DecodeText component
@@ -34,7 +34,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { useAnimationFrame, useInView } from 'motion/react';
 
 interface DecodeTextProps {
-    text: string;
+    text?: string;
     decode?: boolean;
     triggerType?: 'inView' | 'manual' | 'auto';
     triggerMargin?: number;
@@ -49,7 +49,7 @@ interface DecodeTextProps {
 }
 
 const DecodeText = ({ 
-    text, 
+    text = 'Decode Text', 
     decode = true,
     triggerType = 'inView',
     triggerMargin = -100,
@@ -67,7 +67,6 @@ const DecodeText = ({
     const [decodingStatus, setDecodingStatus] = useState<'decoding' | 'encoding'>('decoding');
     const lastDecodeTimeRef = useRef(0);
     const currentIndexRef = useRef(0);
-    const originalTextRef = useRef('');
     const textRef = useRef(null);
     const isInView = useInView(
         textRef, { 
@@ -91,8 +90,8 @@ const DecodeText = ({
         if (decodingStatus === 'decoding') {
             const currentIndex = currentIndexRef.current;
             
-            if (currentIndex >= originalTextRef.current.length) {
-                setDisplayText(originalTextRef.current);
+            if (currentIndex >= text.length) {
+                setDisplayText(text);
                 setIsDecoding(false);
                 if (onDecodeComplete) onDecodeComplete();
                 return;
@@ -100,7 +99,7 @@ const DecodeText = ({
 
             setDisplayText(prev => {
                 const chars = prev.split('');
-                chars[currentIndex] = originalTextRef.current[currentIndex];
+                chars[currentIndex] = text[currentIndex];
                 
                 for (let i = currentIndex + 1; i < chars.length; i++) {
                     chars[i] = generateRandomChar();
@@ -117,7 +116,7 @@ const DecodeText = ({
             const currentIndex = currentIndexRef.current;
             
             if (currentIndex <= 0) {
-                setDisplayText(generateRandomText(originalTextRef.current.length));
+                setDisplayText(generateRandomText(text.length));
                 setIsDecoding(false);
                 if (onEncodeComplete) onEncodeComplete();
                 return;
@@ -159,7 +158,6 @@ const DecodeText = ({
 
     useEffect(() => {
         if (text) {
-            originalTextRef.current = text;
             currentIndexRef.current = decode ? 0 : text.length;
             setDisplayText(decode ? generateRandomText(text.length) : text);
         }

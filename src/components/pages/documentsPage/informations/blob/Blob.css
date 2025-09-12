@@ -1,0 +1,105 @@
+.blob-demo-container{
+    position: relative;
+    /* overflow: hidden; */
+}
+
+
+.blob-demo {
+    position: relative;
+}
+
+.blob-demo-content{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/public/images/yippee-cat.gif');
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* pointer-events: none; */
+    transition: opacity 0.2s ease-in-out;
+    /* background-color: blue; */
+}
+
+
+.blob-demo-show-content-btn-container{
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.blob-demo-show-content-btn{
+    position: relative;
+    width: 5rem;
+    height: 2rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+
+}
+
+.blob-demo-props-slider-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.blob-demo-props-slider-result{
+    position: relative;
+    width: 95%;
+    margin-top: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    background-color: var(--basic-purple);
+    color: var(--basic-sunset);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.4rem;
+}
+
+.blob-demo-props-slider-result-number{
+    width: 3ch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blob-demo-props-slider-bracket{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blob-demo-props-slider-bracket.left{
+    left: 1ch;
+}
+
+.blob-demo-props-slider-bracket.right{
+    right: 1ch;
+}
+
+.blob-demo-props-slider-comma{
+    margin-right: 0.5ch;
+    /* width: 1ch;
+    text-align: center; */
+}

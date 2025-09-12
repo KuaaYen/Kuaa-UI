@@ -22,6 +22,10 @@ const ComponentList = () => {
             name: 'Decode Text',
             path: '/documents/decodeText',
         },
+        {
+            name: 'Type Text',
+            path: '/documents/typeText',
+        },
     ];
     const maskAndFilterList = [
         {
@@ -38,6 +42,10 @@ const ComponentList = () => {
             name: 'Carousel',
             path: '/documents/carousel',
         },
+        {
+            name: 'Blob',
+            path: '/documents/blob',
+        },
     ];
 
 
@@ -45,7 +53,7 @@ const ComponentList = () => {
         <nav 
             className='documents-page-component-list'
             style={{
-                paddingTop: mediaType === 'mobile' ? '7rem' : '9rem',
+                paddingTop: mediaType === 'mobile' ? '7rem' : '8rem',
             }}
         >
             <div className='documents-page-component-list-group-container'>
