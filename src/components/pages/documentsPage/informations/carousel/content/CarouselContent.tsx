@@ -10,11 +10,14 @@ import Remark from "../../sharedComponent/remark/Remark";
 
 interface DemoProps {
     dotColor?: string;
+    autoPlay?: boolean;
+    autoPlayInterval?: number;
+    autoPlayRest?: number;
     rollInterval?: number;
     rollDuration?: number;
     itemHeight?: number;
-    items?: ReactNode[];
     itemNumbers?: number;
+    items?: ReactNode[];
 }
 
 const CarouselContent = () => {
@@ -22,6 +25,9 @@ const CarouselContent = () => {
     const [reloadKey, setReloadKey] = useState(0);
     const [demoProps, setDemoProps] = useState<DemoProps>({
         dotColor: '#E07A5F',
+        autoPlay: true,
+        autoPlayInterval: 3000,
+        autoPlayRest: 2000,
         rollInterval: 500,
         rollDuration: 1000,
         itemHeight: 280,
@@ -74,18 +80,39 @@ const CarouselContent = () => {
             'Color of the circle that indicates the current item.'
         ],
         [
+            'autoPlay', 
+            'boolean', 
+            <ValueInput  demoProps={demoProps} propName='autoPlay' onChange={setDemoProps} inputType='boolean' />,
+            'true',
+            'Whether to auto play the carousel.'
+        ],
+        [
+            'autoPlayInterval', 
+            'number', 
+            <ValueInput  demoProps={demoProps} propName='autoPlayInterval' onChange={setDemoProps} inputType='number' step={100} min={0} />,
+            '3000',
+            'The interval between each auto play. (ms)'
+        ],
+        [
+            'autoPlayRest', 
+            'number', 
+            <ValueInput  demoProps={demoProps} propName='autoPlayRest' onChange={setDemoProps} inputType='number' step={100} min={0} />,
+            '2000',
+            'The rest time after each auto play. (ms)'
+        ],
+        [
             'rollInterval', 
             'number', 
             <ValueInput  demoProps={demoProps} propName='rollInterval' onChange={setDemoProps} inputType='number' step={1} min={0} />,
             '500',
-            'The interval between each roll. (in milliseconds) The smaller the value, the faster the you can roll.'
+            'The interval between each roll. (ms) The smaller the value, the faster the you can roll.'
         ],
         [
             'rollDuration', 
             'number', 
             <ValueInput  demoProps={demoProps} propName='rollDuration' onChange={setDemoProps} inputType='number' step={1} min={0} />,
             '1000',
-            'The animation duration of each roll. (in milliseconds) The smaller the value, the faster the animation end.'
+            'The animation duration of each roll. (ms) The smaller the value, the faster the animation end.'
         ],
         [
             'items', 
@@ -107,6 +134,9 @@ const CarouselContent = () => {
                         key={reloadKey} 
                         itemHeight={demoProps.itemHeight}
                         dotColor={demoProps.dotColor}
+                        autoPlay={demoProps.autoPlay}
+                        autoPlayInterval={demoProps.autoPlayInterval}
+                        autoPlayRest={demoProps.autoPlayRest}
                         rollInterval={demoProps.rollInterval}
                         rollDuration={demoProps.rollDuration}
                         items={items}

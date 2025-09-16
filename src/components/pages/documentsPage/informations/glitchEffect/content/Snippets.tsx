@@ -1,4 +1,5 @@
 import Snippet from "../../sharedComponent/snippets/Snippet";
+import { memo } from "react";
 
 const Snippets = () => {
     const installationSnippet = `
@@ -377,4 +378,4 @@ export default GlitchEffect;
     )
 }
 
-export default Snippets;
+export default memo(Snippets);

@@ -1,4 +1,5 @@
 import Snippet from "../../sharedComponent/snippets/Snippet";
+import { memo } from "react";
 
 const Snippets = () => {
     const installationSnippet = `
@@ -264,7 +265,6 @@ const useSmoothNumber = (
 export default useSmoothNumber;
 `;
 
-
     return (
         <div className="code-snippets-container">
             <Snippet title="Installation" snippet={installationSnippet} language="bash" delay={500} />
@@ -276,4 +276,4 @@ export default useSmoothNumber;
     )
 }
 
-export default Snippets;
+export default memo(Snippets);

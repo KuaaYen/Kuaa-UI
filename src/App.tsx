@@ -17,6 +17,7 @@ import Carousel from './components/pages/documentsPage/informations/carousel/Car
 import DecodeText from './components/pages/documentsPage/informations/decodeText/DecodeText';
 import TypeText from './components/pages/documentsPage/informations/typeText/TypeText';
 import Blob from './components/pages/documentsPage/informations/blob/Blob';
+import BorderBeam from './components/pages/documentsPage/informations/borderBeam/BorderBeam';
 import ToTopButton from './components/shared/components/buttons/toTopButton/ToTopButton';
 
 function App() {
@@ -105,6 +106,10 @@ function App() {
             {
               path: 'blob',
               element: <Blob />,
+            },
+            {
+              path: 'borderbeam',
+              element: <BorderBeam />,
             },
           ]
         },

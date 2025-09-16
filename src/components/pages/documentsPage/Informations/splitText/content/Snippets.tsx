@@ -1,4 +1,5 @@
 import Snippet from "../../sharedComponent/snippets/Snippet";
+import { memo } from "react";
 
 const Snippets = () => {
     const installationSnippet = `
@@ -194,4 +195,4 @@ export default SplitText;
     )
 }
 
-export default Snippets;
+export default memo(Snippets);

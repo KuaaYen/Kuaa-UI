@@ -558,6 +558,7 @@
     align-items: center;
     justify-content: center;
     color: var(--primary-color);
+    margin: 0.2rem 0.4rem;
     user-select: none;
     cursor: pointer;
 }

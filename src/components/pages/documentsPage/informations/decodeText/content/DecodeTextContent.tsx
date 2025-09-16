@@ -28,14 +28,14 @@ const DecodeTextContent = () => {
 
     const [reloadKey, setReloadKey] = useState(0);
     const [demoProps, setDemoProps] = useState<DemoProps>({
-        text: 'Decode Text',
+        text: 'Decode Text Animation',
         triggerType: 'inView',
         decode: true,
         triggerMargin: -100,
         once: false,
         amount: 1,
         delay: 0,
-        interval: 90,
+        interval: 60,
         randomChars: defaultRandomChars,
         onDecodeComplete: () => {},
         onEncodeComplete: () => {},
@@ -62,7 +62,7 @@ const DecodeTextContent = () => {
             'text', 
             'string', 
             <ValueInput  demoProps={demoProps} propName='text' onChange={setDemoProps} inputType='string' />,
-            'Decode Text',
+            'Decode Text Animation',
             'The text to decode.'
         ],
         [
@@ -111,7 +111,7 @@ const DecodeTextContent = () => {
             'interval', 
             'number', 
             <ValueInput  demoProps={demoProps} propName='interval' onChange={setDemoProps} inputType='number' step={1} min={0} />,
-            '90',
+            '60',
             'The interval between each character decodes/encodes. (in milliseconds) The smaller the value, the faster the animation.'
         ],
         [

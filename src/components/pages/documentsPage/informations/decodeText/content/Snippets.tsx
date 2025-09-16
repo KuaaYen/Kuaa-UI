@@ -1,4 +1,5 @@
 import Snippet from "../../sharedComponent/snippets/Snippet";
+import { memo } from "react";
 
 const Snippets = () => {
     const installationSnippet = `
@@ -49,7 +50,7 @@ interface DecodeTextProps {
 }
 
 const DecodeText = ({ 
-    text = 'Decode Text', 
+    text = 'Decode Text Animation', 
     decode = true,
     triggerType = 'inView',
     triggerMargin = -100,
@@ -187,4 +188,4 @@ export default DecodeText;
     )
 }
 
-export default Snippets;
+export default memo(Snippets);

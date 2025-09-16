@@ -46,6 +46,10 @@ const ComponentList = () => {
             name: 'Blob',
             path: '/documents/blob',
         },
+        {
+            name: 'Border Beam',
+            path: '/documents/borderbeam',
+        },
     ];
 
 

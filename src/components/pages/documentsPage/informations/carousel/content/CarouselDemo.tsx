@@ -1,10 +1,13 @@
 import { useState, useRef, ReactNode } from 'react';
 import { flushSync } from 'react-dom';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useAnimationFrame} from 'motion/react';
 
 interface CarouselDemoProps {
     items: ReactNode[];
     dotColor?: string;
+    autoPlay?: boolean;
+    autoPlayInterval?: number;
+    autoPlayRest?: number;
     rollInterval?: number;
     rollDuration?: number;
     itemHeight?: number;
@@ -113,6 +116,9 @@ const RollButton = ({direction = 'left', handler}: {direction?: 'left' | 'right'
 const CarouselDemo = ({ 
     items,
     dotColor = '#E07A5F',
+    autoPlay = true,
+    autoPlayInterval = 3000,
+    autoPlayRest = 2000,
     rollInterval = 500,
     rollDuration = 1000,
     itemHeight = 280,
@@ -121,10 +127,20 @@ const CarouselDemo = ({
     const [rollDirection, setRollDirection] = useState<'next' | 'previous'>('next');
     const [itemsInView, setItemsInView] = useState<VisibleItem[]>(getVisibleItems(items, 0) || []);
     const lastRollTime = useRef(0);
+    const lastAutoPlayTime = useRef(new Date().getTime());
 
     const groupSize = 10;
     const totalGroups = Math.ceil(items.length / groupSize);
     const [currentGroup, setCurrentGroup] = useState(0);
+
+    useAnimationFrame(() => {
+        if(autoPlay) {
+            const currentTime = new Date().getTime();
+            if(currentTime - lastAutoPlayTime.current < autoPlayInterval) return;
+            navigateCarousel('next');
+            lastAutoPlayTime.current = currentTime;
+        }
+    });
 
 
     const itemVariants = {
@@ -292,6 +308,7 @@ const CarouselDemo = ({
         })
         
         lastRollTime.current = currentTime;
+        lastAutoPlayTime.current = currentTime + autoPlayRest;
     };
 
     const goToSlide = (targetIndex: number, forceJump: boolean = false) => {
@@ -337,7 +354,7 @@ const CarouselDemo = ({
 
 
     return (
-        <div className='carousel-demo-container'>
+        <article className='carousel-demo-container'>
             <div className='carousel-demo-main-area' style={{height: itemHeight+40}}>
                 {createCarouselItem()}
                 <RollButton direction='left' handler={() => navigateCarousel('previous')} />
@@ -379,7 +396,7 @@ const CarouselDemo = ({
             <div className='carousel-demo-index'>
                 {currentIndex + 1} of {items.length}
             </div>
-        </div>
+        </article>
     );
 };
 

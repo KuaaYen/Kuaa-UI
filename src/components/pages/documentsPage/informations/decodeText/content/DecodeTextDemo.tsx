@@ -17,14 +17,14 @@ interface DecodeTextProps {
 }
 
 const DecodeText = ({ 
-    text = 'Decode Text', 
+    text = 'Decode Text Animation', 
     decode = true,
     triggerType = 'inView',
     triggerMargin = -100,
     once = false,
     amount = 1,
     delay = 0,
-    interval = 90, 
+    interval = 60, 
     randomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?",
     className = '',
     onDecodeComplete = () => {},

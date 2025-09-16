@@ -39,15 +39,15 @@ const BlobContent = () => {
         cornerPosition4: 30,
         color: '#f2fbff',
         size: 250,
-        spin: false,
+        spin: true,
         spinDuration: 3,
-        randomRadius: false,
+        randomRadius: true,
         randomRadiusInterval: 500,
         randomRadiusInensity: 30,
         bounce: true,
         draggable: true,
         chilrenFixed: true,
-        showChildren: false,
+        showChildren: true,
     });
 
     const handleReload = () => {
@@ -85,10 +85,8 @@ const BlobContent = () => {
                 </div>
             </div>,
             '[45, 60, 40, 30]',
-            <div>
-                Corner position of the blob.<br />
-                [top, right, bottom, left] (in %)
-            </div>
+            'Corner position of the blob. [top, right, bottom, left] (in %) This prop will be ignored if randomRadius prop is true.',
+            
         ],
         [
             'color', 
@@ -108,7 +106,7 @@ const BlobContent = () => {
             'spin', 
             'boolean', 
             <ValueInput  demoProps={demoProps} propName='spin' onChange={setDemoProps} inputType='boolean' />,
-            'false',
+            'true',
             'Whether to spin the blob.'
         ],
         [
@@ -122,7 +120,7 @@ const BlobContent = () => {
             'randomRadius', 
             'boolean', 
             <ValueInput  demoProps={demoProps} propName='randomRadius' onChange={setDemoProps} inputType='boolean' />,
-            'false',
+            'true',
             'Whether to make the border radius change randomly. This prop will make cornerPosition prop ignored.'
         ],
         [
@@ -210,9 +208,9 @@ const BlobContent = () => {
                         </div>
                     </div>
                 </div>
-                <Remark iconColor="var(--basic-brick)">
+                {/* <Remark iconColor="var(--basic-brick)">
                     <span style={{color: 'var(--basic-brick)'}}>Try the props below, its more fun to combine multiple different props.</span>
-                </Remark>
+                </Remark> */}
                 <Remark>
                     If you feel a little bit laggy at the beginning, it's because code block below is loading. Don't worry, it will be loaded soon.
                 </Remark>

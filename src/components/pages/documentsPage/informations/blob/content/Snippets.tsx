@@ -1,4 +1,5 @@
 import Snippet from "../../sharedComponent/snippets/Snippet";
+import { memo } from "react";
 
 const Snippets = () => {
     const installationSnippet = `
@@ -46,9 +47,9 @@ const Blob = ({
     cornerPosition = [45, 60, 40, 30],
     color = 'rgb(242, 251, 255)',
     size = 250,
-    spin = false,
+    spin = true,
     spinDuration = 3,
-    randomRadius = false,
+    randomRadius = true,
     randomRadiusInterval = 500,
     randomRadiusInensity = 30,
     bounce = true,
@@ -56,7 +57,6 @@ const Blob = ({
     blobClassName = '',
     children,
     chilrenFixed = true,
-    showChildren = false,
 }: {
     cornerPosition?: number[],
     color?: string,
@@ -71,7 +71,6 @@ const Blob = ({
     blobClassName?: string,
     children?: React.ReactNode,
     chilrenFixed?: boolean,
-    showChildren?: boolean,
 }) => {
     const [borderRadius, setBorderRadius] = useState(getBorderRadius(cornerPosition));
     const lastUpdateTime = useRef(0);
@@ -161,13 +160,13 @@ const Blob = ({
                 }}
             >
                 {!chilrenFixed && (
-                    <div className="blob-content" style={{opacity: showChildren ? 1 : 0}}>
+                    <div className="blob-content">
                         {children}
                     </div>
                 )}
             </motion.div>
             {chilrenFixed && (
-                <div className="blob-content" style={{opacity: showChildren ? 1 : 0}}>
+                <div className="blob-content">
                     {children}
                 </div>
             )}
@@ -211,4 +210,4 @@ export default Blob;
     )
 }
 
-export default Snippets;
+export default memo(Snippets);
