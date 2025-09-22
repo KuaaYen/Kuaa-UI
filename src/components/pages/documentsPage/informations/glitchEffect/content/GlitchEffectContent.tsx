@@ -116,7 +116,7 @@ const GlitchEffectContent = () => {
                     <ReloadBtn handler={handleReload} color="rgb(242, 251, 255)" />
                 </div>
                 <Remark>
-                    SVG filters are not supported in some patch of safari, becareful to use.
+                    SVG filters might not be supported in some patch of safari, becareful to use, or set a fallback.
                 </Remark>
             </section>
             <Props headers={tableHeaders} data={tableData} />

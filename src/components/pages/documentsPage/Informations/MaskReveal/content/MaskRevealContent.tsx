@@ -122,7 +122,7 @@ const MaskRevealContent = () => {
                     <ReloadBtn handler={handleReload} color='rgb(242, 251, 255)'/>
                 </div>
                 <Remark>
-                    SVG Masks are not supported in some patch of safari, becareful to use.
+                    SVG Masks might not be supported in some patch of safari, becareful to use, or set a fallback.
                 </Remark>
                 <Remark>
                     This component doesn't include the card, you may pass in the content you want as children.

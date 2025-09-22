@@ -1,0 +1,232 @@
+import { motion } from "motion/react";
+
+interface LiquidGlassDemoProps {
+    width?: number;
+    height?: number;
+    borderRadius?: string | number;
+    intensity?: number;
+    centerSize?: number;
+    centerBlur?: number;
+    backgroundBlur?: number;
+    backgroundOpacity?: number;
+    children?: React.ReactNode;
+    // only for demo purposes
+    backgroundFilter?: 'normal' | 'grayscale';
+}
+
+const LiquidGlassDemo = ({ 
+    width = 250, 
+    height = 250,
+    borderRadius = 125, 
+    intensity = 1.5,
+    centerSize = 0.76,
+    centerBlur = 7,
+    backgroundBlur = 0.6,
+    backgroundOpacity = 0.05,
+    children,
+    // only for demo purposes
+    backgroundFilter = 'normal',
+}: LiquidGlassDemoProps) => {
+    
+    const parseRadius = (radius: string | number, containerWidth: number, containerHeight: number) => {
+        if (typeof radius === 'number') {
+            // 確保不超過最大限制
+            const maxRadius = Math.min(containerWidth, containerHeight) / 2;
+            return Math.min(radius, maxRadius);
+        }
+        
+        if (radius.includes('rem')) {
+            const remValue = parseFloat(radius.replace('rem', ''))*16;
+            const maxRadius = Math.min(containerWidth, containerHeight) / 2;
+            return Math.min(remValue, maxRadius);
+        }
+
+
+        if (radius.includes('%')) {
+            const percentage = parseFloat(radius.replace('%', ''));
+            // 基於較小的尺寸計算，確保圓角不會超出邊界
+            const baseSize = Math.min(containerWidth, containerHeight);
+            const calculatedRadius = (baseSize / 2) * (percentage / 100);
+            return calculatedRadius;
+        }
+        
+        if (radius.includes('px')) {
+            const pxValue = parseFloat(radius.replace('px', ''));
+            const maxRadius = Math.min(containerWidth, containerHeight) / 2;
+            return Math.min(pxValue, maxRadius);
+        }
+        
+        const numValue = parseFloat(radius) || 20;
+        const maxRadius = Math.min(containerWidth, containerHeight) / 2;
+        return Math.min(numValue, maxRadius);
+    };
+    
+    const createDisplacementMap = () => {
+        // 計算 rect 的實際尺寸
+        const rectWidth = width * centerSize;
+        const rectHeight = height * centerSize;
+        
+        // 基於實際 rect 尺寸計算圓角
+        const actualRadius = parseRadius(borderRadius, rectWidth, rectHeight);
+        
+        const displacementMap = `
+            <svg 
+                xmlns="http://www.w3.org/2000/svg"
+                width="100%" 
+                height="100%"
+                preserveAspectRatio="none"
+            >
+                <defs>
+                    <radialGradient id="gradient-purple" cx="0%" cy="0%" r="100%">
+                        <stop offset="0%" stop-color="rgb(255, 0, 255)" stop-opacity="1" />
+                        <stop offset="100%" stop-color="rgb(255, 0, 255)" stop-opacity="0" />
+                    </radialGradient>
+                    <radialGradient id="gradient-red" cx="0%" cy="100%" r="100%">
+                        <stop offset="0%" stop-color="rgb(255, 0, 0)" stop-opacity="1" />
+                        <stop offset="100%" stop-color="rgb(255, 0, 0)" stop-opacity="0" />
+                    </radialGradient>
+                    <radialGradient id="gradient-blue" cx="100%" cy="0%" r="100%">
+                        <stop offset="0%" stop-color="rgb(0, 0, 255)" stop-opacity="1" />
+                        <stop offset="100%" stop-color="rgb(0, 0, 255)" stop-opacity="0" />
+                    </radialGradient>
+                    <radialGradient id="gradient-black" cx="100%" cy="100%" r="100%">
+                        <stop offset="0%" stop-color="rgb(0, 0, 0)" stop-opacity="1" />
+                        <stop offset="100%" stop-color="rgb(0, 0, 0)" stop-opacity="0" />
+                    </radialGradient>
+                    <filter id="blur-filter">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="${centerBlur}" />
+                    </filter>
+                </defs>
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-purple)"/>
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-red)"/>
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-blue)"/>
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient-black)"/>
+                <rect 
+                    x="${(1-centerSize)/2*100}%" y="${(1-centerSize)/2*100}%" 
+                    width="${centerSize*100}%"
+                    height="${centerSize*100}%"
+                    fill="rgba(127, 127, 127, 1)"
+                    rx="${actualRadius}"
+                    filter="url(#blur-filter)"
+                />
+
+            </svg>`;
+        return 'data:image/svg+xml;base64,' + btoa(displacementMap);
+    }
+    
+
+    return (
+        <>
+            <div className="liquid-glass-demo-container">
+                <div 
+                    className="liquid-glass-demo-background-container"
+                    style={{ filter: backgroundFilter === 'grayscale' ? 'grayscale(1)' : 'grayscale(0)' }}
+                >
+                    <motion.div 
+                        className="liquid-glass-demo-background-wrapper"
+                        initial={{ y: '400px'}}
+                        animate={{ y: '-100%'}}
+                        transition={{duration: 30, ease: "linear", repeat: Infinity, repeatType: "loop", delay: 2}}
+                    >
+                        <div className="liquid-glass-demo-background-card">
+                            <img 
+                                src="/public/images/jiu-fen-vivifoffy.jpg"
+                                alt="Jiu Fen in the night"
+                                title="From: Pixabay, Author: vivifoffy"
+                            />                        
+                        </div>
+
+                        <div className="liquid-glass-demo-background-card">
+                            <img 
+                                src="/public/images/sakura-deer-MAK0T0.jpg"
+                                alt="A deer under the cherry blossom"
+                                title="From: Pixabay, Author: MAK0T0"
+                            /> 
+                        </div>
+
+                        <div className="liquid-glass-demo-background-card">
+                            <img 
+                                src="/public/images/ocean-jplenio.jpg"
+                                alt="Ocean in the night"
+                                title="From: Pixabay, Author: jplenio"
+                            />                        
+                        </div>
+                    </motion.div>
+                </div>
+
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="none"
+                    className="liquid-glass-demo-displacement-map"
+                >
+                    <defs>
+                        <filter id="liquid-glass-map" colorInterpolationFilters="sRGB"  >
+                            <feImage href={createDisplacementMap()} result="map" />
+                            
+                            <feDisplacementMap in="SourceGraphic" in2="map" scale={intensity*100} xChannelSelector="R" yChannelSelector="B" result="displaced-red"/>
+                            <feDisplacementMap in="SourceGraphic" in2="map" scale={intensity*90} xChannelSelector="R" yChannelSelector="B" result="displaced-green"/>
+                            <feDisplacementMap in="SourceGraphic" in2="map" scale={intensity*80} xChannelSelector="R" yChannelSelector="B" result="displaced-blue"/>
+                            
+                            <feColorMatrix 
+                                in="displaced-red"
+                                mode="matrix"
+                                values="1 0 0 0 0 
+                                        0 0 0 0 0 
+                                        0 0 0 0 0 
+                                        0 0 0 1 0" 
+                                result="red-channel"
+                            />
+                            <feColorMatrix 
+                                in="displaced-green"
+                                mode="matrix"
+                                values="0 0 0 0 0 
+                                        0 1 0 0 0 
+                                        0 0 0 0 0 
+                                        0 0 0 1 0" 
+                                result="green-channel"
+                            />
+                            <feColorMatrix 
+                                in="displaced-blue"
+                                mode="matrix"
+                                values="0 0 0 0 0 
+                                        0 0 0 0 0 
+                                        0 0 1 0 0 
+                                        0 0 0 1 0" 
+                                result="blue-channel"
+                            />
+                            
+                            <feBlend in="red-channel" in2="green-channel" mode="screen" result="rg-combined"/>
+                            <feBlend in="rg-combined" in2="blue-channel" mode="screen" result="final-result"/>
+                            <feGaussianBlur in="final-result" stdDeviation={backgroundBlur}/>
+                        </filter>
+                    </defs>
+                </svg>
+                <motion.div 
+                    className="liquid-glass-demo"
+                    drag={true}
+                    dragConstraints={{
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                    }}
+                    dragElastic={0.4}
+                    dragTransition={{bounceStiffness: 100, bounceDamping: 10}}
+                    whileHover={{cursor: 'grab'}}
+                    whileTap={{cursor: 'grabbing'}}
+                    style={{
+                        width: width,
+                        height: height,
+                        borderRadius: borderRadius,
+                        backgroundColor: `rgba(0, 0, 0, ${backgroundOpacity})`,
+                        backdropFilter: 'url(#liquid-glass-map)',
+                    }}
+                >
+                    {children}
+                </motion.div>
+            </div>
+        </>
+    )
+}
+
+export default LiquidGlassDemo;

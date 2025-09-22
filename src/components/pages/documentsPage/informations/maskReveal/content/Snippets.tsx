@@ -65,9 +65,11 @@ const MaskRevealDemo = ({
                         <stop offset="50%" stopColor={stopColor} stopOpacity="1"/>
                         <stop offset="100%" stopColor={stopColor} stopOpacity="0" />
                     </radialGradient>
-                    <mask id="revealMask" 
-                          maskUnits="objectBoundingBox" 
-                          maskContentUnits="objectBoundingBox">
+                    <mask 
+                        id="revealMask" 
+                        maskUnits="objectBoundingBox" 
+                        maskContentUnits="objectBoundingBox"
+                    >
                         <rect x="-0.1" y="-0.1" width="1.2" height="1.2" fill={rectColor} />
                         {revealConfigs.map((revealConfig, index) => (
                             <motion.circle 

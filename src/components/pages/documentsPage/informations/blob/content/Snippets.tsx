@@ -14,6 +14,7 @@ const Snippets = () => {
 
     // Use the DecodeText component
     <Blob 
+        // every prop is optional
         cornerPosition={[45, 60, 40, 30]}
         color="#f2fbff"
         size={250}

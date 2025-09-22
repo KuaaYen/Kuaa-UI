@@ -18,6 +18,7 @@ import DecodeText from './components/pages/documentsPage/informations/decodeText
 import TypeText from './components/pages/documentsPage/informations/typeText/TypeText';
 import Blob from './components/pages/documentsPage/informations/blob/Blob';
 import BorderBeam from './components/pages/documentsPage/informations/borderBeam/BorderBeam';
+import LiquidGlass from './components/pages/documentsPage/informations/liquidGlass/LiquidGlass';
 import ToTopButton from './components/shared/components/buttons/toTopButton/ToTopButton';
 
 function App() {
@@ -110,6 +111,10 @@ function App() {
             {
               path: 'borderbeam',
               element: <BorderBeam />,
+            },
+            {
+              path: 'liquidglass',
+              element: <LiquidGlass />,
             },
           ]
         },

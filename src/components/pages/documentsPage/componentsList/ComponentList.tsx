@@ -36,6 +36,10 @@ const ComponentList = () => {
             name: 'Glitch Effect',
             path: '/documents/glitchEffect',
         },
+        {
+            name: 'Liquid Glass',
+            path: '/documents/liquidglass',
+        },
     ];
     const componentItemList = [
         {

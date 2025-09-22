@@ -100,7 +100,7 @@ const BlobContent = () => {
             'number', 
             <ValueInput  demoProps={demoProps} propName='size' onChange={setDemoProps} inputType='slider' step={1} min={50} max={300} />,
             '250',
-            'The size of the blob. (in pixels) Limit is only for demo purposes. You can set it freely.'
+            'The size of the blob. (px) Limit is only for demo purposes. You can set it freely.'
         ],
         [
             'spin', 
@@ -114,7 +114,7 @@ const BlobContent = () => {
             'number', 
             <ValueInput  demoProps={demoProps} propName='spinDuration' onChange={setDemoProps} inputType='number' step={0.1} min={0} />,
             '3',
-            'The duration of each spin. (in seconds)  If this prop is changed, you have to press the reload button (top right) or switch the spin prop to see the difference.'
+            'The duration of each spin. (s)  If this prop is changed, you have to press the reload button (top right) or switch the spin prop to see the difference.'
         ],
         [
             'randomRadius', 
@@ -128,7 +128,7 @@ const BlobContent = () => {
             'number', 
             <ValueInput  demoProps={demoProps} propName='randomRadiusInterval' onChange={setDemoProps} inputType='number' step={100} min={0} />,
             '500',
-            'The interval between each random border radius change. (in milliseconds)'
+            'The interval between each random border radius change. (ms)'
         ],
         [
             'randomRadiusInensity', 
