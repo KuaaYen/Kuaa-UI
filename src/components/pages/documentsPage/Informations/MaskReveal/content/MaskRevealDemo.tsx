@@ -30,7 +30,7 @@ const MaskRevealDemo = ({
     const rectColor = reverseMask ? "white" : "black";
 
     return (
-        <div className="mask-reveal-demo-container">
+        <>
             <svg width="0" height="0" style={{ position: 'absolute' }}>
                 <defs>
                     <radialGradient id="revealMaskGradient" cx="0.5" cy="0.5" r="0.5">
@@ -73,7 +73,7 @@ const MaskRevealDemo = ({
             >
                 {children}
             </div>
-        </div>
+        </>
     )
 }
 

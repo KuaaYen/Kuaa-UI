@@ -258,3 +258,29 @@ button {
 .footer-links-item:hover::after {
   width: 100%;
 }
+
+.to-top-btn{
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(172, 175, 177);
+  border: 2px solid rgb(172, 175, 177);
+  border-radius: 0.5rem;
+  backdrop-filter: blur(5px);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  z-index: 100;
+}
+
+.to-top-btn:hover{
+  border: 2px solid var(--primary-color);
+}
+
+.to-top-btn:active{
+  scale: 0.95;
+}

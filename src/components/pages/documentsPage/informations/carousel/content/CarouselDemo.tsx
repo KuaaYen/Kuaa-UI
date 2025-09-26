@@ -213,7 +213,12 @@ const CarouselDemo = ({
                                 initial={rollDirection === 'next' ? 'overflowRight' : 'overflowLeft'}
                                 animate={getPosition(index)}
                                 exit={rollDirection === 'next' ? 'overflowLeft' : 'overflowRight'}
-                                transition={{ type: 'spring', bounce: 0, duration: rollDuration / 1000}}
+                                transition={{ 
+                                    type: 'spring', bounce: 0, duration: rollDuration / 1000,
+                                    opacity: {
+                                        type: 'spring', bounce: 0, duration: rollDuration / 2000
+                                    }
+                                }}
                             >
                                 {item.content}
                             </motion.div>

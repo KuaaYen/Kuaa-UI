@@ -2,14 +2,7 @@ import { motion, AnimatePresence } from "motion/react";
 
 const MaskRevealDemoBg = ({isRevealed = false}: {isRevealed?: boolean}) => {
     return (
-
-        <div 
-            className="mask-reveal-demo"
-            style={{ 
-                mask: 'url(#revealMask)',
-                WebkitMask: 'url(#revealMask)'
-            }}
-        >
+        <div className="mask-reveal-demo-bg">
             <AnimatePresence mode="wait">
                 {isRevealed ? 
                     <motion.h1

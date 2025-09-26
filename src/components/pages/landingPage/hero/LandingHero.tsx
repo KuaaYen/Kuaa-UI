@@ -4,6 +4,7 @@ import HeroPopOut from './HeroPopOut';
 import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useMediaTypeContext from '../../../../context/useMediaTypeContext';
+// import MarchingAnts from '../../../shared/components/marchingAnts/MarchingAnts';
 // import Wind from './Wind';
 
 const LandingHero = ({handleChangeOiiaoAnimation}: {handleChangeOiiaoAnimation: (type: 'spin' | 'swing') => void}) => {
@@ -90,6 +91,27 @@ const LandingHero = ({handleChangeOiiaoAnimation}: {handleChangeOiiaoAnimation: 
         }
     }
 
+    // const createMarchingAnts = () => {
+    //     if(mediaType === 'pc') {
+    //         return (
+    //             <MarchingAnts 
+    //                 path='M 0 10 C 23 17 6 37 30 42 C 46 46 51 61 44 71 C 34 87 2 86 0 100'
+    //                 style={{
+    //                     position: 'absolute',
+    //                     left: '-30%',
+    //                     top: '0%',
+    //                     width: '800px',
+    //                 }}
+    //                 maskDirection='180deg'
+    //                 strokeWidth='0.8'
+    //                 duration={2}
+    //                 delay={1.5}
+    //                 maskEase='linear'
+    //             />
+    //         )
+    //     }
+    // }
+
     return (
         <article 
             className="landing-page-hero-wrapper"
@@ -100,31 +122,9 @@ const LandingHero = ({handleChangeOiiaoAnimation}: {handleChangeOiiaoAnimation: 
                 animate={{scale: 1, opacity: 1}}
                 transition={{duration: 1.2, delay: 0.6, type: 'spring', stiffness: 100, damping: 12}}      
             >
+                {/* {createMarchingAnts()} */}
                 <motion.h1>
                     {createHeroContent()}
-                    {/* <div className='landing-page-hero-content-text'>
-                        <PaperPlane />
-                        <div className='landing-page-hero-content-text-top'>
-                            Build your project with
-                            <HeroPopOut/>
-                        </div>
-                        <div>
-                            <span className='landing-page-brick-highlight'>{createSplitText('creative', 0.9)}</span>
-                            <span> and </span>
-                            <span className='landing-page-brick-highlight'>{createSplitText('unique', 1.4)}</span>
-                            <span> React components</span>
-                        </div>
-                        <a 
-                            className='landing-page-CTA'
-                            onPointerEnter={() => handleChangeOiiaoAnimation('swing')}
-                            onPointerLeave={() => handleChangeOiiaoAnimation('spin')}
-                            onClick={(e) => handleGetStartedClick(e)}
-                        >
-                            <div className='landing-page-CTA-text'>
-                                <span>Get Started</span>
-                            </div>
-                        </a>
-                    </div> */}
                 </motion.h1>
             </motion.div>
         </article>

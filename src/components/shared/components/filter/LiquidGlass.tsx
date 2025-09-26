@@ -1,6 +1,6 @@
-import { motion } from "motion/react";
 
-interface LiquidGlassDemoProps {
+
+interface LiquidGlassProps {
     width?: number;
     height?: number;
     borderRadius?: string | number;
@@ -10,11 +10,9 @@ interface LiquidGlassDemoProps {
     backgroundBlur?: number;
     backgroundOpacity?: number;
     children?: React.ReactNode;
-    // only for demo purposes
-    backgroundFilter?: 'normal' | 'grayscale';
 }
 
-const LiquidGlassDemo = ({ 
+const LiquidGlass = ({ 
     width = 250, 
     height = 250,
     borderRadius = 125, 
@@ -24,13 +22,10 @@ const LiquidGlassDemo = ({
     backgroundBlur = 0.6,
     backgroundOpacity = 0.05,
     children,
-    // only for demo purposes
-    backgroundFilter = 'normal',
-}: LiquidGlassDemoProps) => {
+}: LiquidGlassProps) => {
     
     const parseRadius = (radius: string | number, containerWidth: number, containerHeight: number) => {
         if (typeof radius === 'number') {
-            // 確保不超過最大限制
             const maxRadius = Math.min(containerWidth, containerHeight) / 2;
             return Math.min(radius, maxRadius);
         }
@@ -41,10 +36,8 @@ const LiquidGlassDemo = ({
             return Math.min(remValue, maxRadius);
         }
 
-
         if (radius.includes('%')) {
             const percentage = parseFloat(radius.replace('%', ''));
-            // 基於較小的尺寸計算，確保圓角不會超出邊界
             const baseSize = Math.min(containerWidth, containerHeight);
             const calculatedRadius = (baseSize / 2) * (percentage / 100);
             return calculatedRadius;
@@ -62,11 +55,9 @@ const LiquidGlassDemo = ({
     };
     
     const createDisplacementMap = () => {
-        // 計算 rect 的實際尺寸
         const rectWidth = width * centerSize;
         const rectHeight = height * centerSize;
         
-        // 基於實際 rect 尺寸計算圓角
         const actualRadius = parseRadius(borderRadius, rectWidth, rectHeight);
         
         const displacementMap = `
@@ -114,50 +105,13 @@ const LiquidGlassDemo = ({
         return 'data:image/svg+xml;base64,' + btoa(displacementMap);
     }
     
-
     return (
         <>
-            <div className="liquid-glass-demo-container">
-                <div 
-                    className="liquid-glass-demo-background-container"
-                    style={{ filter: backgroundFilter === 'grayscale' ? 'grayscale(1)' : 'grayscale(0)' }}
-                >
-                    <motion.div 
-                        className="liquid-glass-demo-background-wrapper"
-                        initial={{ y: '400px'}}
-                        animate={{ y: '-100%'}}
-                        transition={{duration: 30, ease: "linear", repeat: Infinity, repeatType: "loop", delay: 2}}
-                    >
-                        <div className="liquid-glass-demo-background-card">
-                            <img 
-                                src="/images/jiu-fen-vivifoffy.jpg"
-                                alt="Jiu Fen in the night"
-                                title="From: Pixabay, Author: vivifoffy"
-                            />                        
-                        </div>
-
-                        <div className="liquid-glass-demo-background-card">
-                            <img 
-                                src="/images/sakura-deer-MAK0T0.jpg"
-                                alt="A deer under the cherry blossom"
-                                title="From: Pixabay, Author: MAK0T0"
-                            /> 
-                        </div>
-
-                        <div className="liquid-glass-demo-background-card">
-                            <img 
-                                src="/images/ocean-jplenio.jpg"
-                                alt="Ocean in the night"
-                                title="From: Pixabay, Author: jplenio"
-                            />                        
-                        </div>
-                    </motion.div>
-                </div>
-
+            <div className="liquid-glass-container">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     preserveAspectRatio="none"
-                    className="liquid-glass-demo-displacement-map"
+                    className="liquid-glass-displacement-map"
                 >
                     <defs>
                         <filter id="liquid-glass-map" colorInterpolationFilters="sRGB"  >
@@ -201,32 +155,22 @@ const LiquidGlassDemo = ({
                         </filter>
                     </defs>
                 </svg>
-                <motion.div 
-                    className="liquid-glass-demo"
-                    drag={true}
-                    dragConstraints={{
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                    }}
-                    dragElastic={0.4}
-                    dragTransition={{bounceStiffness: 100, bounceDamping: 10}}
-                    whileHover={{cursor: 'grab'}}
-                    whileTap={{cursor: 'grabbing'}}
+                <div 
+                    className="liquid-glass"
                     style={{
                         width: width,
                         height: height,
                         borderRadius: borderRadius,
-                        backgroundColor: `rgba(0, 0, 0, ${backgroundOpacity})`,
                         backdropFilter: 'url(#liquid-glass-map)',
+                        backgroundColor: `rgba(0, 0, 0, ${backgroundOpacity})`,
                     }}
                 >
                     {children}
-                </motion.div>
+                </div>
             </div>
         </>
     )
 }
 
-export default LiquidGlassDemo;
+export default LiquidGlass;
+    

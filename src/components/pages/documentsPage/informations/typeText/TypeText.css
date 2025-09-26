@@ -26,3 +26,11 @@
         opacity: 0;
     }
 }
+
+.type-text-demo-container {
+    font-size: 4rem;
+}
+
+.type-text-demo-container.mobile {
+    font-size: 1.5rem;
+}

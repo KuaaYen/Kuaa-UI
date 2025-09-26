@@ -7,6 +7,7 @@ import Props from "../../sharedComponent/table/Props";
 import Snippets from "./Snippets";
 import ComponentFooter from "../../sharedComponent/footer/ComponentFooter";
 import Remark from "../../sharedComponent/remark/Remark";
+import useMediaTypeContext from "../../../../../../context/useMediaTypeContext";
 
 interface CircleConfig {
     x: number;
@@ -30,7 +31,7 @@ interface DemoProps {
 }
 
 const MaskRevealContent = () => {
-
+    const mediaType = useMediaTypeContext();
     const [reloadKey, setReloadKey] = useState(0);
     const [demoProps, setDemoProps] = useState<DemoProps>({
         isRevealed: true,
@@ -111,14 +112,17 @@ const MaskRevealContent = () => {
         <>
             <section className="documents-page-component-section">
                 <div className='documents-page-component-demo'>
-                    <MaskRevealDemo 
-                        key={reloadKey} 
-                        isRevealed={demoProps.isRevealed} 
-                        revealConfigs={demoProps.revealConfigs} 
-                        reverseMask={demoProps.reverseMask}
-                    >
-                        <MaskRevealDemoBg isRevealed={demoProps.isRevealed} />
-                    </MaskRevealDemo>
+                    
+                    <div className={mediaType === 'mobile' ? 'mask-reveal-demo-container-mobile' : 'mask-reveal-demo-container'}>
+                        <MaskRevealDemo 
+                            key={reloadKey} 
+                            isRevealed={demoProps.isRevealed} 
+                            revealConfigs={demoProps.revealConfigs} 
+                            reverseMask={demoProps.reverseMask}
+                        >
+                            <MaskRevealDemoBg isRevealed={demoProps.isRevealed} />
+                        </MaskRevealDemo>
+                    </div>
                     <ReloadBtn handler={handleReload} color='rgb(242, 251, 255)'/>
                 </div>
                 <Remark>

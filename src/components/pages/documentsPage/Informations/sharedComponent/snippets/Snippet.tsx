@@ -3,6 +3,7 @@ import CopyButton from "../buttons/copyButton/CopyButton";
 import ToTopButton from "../../../../../shared/components/buttons/toTopButton/ToTopButton";
 import { useState, useEffect, useMemo, useRef, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import useMediaTypeContext from '../../../../../../context/useMediaTypeContext';
 
 const Snippet = ({
     title, 
@@ -20,7 +21,9 @@ const Snippet = ({
     const [shouldRender, setShouldRender] = useState(false);
     const [showToTop, setShowToTop] = useState(false);
     const codeSnippetRef = useRef<HTMLDivElement>(null);
-
+    
+    const mediaType = useMediaTypeContext();
+    
     useEffect(() => {
         const timer = setTimeout(() => {
             setShouldRender(true);
@@ -66,6 +69,7 @@ const Snippet = ({
                 className="code-snippet-wrapper"
                 style={{
                     height: getHeight(),
+                    maxWidth: mediaType === 'pc' ? '70dvw' : '90dvw',
                 }}
             >
                 <div className="code-snippet" ref={codeSnippetRef}>

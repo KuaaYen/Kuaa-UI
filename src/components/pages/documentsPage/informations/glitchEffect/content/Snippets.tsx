@@ -338,7 +338,6 @@ export default GlitchEffect;
     justify-content: center;
     color: white;
     text-shadow: 2px 2px 0px #a39f92;
-    font-size: 5rem;
 }
 
 .glitch-effect{

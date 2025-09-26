@@ -58,18 +58,22 @@ const ComponentList = () => {
 
 
     return (
-        <nav 
-            className='documents-page-component-list'
-            style={{
-                paddingTop: mediaType === 'mobile' ? '7rem' : '8rem',
-            }}
-        >
-            <div className='documents-page-component-list-group-container'>
-                <ComponentsGroup componentList={textAndNumberList} groupName='Text & Number' />
-                <ComponentsGroup componentList={maskAndFilterList} groupName='Masks & Filters' />
-                <ComponentsGroup componentList={componentItemList} groupName='Components' />
-            </div>
-        </nav>
+        <>
+            {mediaType === "pc" && (
+                <nav 
+                    className='documents-page-component-list'
+                    // style={{
+                    //     paddingTop: '8rem',
+                    // }}
+                >
+                    <div className='documents-page-component-list-group-container'>
+                        <ComponentsGroup componentList={textAndNumberList} groupName='Text & Number' />
+                        <ComponentsGroup componentList={maskAndFilterList} groupName='Masks & Filters' />
+                        <ComponentsGroup componentList={componentItemList} groupName='Components' />
+                    </div>
+                </nav>
+            )}
+        </>
     );
 };
 

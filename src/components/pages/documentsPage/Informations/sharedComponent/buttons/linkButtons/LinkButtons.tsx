@@ -1,3 +1,5 @@
+// import useMediaTypeContext from "../../../../../../../context/useMediaTypeContext";
+
 interface LinkButtonsProps {
     links: {
         text: string;
@@ -7,6 +9,8 @@ interface LinkButtonsProps {
 }
 
 const LinkButtons = ({links}: LinkButtonsProps) => {
+
+    // const mediaType = useMediaTypeContext();
     return (
         <div className='documents-page-link-buttons-container'>
             {links.map((link, index) => (

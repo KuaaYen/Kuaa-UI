@@ -432,6 +432,7 @@ export default Carousel;
     position: relative;
     height: 20rem;
     width: 100%;
+    max-width: 90dvw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -482,6 +483,7 @@ export default Carousel;
     box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
     z-index: 3;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent; /* prevent tap highlight */
 }
 
 .carousel-roll-button.left {

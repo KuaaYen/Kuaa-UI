@@ -7,6 +7,7 @@ import Snippets from "./Snippets";
 import ComponentFooter from "../../sharedComponent/footer/ComponentFooter";
 import Remark from "../../sharedComponent/remark/Remark";
 import TypeTextDemo from "./TypeTextDemo";
+import useMediaTypeContext from "../../../../../../context/useMediaTypeContext";
 
 
 interface DemoProps {
@@ -26,7 +27,7 @@ interface DemoProps {
 
 
 const TypeTextContent = () => {
-
+    const mediaType = useMediaTypeContext();
     const [reloadKey, setReloadKey] = useState(0);
     const [demoProps, setDemoProps] = useState<DemoProps>({
         text: 'Type Text Animation',
@@ -63,7 +64,7 @@ const TypeTextContent = () => {
         [
             'text', 
             'string', 
-            <ValueInput  demoProps={demoProps} propName='text' onChange={setDemoProps} inputType='string' />,
+            <ValueInput  demoProps={demoProps} propName='text' onChange={setDemoProps} inputType='string' maxLength={22}/>,
             'Type Text Animation',
             'The text to type.'
         ],
@@ -160,10 +161,12 @@ const TypeTextContent = () => {
                     className='documents-page-component-demo'
                     // style={{backgroundColor: 'var(--basic-purple)'}}
                 >
-                    <TypeTextDemo 
-                        key={reloadKey}
-                        {...demoProps}
-                    />
+                    <div className={`type-text-demo-container ${mediaType === 'mobile' ? 'mobile' : ''}`}>
+                        <TypeTextDemo 
+                            key={reloadKey}
+                            {...demoProps}
+                        />
+                    </div>
                     <ReloadBtn handler={handleReload}
                         color="rgb(242, 251, 255)"
                     />

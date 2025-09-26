@@ -3,16 +3,19 @@ const RemarkIcon = ({iconColor = 'rgb(172, 175, 177)'}: {iconColor?: string}) =>
         <div
             style={{
                 position: 'relative',
-                height: '1rem',
-                aspectRatio: 1,
+                height: '1.3rem',
+                width: '1rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 // backgroundColor: 'red',
             }}
         >
             <div 
                 style={{
                     position:'relative',
-                    height: '100%',
-                    width: '100%',
+                    height: '1rem',
+                    width: '1rem',
                     transform: 'translateY(-1px)',
                     backgroundColor: '#ffffff00',
                     zIndex: 1,

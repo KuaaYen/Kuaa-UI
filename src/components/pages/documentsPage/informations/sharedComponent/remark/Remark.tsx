@@ -5,7 +5,9 @@ const Remark = ({children, iconColor}: {children: React.ReactNode, iconColor?: s
     return (
         <div className="documents-page-component-demo-remark">
             <RemarkIcon iconColor={iconColor} />
-            {children}
+            <span>
+                {children}
+            </span>
         </div>
     )
 }

@@ -181,7 +181,7 @@ const LiquidGlass = ({
                             
                             <feBlend in="red-channel" in2="green-channel" mode="screen" result="rg-combined"/>
                             <feBlend in="rg-combined" in2="blue-channel" mode="screen" result="final-result"/>
-                            <feGaussianBlur in="final-result" stdDeviation="\${backgroundBlur}"/>
+                            <feGaussianBlur in="final-result" stdDeviation={backgroundBlur}/>
                         </filter>
                     </defs>
                 </svg>
@@ -191,6 +191,7 @@ const LiquidGlass = ({
                         width: width,
                         height: height,
                         borderRadius: borderRadius,
+                        backdropFilter: 'url(#liquid-glass-map)',
                         backgroundColor: \`rgba(0, 0, 0, \${backgroundOpacity})\`,
                     }}
                 >

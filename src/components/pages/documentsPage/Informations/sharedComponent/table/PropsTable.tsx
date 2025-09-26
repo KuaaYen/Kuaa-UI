@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import useMediaTypeContext from '../../../../../../context/useMediaTypeContext';
 
 interface FlexibleTableProps {
     headers: string[];
@@ -6,9 +7,16 @@ interface FlexibleTableProps {
 }
 
 const PropsTable = ({ headers, data }: FlexibleTableProps) => {
+    const mediaType = useMediaTypeContext();
+
     return (
         // mobile模式要記得調整max-width
-        <article className="documents-page-component-props-table-container">
+        <article 
+            className="documents-page-component-props-table-container"
+            style={{
+                maxWidth: mediaType === 'pc' ? '70dvw' : '90dvw',
+            }}
+        >
             <table className="documents-page-component-props-table">
                 <thead>
                     <tr>

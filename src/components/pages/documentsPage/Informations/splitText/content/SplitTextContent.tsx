@@ -19,7 +19,7 @@ interface DemoProps {
     amount: number;
 }
 
-const SplitTextContent = () => {
+const SplitTextContent = ({mediaType}: {mediaType: string}) => {
     const [reloadKey, setReloadKey] = useState(0);
     const [demoProps, setDemoProps] = useState<DemoProps>({
         text: 'Check this out!',
@@ -57,9 +57,9 @@ const SplitTextContent = () => {
         [
             'text', 
             'string', 
-            <ValueInput  demoProps={demoProps} propName='text' onChange={setDemoProps} inputType='string' />,
+            <ValueInput  demoProps={demoProps} propName='text' onChange={setDemoProps} inputType='string' maxLength={15} />,
             '\'\'',
-            'The text to split'
+            'The text to split.'
         ],
         [
             'splitType',
@@ -147,18 +147,20 @@ const SplitTextContent = () => {
                     Preview
                 </div> */}
                 <div className='documents-page-component-demo'>
-                    <SplitTextDemo 
-                        key={reloadKey} 
-                        text={demoProps.text || 'Check this out!'} 
-                        splitType={demoProps.splitType} 
-                        startAnimate={demoProps.startAnimate} 
-                        triggerType={demoProps.triggerType}
-                        delay={demoProps.delay}
-                        stagger={demoProps.stagger}
-                        once={demoProps.once}
-                        amount={demoProps.amount}
-                        triggerMargin={demoProps.triggerMargin}
-                    />
+                    <div className={`split-text-demo-container ${mediaType === 'mobile' ? 'mobile' : ''}`}>
+                        <SplitTextDemo 
+                            key={reloadKey} 
+                            text={demoProps.text || 'Check this out!'} 
+                            splitType={demoProps.splitType} 
+                            startAnimate={demoProps.startAnimate} 
+                            triggerType={demoProps.triggerType}
+                            delay={demoProps.delay}
+                            stagger={demoProps.stagger}
+                            once={demoProps.once}
+                            amount={demoProps.amount}
+                            triggerMargin={demoProps.triggerMargin}
+                        />
+                    </div>
                     <ReloadBtn handler={handleReload} color='rgb(242, 251, 255)'/>
                 </div>
             </section>

@@ -1,9 +1,11 @@
 // import './RollingNumbers.css';
 import RollingNumbers from "../../../../../shared/components/rollingNumbers/RollingNumbers";
 import useSmoothNumber from "../../../../../../hooks/useSmoothNumber";
+import useMediaTypeContext from "../../../../../../context/useMediaTypeContext";
 
 
 const RollingNumbersDemo = ({value, prefix, suffix, gap, direction}: {value: number, prefix?: string, suffix?: string, gap?: number, direction?: 'up' | 'down'}) => {
+    const mediaType = useMediaTypeContext();
     const smoothValue = useSmoothNumber(true, {
         startValue: 0,
         endValue: value,
@@ -11,19 +13,21 @@ const RollingNumbersDemo = ({value, prefix, suffix, gap, direction}: {value: num
         updateInterval: 100,
     });
     return (
-        <div className="rolling-numbers-demo-container">
+        <div className={`rolling-numbers-demo-container ${mediaType === 'mobile' ? 'mobile' : ''}`}>
             <div className="rolling-numbers-demo">
-                <div className="rolling-numbers-demo-value">
+                <div 
+                    className="rolling-numbers-demo-item"
+                >
                     <div className="rolling-numbers-demo-title">Default</div>
-                    <div style={{textShadow: '2px 2px 0px var(--dark-eggshell)'}}>
+                    <div className="rolling-numbers-demo-value">
                         <RollingNumbers value={value} prefix={prefix} suffix={suffix} gap={gap} direction={direction} />
                     </div>
                 </div>
             </div>
             <div className="rolling-numbers-demo">
-                <div className="rolling-numbers-demo-value">
+                <div className="rolling-numbers-demo-item">
                     <div className="rolling-numbers-demo-title">With hook</div>
-                    <div style={{textShadow: '2px 2px 0px var(--dark-eggshell)'}}>
+                    <div className="rolling-numbers-demo-value">
                         <RollingNumbers value={smoothValue} prefix={prefix} suffix={suffix} gap={gap} direction={direction} />
                     </div>
                 </div>

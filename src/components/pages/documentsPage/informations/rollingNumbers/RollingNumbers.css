@@ -10,6 +10,14 @@
     padding: 1em;
 }
 
+.rolling-numbers-demo-container.mobile .rolling-numbers-demo-title {
+    font-size: 0.8rem;
+}
+
+.rolling-numbers-demo-container.mobile .rolling-numbers-demo-value {
+    font-size: 2.7rem;
+}
+
 .rolling-numbers-demo {
     position: relative;
     min-width: calc(50% - 0.5em);
@@ -21,7 +29,7 @@
     flex-direction: column;
 }
 
-.rolling-numbers-demo-value {
+.rolling-numbers-demo-item {
     position: relative;
     /* text-shadow: 2px 2px 0px var(--dark-eggshell); */
 }
@@ -40,4 +48,14 @@
     text-wrap: nowrap;
     /* color: var(--basic-purple); */
     color: white;
+}
+
+.rolling-numbers-demo-value {
+    position: relative;
+    text-shadow: 2px 2px 0px var(--dark-eggshell);
+    /* width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; */
 }

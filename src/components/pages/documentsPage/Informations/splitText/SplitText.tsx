@@ -2,7 +2,7 @@ import {  motion } from "motion/react";
 import useMediaTypeContext from "../../../../../context/useMediaTypeContext";
 import SplitTextContent from "./content/SplitTextContent";
 import LinkButtons from "../sharedComponent/buttons/linkButtons/LinkButtons";
-
+import './SplitText.css';
 
 const SplitText = () => {
     
@@ -12,7 +12,7 @@ const SplitText = () => {
     return (
         <motion.div 
             className='documents-page-component-info'
-            style={{ paddingTop: mediaType === 'mobile' ? '6rem' : '8rem', }}
+            style={{ padding: mediaType === 'mobile' ? '6rem 0.5rem 0.5rem 0.5rem' : '8rem 2rem 2rem 2rem'}}
             initial={{ opacity: 0,}}
             animate={{ opacity: 1, }}
             exit={{ opacity: 0, }}
@@ -28,7 +28,7 @@ const SplitText = () => {
                         key='preview'
                         className='documents-page-component-preview-container'
                     >
-                        <SplitTextContent />
+                        <SplitTextContent mediaType={mediaType}/>
                     </motion.div>
                 </div>
             </div>

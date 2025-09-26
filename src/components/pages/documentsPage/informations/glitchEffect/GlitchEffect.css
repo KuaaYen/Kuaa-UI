@@ -7,7 +7,6 @@
     justify-content: center;
     color: white;
     text-shadow: 2px 2px 0px var(--dark-eggshell);
-    font-size: 5rem;
 }
 
 .glitch-effect{
@@ -35,3 +34,10 @@
     z-index: 0;
 }
 
+.glitch-effect-demo-container{
+    font-size: 5rem;
+}
+
+.glitch-effect-demo-container.mobile{
+    font-size: 3rem;
+}

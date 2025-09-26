@@ -45,21 +45,21 @@ const RollingNumbersContent = () => {
         [
             'value', 
             'boolean', 
-            <ValueInput  demoProps={demoProps} propName='value' onChange={setDemoProps} inputType='number' />,
+            <ValueInput  demoProps={demoProps} propName='value' onChange={setDemoProps} inputType='number' min={-999999} max={999999}/>,
             '10000',
             'Display number.'
         ],
         [
             'prefix', 
             'string', 
-            <ValueInput  demoProps={demoProps} propName='prefix' onChange={setDemoProps} inputType='string' />,
+            <ValueInput  demoProps={demoProps} propName='prefix' onChange={setDemoProps} inputType='string' maxLength={2} />,
             '\'\'',
             'The text before the number.'
         ],
         [
             'suffix', 
             'string', 
-            <ValueInput  demoProps={demoProps} propName='suffix' onChange={setDemoProps} inputType='string' />,
+            <ValueInput  demoProps={demoProps} propName='suffix' onChange={setDemoProps} inputType='string' maxLength={2} />,
             '\'\'',
             'The text after the number.'
         ],

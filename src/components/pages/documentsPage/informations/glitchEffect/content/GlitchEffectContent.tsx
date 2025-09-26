@@ -6,6 +6,7 @@ import Props from "../../sharedComponent/table/Props";
 import Snippets from "./Snippets";
 import ComponentFooter from "../../sharedComponent/footer/ComponentFooter";
 import Remark from "../../sharedComponent/remark/Remark";
+import useMediaTypeContext from "../../../../../../context/useMediaTypeContext";
 
 
 interface DemoProps {
@@ -19,7 +20,7 @@ interface DemoProps {
 }
 
 const GlitchEffectContent = () => {
-
+    const mediaType = useMediaTypeContext();
     const [reloadKey, setReloadKey] = useState(0);
     const [demoProps, setDemoProps] = useState<DemoProps>({
         triggerType: 'always',
@@ -30,6 +31,7 @@ const GlitchEffectContent = () => {
         maxFuzzIntensity: 30,
         fuzzInterval: 125,
     });
+
 
     const handleReload = () => {
         setReloadKey(prev => prev + 1);
@@ -101,18 +103,20 @@ const GlitchEffectContent = () => {
     return (
         <>
             <section className="documents-page-component-section">
-                <div className='documents-page-component-demo' style={{backgroundColor: 'var(--basic-purple)'}}>
-                    <GlitchEffectDemo 
-                        key={reloadKey} 
-                        triggerType={demoProps.triggerType} 
-                        startAnimate={demoProps.startAnimate}
-                        glitchDuration={demoProps.glitchDuration}
-                        glitchRest={demoProps.glitchRest}
-                        maxFuzzIntensity={demoProps.maxFuzzIntensity}
-                        fuzzInterval={demoProps.fuzzInterval}
-                    >
-                        {demoProps.children || 'Glitch Effect'}
-                    </GlitchEffectDemo>
+                <div className='documents-page-component-demo'>
+                    <div className={`glitch-effect-demo-container ${mediaType === 'mobile' ? 'mobile' : ''}`}>
+                        <GlitchEffectDemo 
+                            key={reloadKey} 
+                            triggerType={demoProps.triggerType} 
+                            startAnimate={demoProps.startAnimate}
+                            glitchDuration={demoProps.glitchDuration}
+                            glitchRest={demoProps.glitchRest}
+                            maxFuzzIntensity={demoProps.maxFuzzIntensity}
+                            fuzzInterval={demoProps.fuzzInterval}
+                        >
+                            {demoProps.children || 'Glitch Effect'}
+                        </GlitchEffectDemo>
+                    </div>
                     <ReloadBtn handler={handleReload} color="rgb(242, 251, 255)" />
                 </div>
                 <Remark>

@@ -1,14 +1,6 @@
 const KuaaIcon = () => {
     return (
-        <div
-            style={{
-                position: 'relative',
-                height: '90%',
-                // height: '2.5rem',
-                aspectRatio: 1,
-                // filter: 'drop-shadow(0 0 0.3rem rgba(255, 255, 255, 0.3))',
-            }}
-        >
+        <div className="navbar-kuaa-icon">
             
             {/* outline */}
             <div 

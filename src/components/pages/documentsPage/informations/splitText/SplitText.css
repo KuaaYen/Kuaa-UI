@@ -1,0 +1,16 @@
+.split-text-demo-container {
+    position: relative;
+    font-size: 4rem;
+}
+
+.split-text-demo-container.mobile {
+    font-size: 2rem;
+}
+
+.split-text-demo{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2em;
+    text-shadow: 2px 2px 0px var(--dark-eggshell);
+}

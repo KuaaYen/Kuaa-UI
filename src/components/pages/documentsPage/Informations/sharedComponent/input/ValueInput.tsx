@@ -10,6 +10,7 @@ interface ValueInputProps<T> {
     step?: number,
     min?: number,
     max?: number,
+    maxLength?: number,
 }
 
 
@@ -21,7 +22,8 @@ const ValueInput = <T,>({
     options,
     step,
     min,
-    max
+    max,
+    maxLength
 }: ValueInputProps<T>) => {
     const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
 
@@ -68,6 +70,7 @@ const ValueInput = <T,>({
                     placeholder="Enter value" 
                     value={String(demoProps[propName])} 
                     onChange={(e) => handleChange({e, propType: 'string'})} 
+                    {...(maxLength !== undefined && { maxLength })}
                 />
             case 'number':
                 return <input 

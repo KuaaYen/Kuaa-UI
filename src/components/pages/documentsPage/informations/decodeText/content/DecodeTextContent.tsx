@@ -6,7 +6,7 @@ import Props from "../../sharedComponent/table/Props";
 import Snippets from "./Snippets";
 import ComponentFooter from "../../sharedComponent/footer/ComponentFooter";
 import Remark from "../../sharedComponent/remark/Remark";
-
+import useMediaTypeContext from "../../../../../../context/useMediaTypeContext";
 
 interface DemoProps {
     text?: string;
@@ -25,7 +25,7 @@ interface DemoProps {
 const defaultRandomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
 
 const DecodeTextContent = () => {
-
+    const mediaType = useMediaTypeContext();
     const [reloadKey, setReloadKey] = useState(0);
     const [demoProps, setDemoProps] = useState<DemoProps>({
         text: 'Decode Text Animation',
@@ -61,7 +61,7 @@ const DecodeTextContent = () => {
         [
             'text', 
             'string', 
-            <ValueInput  demoProps={demoProps} propName='text' onChange={setDemoProps} inputType='string' />,
+            <ValueInput  demoProps={demoProps} propName='text' onChange={setDemoProps} inputType='string' maxLength={22}/>,
             'Decode Text Animation',
             'The text to decode.'
         ],
@@ -156,19 +156,21 @@ const DecodeTextContent = () => {
                     className='documents-page-component-demo'
                     // style={{backgroundColor: 'var(--basic-purple)'}}
                 >
-                    <DecodeTextDemo 
-                        key={reloadKey} 
-                        text={demoProps.text || 'Decode Text'}
-                        triggerType={demoProps.triggerType}
-                        decode={demoProps.decode}
-                        triggerMargin={demoProps.triggerMargin}
-                        once={demoProps.once}
-                        amount={demoProps.amount}
-                        delay={demoProps.delay}
-                        interval={demoProps.interval}
-                        randomChars={demoProps.randomChars || defaultRandomChars}
-                        className="decode-text-demo"
-                    />
+                    <div className={`decode-text-demo-container ${mediaType === 'mobile' ? 'mobile' : ''}`}>
+                        <DecodeTextDemo 
+                            key={reloadKey} 
+                            text={demoProps.text || 'Decode Text'}
+                            triggerType={demoProps.triggerType}
+                            decode={demoProps.decode}
+                            triggerMargin={demoProps.triggerMargin}
+                            once={demoProps.once}
+                            amount={demoProps.amount}
+                            delay={demoProps.delay}
+                            interval={demoProps.interval}
+                            randomChars={demoProps.randomChars || defaultRandomChars}
+                            className="decode-text-demo"
+                        />
+                    </div>
                     <ReloadBtn handler={handleReload}
                         color="rgb(242, 251, 255)"
                     />

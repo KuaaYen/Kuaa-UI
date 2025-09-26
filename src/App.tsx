@@ -20,8 +20,12 @@ import Blob from './components/pages/documentsPage/informations/blob/Blob';
 import BorderBeam from './components/pages/documentsPage/informations/borderBeam/BorderBeam';
 import LiquidGlass from './components/pages/documentsPage/informations/liquidGlass/LiquidGlass';
 import ToTopButton from './components/shared/components/buttons/toTopButton/ToTopButton';
+// import MarchingAnts from './components/shared/components/marchingAnts/MarchingAnts';
+// import useMediaTypeContext from './context/useMediaTypeContext';
 
-function App() {
+// 創建一個新的內部組件來處理 Context 邏輯
+function AppContent() {
+  // const mediaType = useMediaTypeContext();
 
   const AnimatedOutlet = () => {
     const location = useLocation();
@@ -46,6 +50,19 @@ function App() {
         <NavBar />
         <div className='app-container'>
           <NoiseMask />
+
+          {/* {mediaType === 'pc' && (
+              <MarchingAnts
+                path='M 10 0 C 2 29 26 17 52 16 C 71 16 90 21 101 37'
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    width: '40%',
+                }}
+                svgStyle={{transform: 'translateX(10%)'}}
+              />          
+          )} */}
           <AnimatedOutlet />
           <ToTopButton targetType='page' initialColor='rgb(172, 175, 177)' hoverColor='var(--basic-purple)' />
           {/* <Footer /> */}
@@ -122,13 +139,15 @@ function App() {
     },
   ]);
 
-
-
-  return (
-    <MediaTypeProvider>
-      <RouterProvider router={router} />
-    </MediaTypeProvider>
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+function App() {
+  return (
+    <MediaTypeProvider>
+      <AppContent />
+    </MediaTypeProvider>
+  );
+}
+
+export default App;

@@ -1,7 +1,12 @@
 import { motion } from 'motion/react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import KuaaIcon from './KuaaIcon'
+import HomeIcon from './HomeIcon';
+import DocsIcon from './DocsIcon';
+import ImageIcon from './ImageIcon';
 import useMediaTypeContext from '../../context/useMediaTypeContext';
+import useScrollY from '../shared/hooks/UseScrollY';
+// import LiquidGlass from '../shared/components/filter/LiquidGlass';
 // import { startTransition } from 'react';
 
 const NavBar = () => {
@@ -9,6 +14,8 @@ const NavBar = () => {
     const isMobile = mediaType === 'mobile';
     const navigate = useNavigate();
     const location = useLocation();
+    const isScrolled = useScrollY(100);
+
     const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>, path: string) => {
         event.preventDefault();
         
@@ -28,13 +35,18 @@ const NavBar = () => {
 
     const firstLayerPath = getFirstLayerPath(location.pathname);
 
-    // console.log(mediaType);
+    // const containerVariants = {
+    //     initial: {backdropFilter: 'blur(0px)'},
+    //     scrolled: {backdropFilter: 'blur(5px)'},
+    // }
+
 
   return (
     <header 
         className="navbar-container"
         style={{
             height: isMobile ? '6rem' : '8rem',
+            backdropFilter: isScrolled ? 'blur(5px)' : 'blur(0px)',
         }}
     >
         <div 
@@ -62,9 +74,15 @@ const NavBar = () => {
                 animate={{scale: 1, opacity: 1}}
                 transition={{ delay: 0.4, type: 'spring', stiffness: 100, damping: 10}}
             >
-                <a href="/" className="navbar-link" onClick={(e) => handleLinkClick(e, '/')}>Home</a>
-                <a href="/documents" className="navbar-link" onClick={(e) => handleLinkClick(e, '/documents')}>Docs</a>
-                <a href="/arts" className="navbar-link" onClick={(e) => handleLinkClick(e, '/arts')}>Arts</a>
+                <a href="/" className="navbar-link" onClick={(e) => handleLinkClick(e, '/')}>
+                    <HomeIcon isMobile={isMobile}/>
+                </a>
+                <a href="/documents" className="navbar-link" onClick={(e) => handleLinkClick(e, '/documents')}>
+                    <DocsIcon isMobile={isMobile}/>
+                </a>
+                <a href="/arts" className="navbar-link" onClick={(e) => handleLinkClick(e, '/arts')}>
+                    <ImageIcon isMobile={isMobile}/>
+                </a>
             </motion.nav>
         </div>
     </header>

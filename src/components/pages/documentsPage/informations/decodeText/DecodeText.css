@@ -2,3 +2,11 @@
     font-family: 'francois';
     text-shadow: 2px 2px 0px #a39f92;
 }
+
+.decode-text-demo-container {
+    font-size: 4rem;
+}
+
+.decode-text-demo-container.mobile {
+    font-size: 1.5rem;
+}

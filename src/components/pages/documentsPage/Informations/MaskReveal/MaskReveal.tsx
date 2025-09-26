@@ -13,7 +13,7 @@ const MaskReveal = () => {
     return (
         <motion.div 
             className='documents-page-component-info'
-            style={{ paddingTop: mediaType === 'mobile' ? '6rem' : '8rem', }}
+            style={{ padding: mediaType === 'mobile' ? '6rem 0.5rem 0.5rem 0.5rem' : '8rem 2rem 2rem 2rem', }}
             initial={{ opacity: 0,}}
             animate={{ opacity: 1, }}
             exit={{ opacity: 0, }}
