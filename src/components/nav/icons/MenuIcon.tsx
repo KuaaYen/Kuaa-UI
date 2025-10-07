@@ -1,21 +1,12 @@
-import { useState } from "react";
-import PopText from "./PopText";
-
-const HomeIcon = ({isMobile}: {isMobile: boolean}) => {
-    const [ishover, setIshover] = useState(false);
-
-    const handleMouse = ({type}: {type: 'enter' | 'leave'}) => {
-        if(isMobile) return;
-        setIshover(type === 'enter');
-    }
-
-
+const MenuIcon = ({isMobile}: {isMobile: boolean}) => {
     return (
         <div className="navbar-link-icon"
-            onMouseEnter={() => handleMouse({type: 'enter'})}
-            onMouseLeave={() => handleMouse({type: 'leave'})}
+            style={{
+                width: isMobile ? '1.7rem' : '2rem',
+                height: isMobile ? '1.7rem' : '2rem',
+            }}
         >
-            {/* <div 
+            <div 
                 style={{
                     position:'absolute',
                     top:'50%',
@@ -26,10 +17,10 @@ const HomeIcon = ({isMobile}: {isMobile: boolean}) => {
                     backgroundColor: '#ffffff00',
                     zIndex: 1,
                 }}
-            > */}
+            >
                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                     <path 
-                        d="M 10 55 L 50 15 L 90 56 L 80 56 L 80 90 L 60 90 L 60 70 C 58 60 42 60 40 70 L 40 90 L 20 90 L 20 55 L 10 55"
+                        d="M 15 30 l 65 0 M 15 50 l 50 0 M 15 70 l 35 0"
                         fill="transparent"
                         stroke="#ffffff"
                         strokeWidth="5"
@@ -37,11 +28,9 @@ const HomeIcon = ({isMobile}: {isMobile: boolean}) => {
                         strokeLinejoin="round"
                     />
                 </svg>   
-            {/* </div> */}
-
-            <PopText ishover={ishover} text="Home" />
+            </div>
             
         </div>
     )
 }
-export default HomeIcon;
+export default MenuIcon;

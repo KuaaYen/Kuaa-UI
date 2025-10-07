@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PopText from "./PopText";
+import PopText from "../PopText";
 
 const ImageIcon = ({isMobile}: {isMobile: boolean}) => {
     const [ishover, setIshover] = useState(false);
@@ -12,6 +12,10 @@ const ImageIcon = ({isMobile}: {isMobile: boolean}) => {
         <div className="navbar-link-icon"
             onMouseEnter={() => handleMouse({type: 'enter'})}
             onMouseLeave={() => handleMouse({type: 'leave'})}
+            style={{
+                width: isMobile ? '1.7rem' : '2rem',
+                height: isMobile ? '1.7rem' : '2rem',
+            }}
         >
             
             {/* outline */}

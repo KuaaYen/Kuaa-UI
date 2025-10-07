@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useState, useRef } from "react";
 import ToTopIcon, { ToTopIconRef } from "./ToTopIcon";
+import useScrollY from "../../../hooks/UseScrollY";
 
 const ToTopButton = ({
     scrollRef, 
@@ -15,6 +16,7 @@ const ToTopButton = ({
 }) => {
     const [isHovering, setIsHovering] = useState(false);
     const iconRef = useRef<ToTopIconRef>(null);
+    const isScrolled = useScrollY(300);
 
     const handleToTop = () => {
         iconRef.current?.handleClick();
@@ -34,16 +36,21 @@ const ToTopButton = ({
         }
     }
 
-    // 統一的動畫 variants
     const buttonVariants = {
         initial: {
             border: `2px solid ${initialColor}`,
+            opacity: isScrolled ? 1 : 0,
+            pointerEvents: isScrolled ? 'auto' : 'none',
         },
         hover: {
             border: `2px solid ${hoverColor}`,
+            opacity: isScrolled ? 1 : 0,
+            pointerEvents: isScrolled ? 'auto' : 'none',
         },
         tap: {
             scale: 0.95,
+            opacity: isScrolled ? 1 : 0,
+            pointerEvents: isScrolled ? 'auto' : 'none',
         }
     }
 

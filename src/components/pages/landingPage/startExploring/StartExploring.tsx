@@ -114,7 +114,7 @@ const StartExploring = ({ handleChangeOiiaoAnimation }: { handleChangeOiiaoAnima
                                 },                            
                             }}
                         >
-                            Start Exploring
+                            Build With Ease
                         </motion.a>
                     </div>
                     <motion.div className="start-exploring-content-text-border"

@@ -1,7 +1,6 @@
 import {  motion } from "motion/react";
 import useMediaTypeContext from "../../../../../context/useMediaTypeContext";
 import LiquidGlassContent from "./content/LiquidGlassContent";
-// import LinkButtons from "../sharedComponent/buttons/linkButtons/LinkButtons";
 import './LiquidGlass.css';
 
 
@@ -11,7 +10,7 @@ const LiquidGlass = () => {
 
 
     return (
-        <motion.div 
+        <motion.article 
             className='documents-page-component-info'
             style={{ padding: mediaType === 'mobile' ? '6rem 0.5rem 0.5rem 0.5rem' : '8rem 2rem 2rem 2rem'}}
             initial={{ opacity: 0,}}
@@ -20,8 +19,7 @@ const LiquidGlass = () => {
             transition={{duration: 0.2, ease: 'easeInOut',}}
         >
             <div className='documents-page-component-info-title'>
-                <span> Liquid Glass </span>
-                {/* <LinkButtons links={[{text: 'motion/react', link: 'https://motion.dev/', title: 'build with motion'}]} /> */}
+                <span style={{ fontSize: mediaType === 'mobile' ? '3rem' : '4rem' }}> Liquid Glass </span>
             </div>
             <div className='documents-page-component-info-container'>
                 <div className='documents-page-component-info-content'>
@@ -30,7 +28,7 @@ const LiquidGlass = () => {
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </motion.article>
     );
 }
 

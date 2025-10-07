@@ -284,3 +284,32 @@ button {
 .to-top-btn:active{
   scale: 0.95;
 }
+
+
+.dialog {
+  position: relative;
+}
+
+.dialog-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.dialog-content {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mask-image: linear-gradient(white, white);
+  mask-clip: content-box;
+  -webkit-mask-image: linear-gradient(white, white);
+  -webkit-mask-clip: content-box;
+  z-index: 2;
+}

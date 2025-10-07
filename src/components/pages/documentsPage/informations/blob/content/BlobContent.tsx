@@ -7,6 +7,7 @@ import Snippets from "./Snippets";
 import ComponentFooter from "../../sharedComponent/footer/ComponentFooter";
 import Remark from "../../sharedComponent/remark/Remark";
 import BlobDemo from "./BlobDemo";
+import useMediaTypeContext from "../../../../../../context/useMediaTypeContext";
 
 
 interface DemoProps {
@@ -31,6 +32,7 @@ interface DemoProps {
 
 const BlobContent = () => {
 
+    const mediaType = useMediaTypeContext();
     const [reloadKey, setReloadKey] = useState(0);
     const [demoProps, setDemoProps] = useState<DemoProps>({
         cornerPosition1: 45,
@@ -71,10 +73,10 @@ const BlobContent = () => {
             'cornerPosition', 
             'number[]', 
             <div className="blob-demo-props-slider-container">
-                <ValueInput  demoProps={demoProps} propName='cornerPosition1' onChange={setDemoProps} inputType='slider' step={1} min={0} max={100} />
-                <ValueInput  demoProps={demoProps} propName='cornerPosition2' onChange={setDemoProps} inputType='slider' step={1} min={0} max={100} />
-                <ValueInput  demoProps={demoProps} propName='cornerPosition3' onChange={setDemoProps} inputType='slider' step={1} min={0} max={100} />
-                <ValueInput  demoProps={demoProps} propName='cornerPosition4' onChange={setDemoProps} inputType='slider' step={1} min={0} max={100} />
+                <ValueInput  demoProps={demoProps} propName='cornerPosition1' onChange={setDemoProps} inputType={mediaType === 'pc' ? 'slider' : 'number'} step={1} min={0} max={100} />
+                <ValueInput  demoProps={demoProps} propName='cornerPosition2' onChange={setDemoProps} inputType={mediaType === 'pc' ? 'slider' : 'number'} step={1} min={0} max={100} />
+                <ValueInput  demoProps={demoProps} propName='cornerPosition3' onChange={setDemoProps} inputType={mediaType === 'pc' ? 'slider' : 'number'} step={1} min={0} max={100} />
+                <ValueInput  demoProps={demoProps} propName='cornerPosition4' onChange={setDemoProps} inputType={mediaType === 'pc' ? 'slider' : 'number'} step={1} min={0} max={100} />
                 <div className="blob-demo-props-slider-result">
                     <span className="blob-demo-props-slider-bracket left">[ </span>
                         <span className="blob-demo-props-slider-result-number">{demoProps.cornerPosition1}</span><span className="blob-demo-props-slider-comma">,</span>
@@ -98,7 +100,7 @@ const BlobContent = () => {
         [
             'size', 
             'number', 
-            <ValueInput  demoProps={demoProps} propName='size' onChange={setDemoProps} inputType='slider' step={1} min={50} max={300} />,
+            <ValueInput  demoProps={demoProps} propName='size' onChange={setDemoProps} inputType={mediaType === 'pc' ? 'slider' : 'number'} step={1} min={50} max={300} />,
             '250',
             'The size of the blob. (px) Limit is only for demo purposes. You can set it freely.'
         ],

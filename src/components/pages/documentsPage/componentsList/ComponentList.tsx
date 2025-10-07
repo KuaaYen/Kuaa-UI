@@ -3,6 +3,7 @@ import useMediaTypeContext from '../../../../context/useMediaTypeContext';
 // import TextAndNumberGroup from './textAndNumberGroup/TextAndNumberGroup';
 import ComponentsGroup from './ComponentsGroup/ComponentsGroup';
 // import IndicatorArrow from './IndicatorArrow';
+import LongTailTit from './reportArea/LongTailTit';
 
 const ComponentList = () => {
     const mediaType = useMediaTypeContext();
@@ -54,6 +55,10 @@ const ComponentList = () => {
             name: 'Border Beam',
             path: '/documents/borderbeam',
         },
+        {
+            name: 'Dialog',
+            path: '/documents/dialog',
+        },
     ];
 
 
@@ -71,6 +76,7 @@ const ComponentList = () => {
                         <ComponentsGroup componentList={maskAndFilterList} groupName='Masks & Filters' />
                         <ComponentsGroup componentList={componentItemList} groupName='Components' />
                     </div>
+                    <LongTailTit />
                 </nav>
             )}
         </>

@@ -215,7 +215,7 @@ const LiquidGlassContent = () => {
                             <ValueInput  demoProps={demoProps} propName='backgroundFilter' onChange={setDemoProps} inputType='switch' options={['normal', 'grayscale']} />
                         </div>
                         <div className="liquid-glass-demo-btn">
-                            <ValueInput  demoProps={demoProps} propName='content' onChange={setDemoProps} inputType='switch' options={['content', 'no-content']} />
+                            <ValueInput  demoProps={demoProps} propName='content' onChange={setDemoProps} inputType='switch' options={['no-content', 'content']} />
                         </div>
                     </div>
                 </div>

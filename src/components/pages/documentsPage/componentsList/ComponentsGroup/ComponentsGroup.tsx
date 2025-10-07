@@ -30,7 +30,7 @@ const ComponentsGroup = ({componentList, groupName}: {componentList: {name: stri
                 {groupName}
             </div>
             <div className='documents-page-component-list-items-container'>
-                <div className='documents-page-component-list-decoration-line'></div>
+                <div className={`documents-page-component-list-decoration-line ${ifSelectedComponentInList ? 'selected' : ''}`}></div>
                 <div className='documents-page-component-list-items-wrapper'>
                     <AnimatePresence mode='wait'>
                         {ifSelectedComponentInList && (

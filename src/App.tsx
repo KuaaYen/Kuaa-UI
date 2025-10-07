@@ -19,11 +19,11 @@ import TypeText from './components/pages/documentsPage/informations/typeText/Typ
 import Blob from './components/pages/documentsPage/informations/blob/Blob';
 import BorderBeam from './components/pages/documentsPage/informations/borderBeam/BorderBeam';
 import LiquidGlass from './components/pages/documentsPage/informations/liquidGlass/LiquidGlass';
+import Dialog from './components/pages/documentsPage/informations/dialog/Dialog';
 import ToTopButton from './components/shared/components/buttons/toTopButton/ToTopButton';
 // import MarchingAnts from './components/shared/components/marchingAnts/MarchingAnts';
 // import useMediaTypeContext from './context/useMediaTypeContext';
 
-// 創建一個新的內部組件來處理 Context 邏輯
 function AppContent() {
   // const mediaType = useMediaTypeContext();
 
@@ -132,6 +132,10 @@ function AppContent() {
             {
               path: 'liquidglass',
               element: <LiquidGlass />,
+            },
+            {
+              path: 'dialog',
+              element: <Dialog />,
             },
           ]
         },

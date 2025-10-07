@@ -12,7 +12,7 @@ const GlitchEffect = () => {
 
 
     return (
-        <motion.div 
+        <motion.article 
             className='documents-page-component-info'
             style={{ padding: mediaType === 'mobile' ? '6rem 0.5rem 0.5rem 0.5rem' : '8rem 2rem 2rem 2rem', }}
             initial={{ opacity: 0,}}
@@ -21,7 +21,7 @@ const GlitchEffect = () => {
             transition={{duration: 0.2, ease: 'easeInOut',}}
         >
             <div className='documents-page-component-info-title'>
-                <span>Glitch Effect</span>
+                <span style={{ fontSize: mediaType === 'mobile' ? '3rem' : '4rem' }}> Glitch Effect </span>
                 <LinkButtons links={[{text: 'motion/react', link: 'https://motion.dev/', title: 'build with motion'}]} />
             </div>
             <div className='documents-page-component-info-container'>
@@ -31,7 +31,7 @@ const GlitchEffect = () => {
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </motion.article>
     );
 }
 

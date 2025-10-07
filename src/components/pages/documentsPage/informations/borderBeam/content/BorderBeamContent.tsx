@@ -7,6 +7,7 @@ import Snippets from "./Snippets";
 import ComponentFooter from "../../sharedComponent/footer/ComponentFooter";
 import Remark from "../../sharedComponent/remark/Remark";
 import BorderBeamDemo from "./BorderBeamDemo";
+import useMediaTypeContext from "../../../../../../context/useMediaTypeContext";
 
 
 interface DemoProps {
@@ -23,6 +24,7 @@ interface DemoProps {
 
 const BorderBeamContent = () => {
 
+    const mediaType = useMediaTypeContext();
     const [reloadKey, setReloadKey] = useState(0);
     const [demoProps, setDemoProps] = useState<DemoProps>({
         triggerType: 'auto',
@@ -261,7 +263,7 @@ const BorderBeamContent = () => {
 
     const ChildrenDemo = () => {
         return (
-            <div className="border-beam-demo-content">
+            <div className="border-beam-demo-content" style={{fontSize: mediaType === 'mobile' ? '2rem' : '4rem'}}>
                 Border Beam
             </div>            
         )
@@ -270,10 +272,7 @@ const BorderBeamContent = () => {
     return (
         <>
             <section className="documents-page-component-section">
-                <div 
-                    className='documents-page-component-demo'
-                    // style={{backgroundColor: 'var(--basic-purple)'}}
-                >
+                <div className='documents-page-component-demo'>
                     <BorderBeamDemo 
                         key={reloadKey}
                         {...demoProps}
@@ -283,16 +282,7 @@ const BorderBeamContent = () => {
                     <ReloadBtn handler={handleReload}
                         color="rgb(242, 251, 255)"
                     />
-                    {/* <div className="blob-demo-show-content-btn-container">
-                        <span>Show Content :</span>
-                        <div className="blob-demo-show-content-btn">
-                            <ValueInput  demoProps={demoProps} propName='showChildren' onChange={setDemoProps} inputType='boolean' />
-                        </div>
-                    </div> */}
                 </div>
-                {/* <Remark iconColor="var(--basic-brick)">
-                    <span style={{color: 'var(--basic-brick)'}}>Try the props below, its more fun to combine multiple different props.</span>
-                </Remark> */}
                 <Remark>
                     If you feel a little bit laggy at the beginning, it's because code block below is loading. Don't worry, it will be loaded soon.
                 </Remark>

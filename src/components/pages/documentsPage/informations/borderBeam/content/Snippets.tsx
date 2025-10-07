@@ -161,6 +161,7 @@ export default BorderBeam;
 }
 
 .border-beam-border {
+    box-sizing: border-box;
     position: absolute;
     top: 0;
     left: 0;
@@ -171,6 +172,7 @@ export default BorderBeam;
 }
 
 .border-beam-border-highlight {
+    box-sizing: border-box;
     position: absolute;
     top: 0;
     left: 0;
@@ -182,6 +184,7 @@ export default BorderBeam;
 
 
 .border-beam-content-container {
+    box-sizing: border-box;
     position: relative;
     width: 100%;
     height: 100%;

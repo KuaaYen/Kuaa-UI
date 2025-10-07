@@ -70,6 +70,7 @@ const Snippet = ({
                 style={{
                     height: getHeight(),
                     maxWidth: mediaType === 'pc' ? '70dvw' : '90dvw',
+                    maxHeight: '70dvh',
                 }}
             >
                 <div className="code-snippet" ref={codeSnippetRef}>

@@ -31,6 +31,7 @@ const MarchingAnts = ({
                 position: 'fixed',
                 aspectRatio: 1,
                 overflow: 'hidden',
+                pointerEvents: 'none',
                 ...style,
             }}
             initial={{maskImage: `linear-gradient(${maskDirection}, black 0%, black 0%, transparent 0%)`}}

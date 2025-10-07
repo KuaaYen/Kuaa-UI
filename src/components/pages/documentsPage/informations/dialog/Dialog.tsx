@@ -1,11 +1,11 @@
 import {  motion } from "motion/react";
-import './MaskReveal.css';
 import useMediaTypeContext from "../../../../../context/useMediaTypeContext";
-import MaskRevealContent from "./content/MaskRevealContent";
-import LinkButtons from "../sharedComponent/buttons/linkButtons/LinkButtons";
+import DialogContent from "./content/DialogContent";
+// import LinkButtons from "../sharedComponent/buttons/linkButtons/LinkButtons";
+import './Dialog.css';
 
 
-const MaskReveal = () => {
+const Dialog = () => {
     
     const mediaType = useMediaTypeContext();
 
@@ -20,13 +20,13 @@ const MaskReveal = () => {
             transition={{duration: 0.2, ease: 'easeInOut',}}
         >
             <div className='documents-page-component-info-title'>
-                <span style={{ fontSize: mediaType === 'mobile' ? '3rem' : '4rem' }}> Mask Reveal </span>
-                <LinkButtons links={[{text: 'motion/react', link: 'https://motion.dev/', title: 'build with motion'}]} />
+                <span style={{ fontSize: mediaType === 'mobile' ? '3rem' : '4rem' }}> Dialog </span>
+                {/* <LinkButtons links={[{text: 'motion/react', link: 'https://motion.dev/', title: 'build with motion'}]} /> */}
             </div>
             <div className='documents-page-component-info-container'>
                 <div className='documents-page-component-info-content'>
                     <div className='documents-page-component-preview-container'>
-                        <MaskRevealContent />
+                        <DialogContent />
                     </div>
                 </div>
             </div>
@@ -34,4 +34,4 @@ const MaskReveal = () => {
     );
 }
 
-export default MaskReveal;
+export default Dialog;

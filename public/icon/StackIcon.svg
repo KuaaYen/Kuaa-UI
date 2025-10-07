@@ -1,0 +1,37 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+    <svg 
+        x="-10" 
+        y="-10" 
+        width="120" 
+        height="120" 
+        viewBox="0 0 100 100"
+    >
+        <!-- bottom -->
+        <path 
+            d="M 50 51 L 15 63 L 50 77 L 85 63 z"
+            fill="rgb(255, 255, 255)"
+            stroke="rgb(255, 255, 255)"
+            stroke-width="8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
+        <!-- mid -->
+        <path
+            d="M 50 39 L 25 50 L 50 61 L 75 50 Z"
+            fill="rgb(205, 205, 205)"
+            stroke="rgb(205, 205, 205)"
+            stroke-width="3.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
+        <!-- top -->
+        <path 
+            d="M 50 22 L 21 34 L 50 46 L 79 34 z"
+            fill="#ffffff"
+            stroke="#ffffff"
+            stroke-width="7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
+    </svg>
+</svg>
