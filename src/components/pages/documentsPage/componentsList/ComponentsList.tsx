@@ -5,7 +5,7 @@ import ComponentsGroup from './ComponentsGroup/ComponentsGroup';
 // import IndicatorArrow from './IndicatorArrow';
 import LongTailTit from './reportArea/LongTailTit';
 
-const ComponentList = () => {
+const ComponentsList = () => {
     const mediaType = useMediaTypeContext();
     // const [selectedComponent, setSelectedComponent] = useState<string>('test1');
 
@@ -83,4 +83,4 @@ const ComponentList = () => {
     );
 };
 
-export default ComponentList;
+export default ComponentsList;

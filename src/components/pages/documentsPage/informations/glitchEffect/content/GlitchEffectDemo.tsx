@@ -1,6 +1,16 @@
 import { useMotionValue, useMotionValueEvent, useAnimationFrame, motion } from 'motion/react';
 import { useState, useRef, useEffect } from 'react';
 
+interface GlitchEffectDemoProps {
+    children?: React.ReactNode,
+    triggerType?: 'always' | 'hover' | 'manual'
+    startAnimate?: boolean,
+    glitchDuration?: number,
+    glitchRest?: number,
+    maxFuzzIntensity?: number,
+    fuzzInterval?: number,
+}
+
 const GlitchEffectDemo = ({
     children,
     triggerType = 'always',
@@ -9,15 +19,8 @@ const GlitchEffectDemo = ({
     glitchRest = 2000,
     maxFuzzIntensity = 30,
     fuzzInterval = 125,
-}: {
-    children?: React.ReactNode,
-    triggerType?: 'always' | 'hover' | 'manual'
-    startAnimate?: boolean,
-    glitchDuration?: number,
-    glitchRest?: number,
-    maxFuzzIntensity?: number,
-    fuzzInterval?: number,
-}) => {
+}: GlitchEffectDemoProps) => {
+    
     const ifShouldAnimate = triggerType === 'manual' && startAnimate || triggerType === 'always';
     const [shouldAnimate, setShouldAnimate] = useState(ifShouldAnimate);
     const [isHovered, setIsHovered] = useState(false);

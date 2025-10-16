@@ -11,7 +11,8 @@
 
 .glitch-effect{
     position: relative;
-    cursor: pointer;
+    user-select: none;
+    /* cursor: pointer; */
 }
 
 .glitch-effect-main{

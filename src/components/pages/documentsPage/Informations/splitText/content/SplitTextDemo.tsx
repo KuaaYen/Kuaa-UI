@@ -1,6 +1,21 @@
 import { useRef } from "react";
 import { motion, useInView, Variants } from "motion/react";
 
+interface SplitTextDemoProps {
+    text: string;
+    splitType?: 'words' | 'chars';
+    delay?: number;
+    stagger?: number;
+    triggerType?: 'inView' | 'manual' | 'auto';
+    triggerMargin?: number;
+    once?: boolean;
+    amount?: number;
+    startAnimate?: boolean;
+    onComplete?: () => void;
+    initial?: Variants['initial'];
+    animate?: Variants['animate'];
+}
+
 const SplitTextDemo = ({
     text, 
     splitType = 'chars', 
@@ -12,28 +27,9 @@ const SplitTextDemo = ({
     amount = 1,
     startAnimate = false,
     onComplete,
-    initial = {
-        opacity: 0,
-        y: '1em',
-    },
-    animate = {
-        opacity: 1,
-        y: '0em',
-    },
-}: {
-    text: string, 
-    splitType?: 'words' | 'chars', 
-    delay?: number, 
-    stagger?: number,
-    triggerType?: 'inView' | 'manual' | 'auto',
-    triggerMargin?: number,
-    once?: boolean,
-    amount?: number,
-    startAnimate?: boolean,
-    onComplete?: () => void,
-    initial?: Variants['initial'],
-    animate?: Variants['animate']
-}) => {
+    initial = { opacity: 0, y: '1em'},
+    animate = { opacity: 1, y: '0em'},
+}: SplitTextDemoProps) => {
 
     const wrapperRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(

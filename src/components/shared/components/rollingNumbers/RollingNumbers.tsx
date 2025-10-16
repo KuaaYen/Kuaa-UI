@@ -1,19 +1,21 @@
 import {motion, AnimatePresence} from "motion/react";
 import { useRef } from "react";
 
+interface RollingNumbersProps {
+    value?: number;
+    suffix?: string;
+    prefix?: string;
+    gap?: number;
+    direction?: 'up' | 'down';
+}
+
 const RollingNumbers = ({
     value = 0, 
     suffix, 
     prefix, 
     gap = 0.2,
     direction = 'up'
-}: {
-    value?: number,
-    suffix?: string,
-    prefix?: string,
-    gap?: number,
-    direction?: 'up' | 'down'
-}) => {
+}: RollingNumbersProps) => {
 
     // 追蹤每個位置的動畫 ID
     const positionAnimationIds = useRef<{[position: number]: number}>({});

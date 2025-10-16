@@ -1,12 +1,13 @@
 import { motion } from 'motion/react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // import KuaaIcon from './KuaaIcon'
 import HomeIcon from './icons/HomeIcon';
 import DocsIcon from './icons/DocsIcon';
 import ImageIcon from './icons/ImageIcon';
 import StackIcon from './icons/StackIcon';
 import MenuIcon from './icons/MenuIcon';
+import ListModal from './modal/ListModal';
 // import FallingAnimation from './FallingAnimation';
 import useMediaTypeContext from '../../context/useMediaTypeContext';
 import useScrollY from '../shared/hooks/UseScrollY';
@@ -20,6 +21,16 @@ const NavBar = () => {
     const location = useLocation();
     const isScrolled = useScrollY(300);
     const [animateState, setAnimateState] = useState<'default' | 'hover' | 'active'>('default');
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    
+    useEffect(() => {
+        if(isMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }, [isMenuOpen]);
+
 
     const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>, path: string) => {
         event.preventDefault();
@@ -31,6 +42,10 @@ const NavBar = () => {
         
         window.scrollTo({ top: 0, behavior: 'smooth' });
        
+    }
+
+    const handleMenuClick = () => {
+        setIsMenuOpen(true);
     }
 
     const getFirstLayerPath = (path: string) => {
@@ -114,10 +129,11 @@ const NavBar = () => {
                     <ImageIcon isMobile={isMobile}/>
                 </a>
                 {mediaType !== 'pc' && (
-                    <a href="/" className="navbar-link" onClick={(e) => handleLinkClick(e, '/')}>
+                    <button className="navbar-link" onClick={handleMenuClick}>
                         <MenuIcon isMobile={isMobile}/>
-                    </a>
+                    </button>
                 )}
+                <ListModal isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} mediaType={mediaType}/>
             </motion.nav>
         </div>
         {/* <FallingAnimation /> */}

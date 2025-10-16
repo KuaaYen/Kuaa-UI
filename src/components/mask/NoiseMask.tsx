@@ -32,7 +32,7 @@ const NoiseMask = () => {
             opacity: 0.2,
             userSelect: 'none',
             pointerEvents: 'none',
-            zIndex: 100,
+            zIndex: 200,
         }}>
         </div>
     )

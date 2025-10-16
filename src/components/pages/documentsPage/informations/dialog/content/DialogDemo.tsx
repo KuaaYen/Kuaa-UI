@@ -1,3 +1,18 @@
+interface DialogDemoProps {
+    children?: React.ReactNode,
+    width?: number,
+    height?: number,
+    borderRadius?: number,
+    strokeWidth?: number,
+    arrowSize?: number,
+    arrowPosition?: number,
+    arrowDirection?: 'right' | 'left',
+    strokeColor?: string,
+    fillColor?: string,
+    textColor?: string,
+    textWrap?: 'nowrap' | 'wrap' | 'balance' | 'pretty' | 'stable',
+}
+
 const DialogDemo = ({
     children = 'Dialog',
     width = 400, 
@@ -11,20 +26,8 @@ const DialogDemo = ({
     fillColor = '#ffffff',
     textColor = '#000000',
     textWrap = 'nowrap',
-}: {
-    children?: React.ReactNode,
-    width?: number,
-    height?: number,
-    borderRadius?: number,
-    strokeWidth?: number,
-    arrowSize?: number,
-    arrowPosition?: number,
-    arrowDirection?: 'right' | 'left',
-    strokeColor?: string,
-    fillColor?: string,
-    textColor?: string,
-    textWrap?: 'nowrap' | 'wrap' | 'balance' | 'pretty' | 'stable',
-}) => {
+}: DialogDemoProps) => {
+ 
     const fixedBorderRadius = borderRadius - strokeWidth/2;
     const minWidth = Math.max(width, strokeWidth + fixedBorderRadius*2 + arrowSize*1.6);
     const minHeight = Math.max(height, strokeWidth + fixedBorderRadius*2 + arrowSize*1.6);

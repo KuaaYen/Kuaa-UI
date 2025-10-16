@@ -4,16 +4,19 @@ import ToTopButton from "../../../../../shared/components/buttons/toTopButton/To
 import { useState, useEffect, useMemo, useRef, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import useMediaTypeContext from '../../../../../../context/useMediaTypeContext';
+import ToggleSwitch from "../../../../../shared/components/switch/ToggleSwitch";
 
 const Snippet = ({
     title, 
-    snippet, 
+    snippet,
+    toggleSnippet,
     language,
     delay = 0,
     id = '',
 }: {
     title: string, 
     snippet: string, 
+    toggleSnippet?: string,
     language: string,
     delay?: number,
     id?: string,
@@ -21,6 +24,7 @@ const Snippet = ({
     const [shouldRender, setShouldRender] = useState(false);
     const [showToTop, setShowToTop] = useState(false);
     const codeSnippetRef = useRef<HTMLDivElement>(null);
+    const [isChecked, setIsChecked] = useState(false);
     
     const mediaType = useMediaTypeContext();
     
@@ -32,12 +36,12 @@ const Snippet = ({
         return () => clearTimeout(timer);
     }, [delay]);
 
-    const getHeight = () => {
-        const lines = snippet.split('\n');
+    const getHeight = ({targetSnippet}: {targetSnippet: string}) => {
+        const lines = targetSnippet.split('\n');
         return `${lines.length*16 + (lines.length-1)*4.5 + 40}px`;
     }
 
-    const getTextPosition = useMemo(() => {
+    const getTextPositionDefault = useMemo(() => {
         const lines = snippet.split('\n');
         const calculatedHeight = lines.length*16 + (lines.length-1)*4.5 + 40;
         const maxHeight = window.innerHeight * 0.8; // 80dvh 轉換為 px
@@ -59,16 +63,74 @@ const Snippet = ({
         }
     }, [snippet]);
 
+    const createShikiContent = () => {
+        if (isChecked && toggleSnippet) {
+            return (
+                <motion.div
+                    key="toggle-snippet"
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    exit={{opacity: 0}}
+                    transition={{duration: 0.5, ease: 'easeInOut'}}
+                >
+                    <ShikiHighlighter
+                        showLanguage={false}
+                        language={language}
+                        theme="tokyo-night"
+                        showLineNumbers={true}
+                        startingLineNumber={0}
+                        style={{
+                            boxSizing: 'border-box',
+                            width: '100%',
+                            margin: '0',
+                            padding: '0',
+                        }}
+                    >
+                        {toggleSnippet}
+                    </ShikiHighlighter>
+                </motion.div>
+            )
+        } else {
+            return (
+                <motion.div
+                    key="default-snippet"
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    exit={{opacity: 0}}
+                    transition={{duration: 0.5, ease: 'easeInOut'}}
+                >
+                    <ShikiHighlighter
+                        showLanguage={false}
+                        language={language}
+                        theme="tokyo-night"
+                        showLineNumbers={true}
+                        startingLineNumber={0}
+                        style={{
+                            boxSizing: 'border-box',
+                            width: '100%',
+                            margin: '0',
+                            padding: '0',
+                        }}
+                    >
+                        {snippet}
+                    </ShikiHighlighter>
+                </motion.div>
+            )
+        }
+    }
 
     return (
         <section className="documents-page-component-section" id={id}>
             <div className="documents-page-component-section-title">
                 {title}
+                {toggleSnippet && (
+                    <ToggleSwitch isChecked={isChecked} setIsChecked={setIsChecked} />
+                )}
             </div>
             <div 
                 className="code-snippet-wrapper"
                 style={{
-                    height: getHeight(),
+                    height: getHeight({targetSnippet: snippet}),
                     maxWidth: mediaType === 'pc' ? '70dvw' : '90dvw',
                     maxHeight: '70dvh',
                 }}
@@ -85,7 +147,8 @@ const Snippet = ({
                                 animate={{opacity: 1}}
                                 exit={{opacity: 0}}
                             >
-                                <ShikiHighlighter
+                                    {createShikiContent()}
+                                {/* <ShikiHighlighter
                                     showLanguage={false}
                                     language={language}
                                     theme="tokyo-night"
@@ -99,22 +162,22 @@ const Snippet = ({
                                     }}
                                 >
                                     {snippet}
-                                </ShikiHighlighter>
+                                </ShikiHighlighter> */}
                             </motion.div>
                         ) : (
                             <motion.div
                                 key="placeholder"
                                 style={{
                                     width: '100%',
-                                    height: getHeight(),
+                                    height: getHeight({targetSnippet: snippet}),
                                     display: 'flex',
-                                    alignItems: getTextPosition.alignItems,
+                                    alignItems: getTextPositionDefault.alignItems,
                                     justifyContent: 'center',
                                     backgroundColor: '#1a1b26',
                                     color: '#a9b1d6',
                                     borderRadius: '0.5rem',
                                     fontSize: '0.9rem',
-                                    paddingTop: getTextPosition.paddingTop,
+                                    paddingTop: getTextPositionDefault.paddingTop,
                                 }}
                                 initial={{opacity: 0}}
                                 animate={{opacity: 1}}
@@ -126,7 +189,7 @@ const Snippet = ({
                     </AnimatePresence>
                 </div>
                 <div className="code-snippet-buttons-container">
-                    <CopyButton data={snippet} />
+                    <CopyButton data={isChecked && toggleSnippet ? toggleSnippet : snippet} />
                     {showToTop && (
                         <ToTopButton scrollRef={codeSnippetRef} targetType="component" initialColor="rgb(172, 175, 177)" hoverColor="rgb(242, 251, 255)" />
                     )}

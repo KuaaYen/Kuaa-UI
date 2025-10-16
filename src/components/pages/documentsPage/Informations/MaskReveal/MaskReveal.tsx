@@ -17,7 +17,7 @@ const MaskReveal = () => {
             initial={{ opacity: 0,}}
             animate={{ opacity: 1, }}
             exit={{ opacity: 0, }}
-            transition={{duration: 0.2, ease: 'easeInOut',}}
+            transition={{duration: 0.3, ease: 'easeInOut',}}
         >
             <div className='documents-page-component-info-title'>
                 <span style={{ fontSize: mediaType === 'mobile' ? '3rem' : '4rem' }}> Mask Reveal </span>

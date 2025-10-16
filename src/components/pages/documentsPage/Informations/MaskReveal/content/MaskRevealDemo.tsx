@@ -7,6 +7,13 @@ interface RevealConfig {
     delay?: number;
 }
 
+interface MaskRevealDemoProps {
+    children?: React.ReactNode;
+    isRevealed?: boolean;
+    revealConfigs?: RevealConfig[];
+    reverseMask?: boolean;
+}
+
 const MaskRevealDemo = ({
     children,
     isRevealed = false,
@@ -15,7 +22,7 @@ const MaskRevealDemo = ({
         {x: 0, y: 1, duration: 2, delay: 0.3},
     ],
     reverseMask = false
-}: {children?: React.ReactNode, isRevealed?: boolean, revealConfigs?: RevealConfig[], reverseMask?: boolean}) => {
+}: MaskRevealDemoProps) => {
 
     const circleVariants = {
         initial: {

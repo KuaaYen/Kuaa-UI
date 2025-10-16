@@ -11,7 +11,7 @@
 
 .carousel-demo-main-area {
     position: relative;
-    height: 20rem;
+    /* height: 20rem; */
     width: 100%;
     max-width: 90dvw;
     display: flex;
@@ -28,7 +28,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 280px;
     aspect-ratio: 16/9;
     display: flex;
     align-items: center;

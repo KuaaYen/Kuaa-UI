@@ -30,6 +30,7 @@ const DecodeText = ({
     onDecodeComplete = () => {},
     onEncodeComplete = () => {},
 }: DecodeTextProps) => {
+    
     const [displayText, setDisplayText] = useState('');
     const [isDecoding, setIsDecoding] = useState(false);
     const [decodingStatus, setDecodingStatus] = useState<'decoding' | 'encoding'>('decoding');

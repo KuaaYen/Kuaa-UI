@@ -123,6 +123,7 @@ const CarouselDemo = ({
     rollDuration = 1000,
     itemHeight = 280,
 }: CarouselDemoProps) => {
+    
     const [currentIndex, setCurrentIndex] = useState(0);
     const [rollDirection, setRollDirection] = useState<'next' | 'previous'>('next');
     const [itemsInView, setItemsInView] = useState<VisibleItem[]>(getVisibleItems(items, 0) || []);

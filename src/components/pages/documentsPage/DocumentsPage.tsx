@@ -2,7 +2,7 @@ import './documentsPage.css';
 import React from 'react';
 import { useLocation, useOutlet } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import ComponentList from './componentsList/ComponentList';
+import ComponentsList from '../../shared/components/componentsList/ComponentsList';
 import useMediaTypeContext from '../../../context/useMediaTypeContext';
 import MarchingAnts from '../../shared/components/marchingAnts/MarchingAnts';
 import FallingAnimation from './background/FallingAnimation';
@@ -97,7 +97,9 @@ const DocumentsPage = () => {
                 transition={{duration: 0.2}}
             >
                 <div className='documents-page-content'>
-                    <ComponentList />
+                    {mediaType === "pc" && (
+                        <ComponentsList />
+                    )}
                     <DocumentsAnimatedOutlet />
                 </div>
                 {/* <div className="documents-page-mask"></div> */}

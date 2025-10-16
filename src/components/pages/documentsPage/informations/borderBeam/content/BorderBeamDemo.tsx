@@ -1,6 +1,18 @@
 import { useState } from "react";
 import { motion} from "motion/react";
 
+interface BorderBeamDemoProps {
+    triggerType?: 'auto' | 'hover' | 'manual',
+    startAnimate?: boolean,
+    borderColor?: string,
+    borderHighlightColor?: string,
+    backgroundColor?: string,
+    borderWidth?: number,
+    borderRadius?: string,
+    duration?: number,
+    children?: React.ReactNode,
+}
+
 const BorderBeamDemo = ({
     triggerType = 'auto',
     startAnimate = true,
@@ -11,17 +23,7 @@ const BorderBeamDemo = ({
     borderRadius = '1rem',
     duration = 5,
     children,
-}: {
-    triggerType?: 'auto' | 'hover' | 'manual',
-    startAnimate?: boolean,
-    borderColor?: string,
-    borderHighlightColor?: string,
-    backgroundColor?: string,
-    borderWidth?: number,
-    borderRadius?: string,
-    duration?: number,
-    children?: React.ReactNode,
-}) => {
+}: BorderBeamDemoProps) => {
     const [isHovered, setIsHovered] = useState(false);
 
     const getOpacity = () => {

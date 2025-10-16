@@ -8,6 +8,23 @@ const getBorderRadius = (cornerPosition: number[]) => {
     `
 }
 
+interface BlobDemoProps {
+    cornerPosition?: number[];
+    color?: string;
+    size?: number;
+    spin?: boolean,
+    spinDuration?: number,
+    randomRadius?: boolean,
+    randomRadiusInterval?: number,
+    randomRadiusInensity?: number,
+    bounce?: boolean,
+    draggable?: boolean,
+    blobClassName?: string,
+    children?: React.ReactNode,
+    chilrenFixed?: boolean,
+    showChildren?: boolean,
+}
+
 const BlobDemo = ({
     cornerPosition = [45, 60, 40, 30],
     color = 'rgb(242, 251, 255)',
@@ -23,22 +40,8 @@ const BlobDemo = ({
     children,
     chilrenFixed = true,
     showChildren = true,
-}: {
-    cornerPosition?: number[],
-    color?: string,
-    size?: number,
-    spin?: boolean,
-    spinDuration?: number,
-    randomRadius?: boolean,
-    randomRadiusInterval?: number,
-    randomRadiusInensity?: number,
-    bounce?: boolean,
-    draggable?: boolean,
-    blobClassName?: string,
-    children?: React.ReactNode,
-    chilrenFixed?: boolean,
-    showChildren?: boolean,
-}) => {
+}: BlobDemoProps) => {
+    
     const [borderRadius, setBorderRadius] = useState(getBorderRadius(cornerPosition));
     const lastUpdateTime = useRef(0);
 

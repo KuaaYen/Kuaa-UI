@@ -140,7 +140,7 @@ const CarouselContent = () => {
             <section className="documents-page-component-section">
                 <div 
                     className='documents-page-component-demo'
-                    style={{backgroundColor: 'var(--basic-purple)'}}
+                    style={{backgroundColor: 'var(--basic-purple)', overflow: 'hidden'}}
                 >
                     <CarouselDemo 
                         key={reloadKey} 

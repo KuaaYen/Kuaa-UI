@@ -29,9 +29,21 @@ const Snippets = () => {
     </BorderBeam>
     `
 
-    const CompleteCodeSnippet = `
+    const CompleteCodeSnippetTS = `
 import { useState } from "react";
 import { motion} from "motion/react";
+
+interface BorderBeamProps {
+    triggerType?: 'auto' | 'hover' | 'manual',
+    startAnimate?: boolean,
+    borderColor?: string,
+    borderHighlightColor?: string,
+    backgroundColor?: string,
+    borderWidth?: number,
+    borderRadius?: string,
+    duration?: number,
+    children?: React.ReactNode,
+}
 
 const BorderBeam = ({
     triggerType = 'auto',
@@ -43,17 +55,8 @@ const BorderBeam = ({
     borderRadius = '1rem',
     duration = 5,
     children,
-}: {
-    triggerType?: 'auto' | 'hover' | 'manual',
-    startAnimate?: boolean,
-    borderColor?: string,
-    borderHighlightColor?: string,
-    backgroundColor?: string,
-    borderWidth?: number,
-    borderRadius?: string,
-    duration?: number,
-    children?: React.ReactNode,
-}) => {
+}: BorderBeamProps) => {
+
     const [isHovered, setIsHovered] = useState(false);
 
     const getOpacity = () => {
@@ -155,6 +158,126 @@ const BorderBeam = ({
 
 export default BorderBeam;
     `
+
+    const CompleteCodeSnippetJS = `
+import { useState } from "react";
+import { motion} from "motion/react";
+
+
+const BorderBeam = ({
+    triggerType = 'auto',
+    startAnimate = true,
+    borderColor = 'rgba(255, 255, 255, 0.25)',
+    borderHighlightColor = 'rgba(255, 255, 255, 0.7)',
+    backgroundColor = 'rgba(255, 255, 255, 0.288)',
+    borderWidth = 2,
+    borderRadius = '1rem',
+    duration = 5,
+    children,
+}) => {
+
+    const [isHovered, setIsHovered] = useState(false);
+
+    const getOpacity = () => {
+        switch (triggerType) {
+            case 'hover':
+                return isHovered ? 1 : 0;
+            case 'manual':
+                return startAnimate ? 1 : 0;
+            case 'auto':
+                return 1;
+        }
+    }
+
+    const borderVariants = {
+        initial: {
+            border: \`\${borderWidth}px solid \${borderColor}\`,
+            borderRadius: borderRadius,
+        },  
+        animate: {
+            border: \`\${borderWidth}px solid \${borderColor}\`,
+            borderRadius: borderRadius,
+        }
+    }
+
+    const getBorderHighlightStyles = (from = 0) => {
+        return {
+            mask:
+            \`linear-gradient(#0000, #0000), 
+                conic-gradient(
+                    from \${from}turn,
+                    transparent 0turn,
+                    white 0.125turn,
+                    transparent 0.25turn,
+                    transparent 0.5turn,
+                    white 0.625turn,
+                    transparent 0.75turn,
+                    transparent 1turn
+                )\`,
+            maskComposite: 'intersect',
+            maskClip: 'padding-box, border-box',
+            backgroundColor: borderHighlightColor,
+            border: \`\${borderWidth}px solid transparent\`,
+            borderRadius: borderRadius,
+        }
+    }
+
+
+    const borderHighlightVariants = {
+        initial: {
+            ...getBorderHighlightStyles(0),
+            opacity: 0,
+        },
+        animate: {
+            ...getBorderHighlightStyles(1),
+            opacity: getOpacity(),
+        }
+    }
+
+    return (
+        <div 
+            className="border-beam"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <motion.div 
+                className="border-beam-border"
+                variants={borderVariants}
+                initial="initial"
+                animate="animate"
+                transition={{duration: 0.3, ease: "easeInOut"}}
+            ></motion.div>
+            <motion.div 
+                className="border-beam-border-highlight"
+                variants={borderHighlightVariants}
+                initial="initial"
+                animate="animate"
+                transition={{
+                    duration: 0.3,
+                    ease: "easeInOut",
+                    mask: {
+                        duration: duration,
+                        ease: "linear",
+                        repeat: Infinity,
+                        repeatType: "loop",
+                    },
+                }}
+            ></motion.div>
+            <motion.div 
+                className="border-beam-content-container"
+                initial={{backgroundColor: backgroundColor,borderRadius: borderRadius}}
+                animate={{backgroundColor: backgroundColor,borderRadius: borderRadius}}
+                transition={{duration: 0.3,ease: "easeInOut"}}                
+            >
+                {children}
+            </motion.div>
+        </div>
+    )
+}
+
+export default BorderBeam;
+    `
+
     const cssSnippet = `
 .border-beam {
     position: relative;
@@ -200,7 +323,7 @@ export default BorderBeam;
         <div className="code-snippets-container">
             <Snippet title="Installation" snippet={installationSnippet} language="bash" delay={500} />
             <Snippet title="Usage" snippet={usageSnippet} language="jsx" delay={1000} />
-            <Snippet title="Code" snippet={CompleteCodeSnippet} language="jsx" delay={1500} />
+            <Snippet title="Code" snippet={CompleteCodeSnippetTS} language="jsx" delay={1500} toggleSnippet={CompleteCodeSnippetJS}/>
             <Snippet title="CSS" snippet={cssSnippet} language="css" delay={1800} />
         </div>
     )

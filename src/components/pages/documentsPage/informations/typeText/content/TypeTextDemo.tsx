@@ -32,6 +32,7 @@ const TypeText = ({
     onTypingComplete = () => {},
     onDeletingComplete = () => {},
 }: TypeTextProps) => {
+    
     const [displayText, setDisplayText] = useState('');
     const [isDecoding, setIsDecoding] = useState(false);
     const [decodingStatus, setDecodingStatus] = useState<'typing' | 'deleting'>('typing');

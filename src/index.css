@@ -28,6 +28,8 @@
   --basic-sunset: #F2CC8F;
   --dark-sunset: #a37d4e;
   --snippet-bg: #1A1B26;
+  --ts-color: rgb(143, 194, 242);
+  --js-color: rgb(242, 204, 143);
 }
 
 * {
