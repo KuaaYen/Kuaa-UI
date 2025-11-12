@@ -1,32 +1,43 @@
 import { motion, useAnimate } from "motion/react";
+import { forwardRef, useImperativeHandle} from "react";
 
-const CopyIcon = ({
-    data, 
-    strokeColor = '#1A1B26', 
-    fillInitialColor = 'rgb(172, 175, 177)',
-    fillActiveColor = 'rgb(242, 251, 255)'
-}: {
+interface CopyIconProps {
     data: string, 
     strokeColor?: string, 
-    fillInitialColor?: string,
-    fillActiveColor?: string
-}) => {
+    // fillInitialColor?: string,
+    // fillActiveColor?: string
+}
 
-    const [textScope, animateText] = useAnimate();
+export interface CopyIconRef {
+    handleCopy: () => void;
+    handleHover: () => void;
+    handleLeave: () => void;
+}
+
+const CopyIcon = forwardRef<CopyIconRef, CopyIconProps>(({
+    data, 
+    strokeColor = '#1A1B26', 
+    // fillInitialColor = 'rgb(172, 175, 177)',
+    // fillActiveColor = 'rgb(242, 251, 255)',
+
+}, ref) => {
+
+    // const [textScope, animateText] = useAnimate();
     const [block1Scope, animateBlock1] = useAnimate();
     const [block2Scope, animateBlock2] = useAnimate();
 
     const handleCopy = () => {
+        // debugger;
         navigator.clipboard.writeText(data);
-        animateText(textScope.current, {
-            opacity: [0, 1, 1, 0],
-            y: [10, 0, 0, 10],
-            x: '-50%',
-        }, {
-            times: [0, 0.2, 0.8, 1],
-            duration: 1.2,
-            ease: 'easeInOut',
-        })
+        // animateText(textScope.current, {
+        //     opacity: [0, 1, 1, 0],
+        //     y: [10, 0, 0, 10],
+        //     x: '-50%',
+        // }, {
+        //     times: [0, 0.2, 0.8, 1],
+        //     duration: 1.2,
+        //     ease: 'easeInOut',
+        // })
         animateBlock1(block1Scope.current, {
             x: '-50%',
             y: '-50%',
@@ -93,11 +104,17 @@ const CopyIcon = ({
         })
     }
 
-    const containerVariants = {
-        initial: {color: fillInitialColor},
-        hover: {color: fillActiveColor},
-        tap: {color: fillActiveColor},
-    }
+    useImperativeHandle(ref, () => ({
+        handleCopy,
+        handleHover,
+        handleLeave,
+    }));
+
+    // const containerVariants = {
+    //     initial: {color: fillInitialColor},
+    //     hover: {color: fillActiveColor},
+    //     tap: {color: fillActiveColor},
+    // }
 
     // const svgVariants = {
     //     initial: {
@@ -118,17 +135,17 @@ const CopyIcon = ({
                 height: '100%',
                 aspectRatio: 1,
             }}
-            variants={containerVariants}
-            initial="initial"
-            whileHover="hover"
-            whileTap="tap"
-            transition={{
-                duration: 0.2,
-                ease: 'easeInOut',
-            }}
-            onClick={handleCopy}
-            onMouseEnter={handleHover}
-            onMouseLeave={handleLeave}
+            // variants={containerVariants}
+            // initial="initial"
+            // whileHover="hover"
+            // whileTap="tap"
+            // transition={{
+            //     duration: 0.2,
+            //     ease: 'easeInOut',
+            // }}
+            // onClick={handleCopy}
+            // onMouseEnter={handleHover}
+            // onMouseLeave={handleLeave}
         >
             {/* block1 */}
             <motion.div 
@@ -193,7 +210,7 @@ const CopyIcon = ({
                     />
                 </svg>   
             </motion.div>
-            <motion.div
+            {/* <motion.div
                 ref={textScope}
                 style={{
                     position: 'absolute',
@@ -215,8 +232,11 @@ const CopyIcon = ({
                 }}
             >
                 Copied
-            </motion.div>
+            </motion.div> */}
         </motion.div>
     )
-}
+})
+
+CopyIcon.displayName = 'CopyIcon';
+
 export default CopyIcon;

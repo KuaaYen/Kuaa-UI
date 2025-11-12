@@ -61,6 +61,17 @@ const ComponentsList = ({setIsMenuOpen}: {setIsMenuOpen?: (isMenuOpen: boolean) 
         },
     ];
 
+    const iconList = [
+        {
+            name: 'Static Icons',
+            path: '/documents/staticIcons',
+        },
+        {
+            name: 'Kaomoji',
+            path: '/documents/kaomoji',
+        },
+    ];
+
     const createComponentsList = () => {
         if (mediaType === "pc") {
             return (
@@ -69,6 +80,7 @@ const ComponentsList = ({setIsMenuOpen}: {setIsMenuOpen?: (isMenuOpen: boolean) 
                         <ComponentsGroup componentList={textAndNumberList} groupName='Text & Number' />
                         <ComponentsGroup componentList={maskAndFilterList} groupName='Masks & Filters' />
                         <ComponentsGroup componentList={componentItemList} groupName='Components' />
+                        <ComponentsGroup componentList={iconList} groupName='Icons' />
                     </div>
                     <LongTailTit mediaType={mediaType}/>
                 </nav>
@@ -80,14 +92,8 @@ const ComponentsList = ({setIsMenuOpen}: {setIsMenuOpen?: (isMenuOpen: boolean) 
                         <ComponentsGroup componentList={textAndNumberList} groupName='Text & Number' setIsMenuOpen={setIsMenuOpen} />
                         <ComponentsGroup componentList={maskAndFilterList} groupName='Masks & Filters' setIsMenuOpen={setIsMenuOpen} />
                         <ComponentsGroup componentList={componentItemList} groupName='Components' setIsMenuOpen={setIsMenuOpen} />
-                        {/* <ComponentsGroup componentList={textAndNumberList} groupName='Text & Number' setIsMenuOpen={setIsMenuOpen} />
-                        <ComponentsGroup componentList={maskAndFilterList} groupName='Masks & Filters' setIsMenuOpen={setIsMenuOpen} />
-                        <ComponentsGroup componentList={componentItemList} groupName='Components' setIsMenuOpen={setIsMenuOpen} />
-                        <ComponentsGroup componentList={textAndNumberList} groupName='Text & Number' setIsMenuOpen={setIsMenuOpen} />
-                        <ComponentsGroup componentList={maskAndFilterList} groupName='Masks & Filters' setIsMenuOpen={setIsMenuOpen} />
-                        <ComponentsGroup componentList={componentItemList} groupName='Components' setIsMenuOpen={setIsMenuOpen} /> */}
+                        <ComponentsGroup componentList={iconList} groupName='Icons' setIsMenuOpen={setIsMenuOpen} />
                     </div>
-                    {/* <LongTailTit /> */}
                 </nav>
             )
         }

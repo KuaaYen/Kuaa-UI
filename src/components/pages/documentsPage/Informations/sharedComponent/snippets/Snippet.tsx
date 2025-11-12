@@ -13,6 +13,10 @@ const Snippet = ({
     language,
     delay = 0,
     id = '',
+    showTitle = true,
+    showCopyButton = true,
+    type = 'default',
+    theme = 'tokyo-night',
 }: {
     title: string, 
     snippet: string, 
@@ -20,6 +24,10 @@ const Snippet = ({
     language: string,
     delay?: number,
     id?: string,
+    showTitle?: boolean,
+    showCopyButton?: boolean,
+    type?: 'default' | 'modal',
+    theme?: string,
 }) => {
     const [shouldRender, setShouldRender] = useState(false);
     const [showToTop, setShowToTop] = useState(false);
@@ -36,9 +44,9 @@ const Snippet = ({
         return () => clearTimeout(timer);
     }, [delay]);
 
-    const getHeight = ({targetSnippet}: {targetSnippet: string}) => {
+    const getHeight = ({targetSnippet, adjustHeight = 0}: {targetSnippet: string, adjustHeight?: number}) => {
         const lines = targetSnippet.split('\n');
-        return `${lines.length*16 + (lines.length-1)*4.5 + 40}px`;
+        return `${lines.length*16 + (lines.length-1)*4.5 + 40 + adjustHeight}px`;
     }
 
     const getTextPositionDefault = useMemo(() => {
@@ -63,6 +71,21 @@ const Snippet = ({
         }
     }, [snippet]);
 
+    const getWrapperStyle = () => {
+        if (type === 'modal') {
+            return {
+                height: getHeight({targetSnippet: snippet, adjustHeight: 15}),
+                width: '100%',
+                maxHeight: '70dvh',
+            };
+        }
+        return {
+            height: getHeight({targetSnippet: snippet, adjustHeight: 15}),
+            maxWidth: mediaType === 'pc' ? '70dvw' : '90dvw',
+            maxHeight: '70dvh',
+        };
+    }
+
     const createShikiContent = () => {
         if (isChecked && toggleSnippet) {
             return (
@@ -76,7 +99,7 @@ const Snippet = ({
                     <ShikiHighlighter
                         showLanguage={false}
                         language={language}
-                        theme="tokyo-night"
+                        theme={theme}
                         showLineNumbers={true}
                         startingLineNumber={0}
                         style={{
@@ -102,7 +125,7 @@ const Snippet = ({
                     <ShikiHighlighter
                         showLanguage={false}
                         language={language}
-                        theme="tokyo-night"
+                        theme={theme}
                         showLineNumbers={true}
                         startingLineNumber={0}
                         style={{
@@ -110,6 +133,7 @@ const Snippet = ({
                             width: '100%',
                             margin: '0',
                             padding: '0',
+                            // backgroundColor: 'red',
                         }}
                     >
                         {snippet}
@@ -119,62 +143,68 @@ const Snippet = ({
         }
     }
 
+    const getTitleStyle = () => {
+        if (type === 'modal') {
+            return {
+                fontSize: mediaType === 'mobile' ? '1.6rem' : '1.8rem',
+            };
+        }
+        return {
+            fontSize: '2rem',
+        };
+    }
+
     return (
         <section className="documents-page-component-section" id={id}>
-            <div className="documents-page-component-section-title">
-                {title}
-                {toggleSnippet && (
-                    <ToggleSwitch isChecked={isChecked} setIsChecked={setIsChecked} />
-                )}
-            </div>
+            {showTitle && (
+                <div className="documents-page-component-section-title" style={getTitleStyle()}>
+                    {title}
+                    {toggleSnippet && (
+                        <ToggleSwitch isChecked={isChecked} setIsChecked={setIsChecked} />
+                    )}
+                </div>
+            )}
             <div 
                 className="code-snippet-wrapper"
                 style={{
-                    height: getHeight({targetSnippet: snippet}),
-                    maxWidth: mediaType === 'pc' ? '70dvw' : '90dvw',
-                    maxHeight: '70dvh',
+                    ...getWrapperStyle(),
                 }}
             >
-                <div className="code-snippet" ref={codeSnippetRef}>
+                <div 
+                    className="code-snippet" 
+                    ref={codeSnippetRef} 
+                    style={{backgroundColor: type === 'modal' ? '#ffffff' : 'var(--snippet-bg)'}}
+                >
                     <AnimatePresence mode="wait">
                         {shouldRender ? (
                             <motion.div
                                 key="content"
-                                style={{
-                                    width: '100%',
-                                }}
                                 initial={{opacity: 0}}
                                 animate={{opacity: 1}}
                                 exit={{opacity: 0}}
+                                style={{
+                                    height: getHeight({targetSnippet: snippet}),
+                                    // backgroundColor: '#FDF6E3',
+                                    // padding: 0,
+                                    // margin: 0,
+                                    // display: 'flex',
+                                    // alignItems: 'flex-start',
+                                    // justifyContent: 'flex-start',
+                                }}
                             >
                                     {createShikiContent()}
-                                {/* <ShikiHighlighter
-                                    showLanguage={false}
-                                    language={language}
-                                    theme="tokyo-night"
-                                    showLineNumbers={true}
-                                    startingLineNumber={0}
-                                    style={{
-                                        boxSizing: 'border-box',
-                                        width: '100%',
-                                        margin: '0',
-                                        padding: '0',
-                                    }}
-                                >
-                                    {snippet}
-                                </ShikiHighlighter> */}
                             </motion.div>
                         ) : (
                             <motion.div
                                 key="placeholder"
                                 style={{
                                     width: '100%',
-                                    height: getHeight({targetSnippet: snippet}),
+                                    height: getHeight({targetSnippet: snippet, adjustHeight: 15}),
                                     display: 'flex',
                                     alignItems: getTextPositionDefault.alignItems,
                                     justifyContent: 'center',
-                                    backgroundColor: '#1a1b26',
-                                    color: '#a9b1d6',
+                                    backgroundColor: type === 'modal' ? '#ffffff' : '#1a1b26',
+                                    color: type === 'modal' ? '#1a1b26' : '#a9b1d6',
                                     borderRadius: '0.5rem',
                                     fontSize: '0.9rem',
                                     paddingTop: getTextPositionDefault.paddingTop,
@@ -189,7 +219,19 @@ const Snippet = ({
                     </AnimatePresence>
                 </div>
                 <div className="code-snippet-buttons-container">
-                    <CopyButton data={isChecked && toggleSnippet ? toggleSnippet : snippet} />
+                    {showCopyButton && (
+                        <CopyButton 
+                            data={isChecked && toggleSnippet ? toggleSnippet : snippet}
+                            strokeColor={type === 'modal' ? '#ffffff' : '#1A1B26'}
+                            fillInitialColor={type === 'modal' ? 'rgb(121, 124, 151)' : 'rgb(172, 175, 177)'}
+                            fillActiveColor={type === 'modal' ? '#3D405B' : 'rgb(242, 251, 255)'}
+                            borderColor={type === 'modal' ? 'rgb(121, 124, 151)' : 'rgb(172, 175, 177)'}
+                            // strokeColor={type === 'modal' ? '#ffffff' : '#1A1B26'}
+                            // fillInitialColor={type === 'modal' ? 'rgb(210, 213, 216)' : 'rgb(172, 175, 177)'}
+                            // fillActiveColor={type === 'modal' ? 'rgb(172, 175, 177)' : 'rgb(242, 251, 255)'}
+                            // borderColor={type === 'modal' ? 'rgb(210, 213, 216)' : 'rgb(172, 175, 177)'}
+                        />
+                    )}
                     {showToTop && (
                         <ToTopButton scrollRef={codeSnippetRef} targetType="component" initialColor="rgb(172, 175, 177)" hoverColor="rgb(242, 251, 255)" />
                     )}

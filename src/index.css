@@ -42,6 +42,17 @@ html, body {
   padding: 0;
 }
 
+body::-webkit-scrollbar {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 10px;
+  background-color: rgba(61, 64, 91, 0);
+}
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(150, 152, 165, 0.4);
+}
+
 #root {
   height: 100%;
 }

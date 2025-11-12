@@ -2,21 +2,10 @@ import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
 import Dialog from '../../../../shared/components/dialog/Dialog';
 import ReportModal from './ReportModal';
-// import PropTypes from 'prop-types';
-// import { useEffect } from 'react';
 
-// const LongTailedTit = ({ isHover }) => {
 const LongTailedTit = ({mediaType}: {mediaType: 'pc' | 'tablet' | 'mobile'}) => {
     const [pointerStatus, setPointerStatus] = useState<'initial' | 'hover' | 'tap'>('initial');
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    // useEffect(() => {
-    //     if(isModalOpen) {
-    //         document.body.style.overflow = 'hidden';
-    //     } else {
-    //         document.body.style.overflow = 'auto';
-    //     }
-    // }, [isModalOpen]);
 
     useEffect(() => {
         if (mediaType === 'tablet' || mediaType === 'mobile') {
@@ -25,75 +14,15 @@ const LongTailedTit = ({mediaType}: {mediaType: 'pc' | 'tablet' | 'mobile'}) => 
         }
     }, [mediaType, setIsModalOpen]);
 
-    // // 創建一個動畫進度值 (0 到 1)
-    // const circleProgress = useMotionValue(0);
-    
-    // // 創建控制器用於啟動/停止動畫
-    // const controls = useAnimationControls();
-    
-    // // 將進度值轉換為 X 和 Y 坐標 (使用三角函數計算圓上的點)
-    // const x = useTransform(circleProgress, (progress) => 
-    //     `${Math.sin(progress * Math.PI * 2) * 3}%`
-    // );
-    // const y = useTransform(circleProgress, (progress) => 
-    //     `${-Math.cos(progress * Math.PI * 2) * 3 *-1}%`
-    // );
-
-
-    // const path = useTransform(circleProgress, (progress) => {
-    //     // 73.524 87.33
-    //     const controlPointX = (73.524 + Math.sin(progress * Math.PI * 2) * 3).toFixed(3);
-    //     const controlPointY = (87.33 + Math.cos(progress * Math.PI * 2) * 3).toFixed(3);
-
-
-    //     return `M 73.582 96.038 L ${controlPointX} ${controlPointY} c 3.614 -0.217 8.859 -1.885 13.401 -5.737 
-    //             c 5.384 -4.854 8.029 -10.362 7.417 -19.438 c -0.387 -4.681 -1.483 -13.201 -8.063 -20.381 
-    //             c 0.446 -2.258 0.395 -4.423 0.325 -6.244 c -1.494 -10.468 -13.845 -18.284 -27.398 -17.119 
-    //             c -7.313 0.691 -23.488 4.977 -26.794 19.652 c -2.718 0.336 -16.139 3.631 -22.983 10.706 
-    //             c -0.788 7.766 0.663 26.134 20.59 33.58 c 12.644 4.501 30.332 6.585 42.963 5.074 m -28.26 -0.849 L 43.182 96.96`
-    // });
-
-    // useEffect(() => {
-    //     controls.start({
-    //         circleProgress: 1,
-    //         transition: { 
-    //             duration: 0.5, 
-    //             repeat: Infinity, 
-    //             ease: "linear",
-    //             from: 0
-    //         }
-    //     });
-    // }, [controls]);
-
-
-    // const bodyPathVariants = {
-    //     normal: {},
-    //     hover: {}
-    // }
-
     const getBodyStroke = (status: 'initial' | 'hover' | 'tap') => {
         const yPosition = status === 'initial' ? '87.33' : status === 'hover' ? '84.33' : '89.33';
         return `M 73.582 96.038 L 73.524 ${yPosition} c 3.614 -0.217 8.859 -1.885 13.401 -5.737 
-                                c 5.384 -4.854 8.029 -10.362 7.417 -19.438 c -0.387 -4.681 -1.483 -13.201 -8.063 -20.381 
-                                c 0.446 -2.258 0.395 -4.423 0.325 -6.244 c -1.494 -10.468 -13.845 -18.284 -27.398 -17.119 
-                                c -7.313 0.691 -23.488 4.977 -26.794 19.652 c -2.718 0.336 -16.139 3.631 -22.983 10.706 
-                                c -0.788 7.766 0.663 26.134 20.59 33.58 c 12.644 4.501 30.332 6.585 42.963 5.074 m -28.26 -0.849 L 43.182 96.96`
-    }
-
-    // const bodyStrokeInitial = `M 73.582 96.038 L 73.524 87.33 c 3.614 -0.217 8.859 -1.885 13.401 -5.737 
-    //                             c 5.384 -4.854 8.029 -10.362 7.417 -19.438 c -0.387 -4.681 -1.483 -13.201 -8.063 -20.381 
-    //                             c 0.446 -2.258 0.395 -4.423 0.325 -6.244 c -1.494 -10.468 -13.845 -18.284 -27.398 -17.119 
-    //                             c -7.313 0.691 -23.488 4.977 -26.794 19.652 c -2.718 0.336 -16.139 3.631 -22.983 10.706 
-    //                             c -0.788 7.766 0.663 26.134 20.59 33.58 c 12.644 4.501 30.332 6.585 42.963 5.074 m -28.26 -0.849 L 43.182 96.96`
-
-    // const bodyStrokeHover = `M 73.582 96.038 L 73.524 84.33 c 3.614 -0.217 8.859 -1.885 13.401 -5.737 
-    //                             c 5.384 -4.854 8.029 -10.362 7.417 -19.438 c -0.387 -4.681 -1.483 -13.201 -8.063 -20.381 
-    //                             c 0.446 -2.258 0.395 -4.423 0.325 -6.244 c -1.494 -10.468 -13.845 -18.284 -27.398 -17.119 
-    //                             c -7.313 0.691 -23.488 4.977 -26.794 19.652 c -2.718 0.336 -16.139 3.631 -22.983 10.706 
-    //                             c -0.788 7.766 0.663 26.134 20.59 33.58 c 12.644 4.501 30.332 6.585 42.963 5.074 m -28.26 -0.849 L 43.182 96.96`
-
+                c 5.384 -4.854 8.029 -10.362 7.417 -19.438 c -0.387 -4.681 -1.483 -13.201 -8.063 -20.381 
+                c 0.446 -2.258 0.395 -4.423 0.325 -6.244 c -1.494 -10.468 -13.845 -18.284 -27.398 -17.119 
+                c -7.313 0.691 -23.488 4.977 -26.794 19.652 c -2.718 0.336 -16.139 3.631 -22.983 10.706 
+                c -0.788 7.766 0.663 26.134 20.59 33.58 c 12.644 4.501 30.332 6.585 42.963 5.074 m -28.26 -0.849 L 43.182 96.96`
+        }
     
-
     return (
         <div
             style={{
@@ -103,7 +32,6 @@ const LongTailedTit = ({mediaType}: {mediaType: 'pc' | 'tablet' | 'mobile'}) => 
                 height: '6dvh',
                 aspectRatio: 1,
                 cursor: 'pointer',
-                // backgroundColor: 'blue',
             }}
             onMouseEnter={() => setPointerStatus('hover')}
             onMouseLeave={() => setPointerStatus('initial')}
@@ -121,7 +49,6 @@ const LongTailedTit = ({mediaType}: {mediaType: 'pc' | 'tablet' | 'mobile'}) => 
                     height: '100%',
                     aspectRatio: 1,
                     zIndex: 3,
-                    // backgroundColor: 'red',
                 }}
             >
                 {/* body-parts-container */}
@@ -133,8 +60,6 @@ const LongTailedTit = ({mediaType}: {mediaType: 'pc' | 'tablet' | 'mobile'}) => 
                         width: '100%',
                         height: '100%',
                         zIndex: 1,
-                        // x, 
-                        // y,
                     }}
                     initial={{
                         y: '0%',
@@ -146,12 +71,6 @@ const LongTailedTit = ({mediaType}: {mediaType: 'pc' | 'tablet' | 'mobile'}) => 
                         duration: 0.2,
                         ease: 'easeInOut',
                     }}
-                    // animate={controls}
-                    // onUpdate={(latest) => {
-                    //     if (latest.circleProgress !== undefined) {
-                    //         circleProgress.set(latest.circleProgress);
-                    //     }
-                    // }}
                 >
                     {/* body-color */}
                     <div 
@@ -560,9 +479,5 @@ const LongTailedTit = ({mediaType}: {mediaType: 'pc' | 'tablet' | 'mobile'}) => 
         </div>
     )
 }
-
-// LongTailedTit.propTypes = {
-//     isHover: PropTypes.bool.isRequired,
-// };
 
 export default LongTailedTit;

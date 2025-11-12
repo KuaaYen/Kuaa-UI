@@ -20,6 +20,8 @@ import Blob from './components/pages/documentsPage/informations/blob/Blob';
 import BorderBeam from './components/pages/documentsPage/informations/borderBeam/BorderBeam';
 import LiquidGlass from './components/pages/documentsPage/informations/liquidGlass/LiquidGlass';
 import Dialog from './components/pages/documentsPage/informations/dialog/Dialog';
+import StaticIcons from './components/pages/documentsPage/informations/icons/staticIcons/StaticIcons';
+import Kaomoji from './components/pages/documentsPage/informations/icons/kaomoji/Kaomoji';
 import ToTopButton from './components/shared/components/buttons/toTopButton/ToTopButton';
 // import MarchingAnts from './components/shared/components/marchingAnts/MarchingAnts';
 // import useMediaTypeContext from './context/useMediaTypeContext';
@@ -136,6 +138,14 @@ function AppContent() {
             {
               path: 'dialog',
               element: <Dialog />,
+            },
+            {
+              path: 'staticIcons',
+              element: <StaticIcons />,
+            },
+            {
+              path: 'kaomoji',
+              element: <Kaomoji />,
             },
           ]
         },
