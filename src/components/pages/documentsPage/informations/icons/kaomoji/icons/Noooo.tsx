@@ -3,11 +3,11 @@ import { motion, Transition } from "motion/react";
 const Noooo = () => {
     const transition = {
         times: [0, 0.2, 0.5, 1],
-        duration: 2,
+        duration: 1,
         ease: 'easeInOut',
         repeat: Infinity,
         repeatType: 'loop',
-        repeatDelay: 0.5,
+        repeatDelay: 0.3,
     } as Transition
 
     return (
@@ -40,21 +40,21 @@ const Noooo = () => {
                 />       
                 {/* hand */}
                 <motion.path 
-                    d="M 9 46 c 13 -8 15 3 5 7"
+                    d="M 9 46 c 13 -7 15 4 7 6"
                     fill="transparent"
                     stroke="currentColor"
                     strokeWidth="0.8"
                     strokeLinecap="butt"
                     strokeLinejoin="miter"
                     initial={{
-                        d: "M 9 46 c 13 -8 15 3 5 7"
+                        d: "M 9 46 c 13 -7 15 4 7 6"
                     }}
                     animate={{
                         d: [
-                            "M 9 46 c 13 -8 15 3 5 7",
-                            "M 9 46 c 15 -8 16 5 5 7",
-                            "M 9 46 c 15 -8 16 5 5 7",
-                            "M 9 46 c 13 -8 15 3 5 7",
+                            "M 9 46 c 13 -7 15 4 7 6",
+                            "M 9 46 c 15 -7 16 4 7 6",
+                            "M 9 46 c 15 -7 16 4 7 6",
+                            "M 9 46 c 13 -7 15 4 7 6",
                         ]
                     }}
                     transition={{...transition}}
@@ -124,7 +124,7 @@ const Noooo = () => {
                     d="M 23.5 54 Q 26 52 26 42 L 32 42 L 32 54 M 23 58 l 0 -4 l 10 0 L 33 58"
                     fill="transparent"
                     stroke="currentColor"
-                    strokeWidth="1"
+                    strokeWidth="1.1"
                     strokeLinecap="butt"
                     strokeLinejoin="miter"
                     initial={{

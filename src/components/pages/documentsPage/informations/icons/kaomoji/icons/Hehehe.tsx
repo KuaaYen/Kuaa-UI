@@ -2,11 +2,11 @@ import { motion, Transition } from "motion/react";
 
 const Hehehe = () => {
     const transition = {
-        duration: 1,
+        duration: 0.5,
         ease: 'easeInOut',
         repeat: Infinity,
         repeatType: 'reverse',
-        repeatDelay: 0.5,
+        repeatDelay: 0.3,
     } as Transition
 
     return (

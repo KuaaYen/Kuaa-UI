@@ -60,11 +60,11 @@ const ThrowPetals = () => {
                     }}
                     transition={{
                         times: [0, 0.2, 0.5, 1],
-                        duration: 2,
+                        duration: 1,
                         ease: 'easeInOut',
                         repeat: Infinity,
                         repeatType: 'loop',
-                        repeatDelay: 0.5,
+                        repeatDelay: 0.3,
                     }}
                 />                
             </svg>   
@@ -86,11 +86,11 @@ const ThrowPetals = () => {
                 }}
                 transition={{
                     times: [0, 0.2, 0.5, 1],
-                    duration: 2,
+                    duration: 1,
                     ease: 'easeInOut',
                     repeat: Infinity,
                     repeatType: 'loop',
-                    repeatDelay: 0.5,
+                    repeatDelay: 0.3,
                 }}
             >
                 {/* eyes */}
@@ -104,7 +104,7 @@ const ThrowPetals = () => {
                 />
                 {/* mouth */}
                 <path 
-                    d="M 31.5 44 l 4.5 11 l 4.5 -11 m -7.5 3.5 l 6 0"
+                    d="M 32 44 l 4 11 l 5 -11 m -7.5 3.5 l 6 0"
                     fill="transparent"
                     stroke="currentColor"
                     strokeWidth="1"

@@ -39,12 +39,8 @@ const WhatThe = () => {
                     width: '3em',
                     zIndex: 2,
                 }}
-                initial={{
-                    x: '0%',
-                }}
-                animate={{
-                    x: '3%',
-                }}
+                initial={{x: '0%'}}
+                animate={{x: '3%'}}
                 transition={{
                     duration: 1,
                     ease: 'easeInOut',
@@ -61,12 +57,8 @@ const WhatThe = () => {
                     strokeWidth="1"
                     strokeLinecap="butt"
                     strokeLinejoin="miter"
-                    initial={{
-                        d: "M 26 45 l 0 7 l 8 0 L 34 45 m -8 3.5 l 8 0"
-                    }}
-                    animate={{
-                        d: "M 26 45 l 0 7.5 l 8 0 L 34 45 m -8 3.5 l 8 0"
-                    }}
+                    initial={{d: "M 26 45 l 0 7 l 8 0 L 34 45 m -8 3.5 l 8 0"}}
+                    animate={{d: "M 26 45 l 0 7.5 l 8 0 L 34 45 m -8 3.5 l 8 0"}}
                     transition={{
                         duration: 1,
                         ease: 'easeInOut',
@@ -83,12 +75,8 @@ const WhatThe = () => {
                     strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    initial={{
-                        d: "M 16 49 l 0 0 m 28 0 l 0 0"
-                    }}
-                    animate={{
-                        d: "M 15 49 l 0 0 m 28 0 l 0 0"
-                    }}
+                    initial={{d: "M 16 49 l 0 0 m 28 0 l 0 0"}}
+                    animate={{d: "M 15 49 l 0 0 m 28 0 l 0 0"}}
                     transition={{
                         duration: 1,
                         ease: 'easeInOut',
@@ -105,12 +93,8 @@ const WhatThe = () => {
                     strokeWidth="1"
                     strokeLinecap="butt"
                     strokeLinejoin="miter"
-                    initial={{
-                        d: "M 13 44 l 4 0 l 2 -2 m 24 2 l 4 0 l 2 -2"
-                    }}
-                    animate={{
-                        d: "M 13 44.5 l 4 0 l 2 -2 m 24 2 l 4 0 l 2 -2"
-                    }}
+                    initial={{d: "M 13 44 l 4 0 l 2 -2 m 24 2 l 4 0 l 2 -2"}}
+                    animate={{d: "M 13 44.5 l 4 0 l 2 -2 m 24 2 l 4 0 l 2 -2"}}
                     transition={{
                         duration: 1,
                         ease: 'easeInOut',

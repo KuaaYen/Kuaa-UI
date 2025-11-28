@@ -36,7 +36,7 @@ const Sadge = () => {
                     r={r}
                     fill="transparent"
                     stroke="currentColor"
-                    strokeWidth="0.4"
+                    strokeWidth="0.5"
                     strokeLinecap="butt"
                     strokeLinejoin="miter"
                     initial={{r: 0}}
