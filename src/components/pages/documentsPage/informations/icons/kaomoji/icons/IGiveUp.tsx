@@ -1,6 +1,14 @@
-import { motion } from "motion/react";
+import { motion, Transition } from "motion/react";
 
 const IGiveUp = () => {
+
+    const transition = {
+        duration: 0.5,
+        ease: 'easeInOut',
+        repeat: Infinity,
+        repeatType: 'reverse',
+        repeatDelay: 0.5,
+    } as Transition
 
     return (
         <svg viewBox="0 39 74 20" xmlns="http://www.w3.org/2000/svg" height="1em">
@@ -23,13 +31,7 @@ const IGiveUp = () => {
                 strokeLinejoin="miter"
                 initial={{d: "M 23 45 l 1 0 l 0 1 l -1 0 l 0 -1 Z M 23 53 l 1 0 l 0 1 l -1 0 l 0 -1 Z"}}
                 animate={{d: "M 23 46.5 l 1 0 l 0 1 l -1 0 l 0 -1 Z M 23 54 l 1 0 l 0 1 l -1 0 l 0 -1 Z"}}
-                transition={{
-                    duration: 0.5,
-                    ease: 'easeInOut',
-                    repeat: Infinity,
-                    repeatType: 'reverse',
-                    repeatDelay: 0.5,
-                }}
+                transition={{...transition}}
             />
             {/* limbs */}
             <motion.path 
@@ -39,9 +41,7 @@ const IGiveUp = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 3 58 l 11 0 M 37 47 L 37 58 L 27 58 M 51 47 l -4 11 l 10 0 M 65 58 l 13 0"
-                }}
+                initial={{d: "M 3 58 l 11 0 M 37 47 L 37 58 L 27 58 M 51 47 l -4 11 l 10 0 M 65 58 l 13 0"}}
                 animate={{
                     d: [
                         "M 3 58 l 11 0 M 37 47 L 37 58 L 27 58 M 51 47 l -4 11 l 10 0 M 65 58 l 13 0",
@@ -49,13 +49,7 @@ const IGiveUp = () => {
                         "M 3 58 l 11 0 M 37 47 L 37 58 L 27 58 M 51 47 l -4 11 l 10 0 M 65 58 l 13 0",
                     ]
                 }}
-                transition={{
-                    duration: 0.5,
-                    ease: 'easeInOut',
-                    repeat: Infinity,
-                    repeatType: 'reverse',
-                    repeatDelay: 0.3,
-                }}
+                transition={{...transition, repeatDelay: 0.3}}
             />
         </svg>
     )

@@ -1,6 +1,13 @@
-import { motion } from "motion/react";
+import { motion, Transition } from "motion/react";
 
 const GoAway = () => {
+
+    const transition = {
+        duration: 0.2,
+        ease: 'easeInOut',
+        repeat: Infinity,
+        repeatType: 'reverse',
+    } as Transition
 
     return (
         <svg viewBox="0 39 70 20" xmlns="http://www.w3.org/2000/svg" height="1em" width="3.5em">
@@ -66,19 +73,9 @@ const GoAway = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 8 50 q 6 2 13 -4 M 58 50 q 6 2 12 -5"
-                }}
-                animate={{
-                    d: "M 8 50 q 10 -1 10 -10 M 58 50 q 10 -1 10 -10"
-                }}
-                transition={{
-                    duration: 0.2,
-                    ease: 'easeInOut',
-                    repeat: Infinity,
-                    repeatType: 'reverse',
-                    // repeatDelay: 0.5,
-                }}
+                initial={{d: "M 8 50 q 6 2 13 -4 M 58 50 q 6 2 12 -5"}}
+                animate={{d: "M 8 50 q 10 -1 10 -10 M 58 50 q 10 -1 10 -10"}}
+                transition={{...transition}}
             />
         </svg>
     )

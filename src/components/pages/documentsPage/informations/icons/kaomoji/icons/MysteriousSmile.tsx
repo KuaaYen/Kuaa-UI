@@ -1,6 +1,14 @@
-import { motion } from "motion/react";
+import { motion, Transition } from "motion/react";
 
 const MysteriousSmile = () => {
+
+    const transition = {
+        duration: 0.7,
+        ease: 'easeInOut',
+        repeat: Infinity,
+        repeatType: 'reverse',
+        repeatDelay: 0.5,
+    } as Transition
 
     return (
         <svg viewBox="-1 39 60 20" xmlns="http://www.w3.org/2000/svg" height="1em" width="3em">
@@ -39,9 +47,7 @@ const MysteriousSmile = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 12 44.4 c 3 -4.5 11 -4.5 14 0 m 14 0 c 3 -4.5 11 -4.5 14 0"
-                }}
+                initial={{d: "M 12 44.4 c 3 -4.5 11 -4.5 14 0 m 14 0 c 3 -4.5 11 -4.5 14 0"}}
                 animate={{
                     d: [
                         "M 12 44.4 c 3 -4.5 11 -4.5 14 0 m 14 0 c 3 -4.5 11 -4.5 14 0",
@@ -51,13 +57,7 @@ const MysteriousSmile = () => {
                         "M 12 44.4 c 3 -4.5 11 -4.5 14 0 m 14 0 c 3 -4.5 11 -4.5 14 0",
                     ]
                 }}
-                transition={{
-                    duration: 0.7,
-                    ease: 'easeInOut',
-                    repeat: Infinity,
-                    repeatType: 'reverse',
-                    repeatDelay: 0.5,
-                }}
+                transition={{...transition}}
             />
             {/* mouth */}
             <path 

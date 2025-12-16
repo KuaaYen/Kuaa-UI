@@ -1,6 +1,13 @@
-import { motion } from "motion/react";
+import { motion, Transition } from "motion/react";
 
 const WhatDoYouMean = () => {
+
+    const transition = {
+        duration: 0.15,
+        ease: 'easeInOut',
+        repeat: Infinity,
+        repeatType: 'reverse',
+    } as Transition
 
     return (
         <svg viewBox="-1 39 60 20" xmlns="http://www.w3.org/2000/svg" height="1em" width="3em">
@@ -39,18 +46,9 @@ const WhatDoYouMean = () => {
                 strokeWidth="1.1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 24 53.5 Q 26.5 51.5 26.5 42 L 32.5 42 L 32.5 53.5 M 23.5 58 l 0 -4.5 l 10 0 L 33.5 58"
-                }}
-                animate={{
-                    d: "M 24 54.5 Q 26.5 52.5 26.5 42 L 32.5 42 L 32.5 54.5 M 23.5 58 l 0 -3.5 l 10 0 L 33.5 58"
-                }}
-                transition={{
-                    duration: 0.15,
-                    ease: 'easeInOut',
-                    repeat: Infinity,
-                    repeatType: 'reverse',
-                }}
+                initial={{d: "M 24 53.5 Q 26.5 51.5 26.5 42 L 32.5 42 L 32.5 53.5 M 23.5 58 l 0 -4.5 l 10 0 L 33.5 58"}}
+                animate={{d: "M 24 54.5 Q 26.5 52.5 26.5 42 L 32.5 42 L 32.5 54.5 M 23.5 58 l 0 -3.5 l 10 0 L 33.5 58"}}
+                transition={{...transition}}
             />
             {/* eyes */}
             <path 
@@ -69,18 +67,9 @@ const WhatDoYouMean = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 48 55 Q 52 51 51 43"
-                }}
-                animate={{
-                    d: "M 48 55 Q 53 51 55 45"
-                }}
-                transition={{
-                    duration: 0.15,
-                    ease: 'easeInOut',
-                    repeat: Infinity,
-                    repeatType: 'reverse',
-                }}
+                initial={{d: "M 48 55 Q 52 51 51 43"}}
+                animate={{d: "M 48 55 Q 53 51 55 45"}}
+                transition={{...transition}}
             />
         </svg>
     )

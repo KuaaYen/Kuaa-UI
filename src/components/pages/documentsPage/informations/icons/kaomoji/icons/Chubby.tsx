@@ -19,12 +19,8 @@ const Chubby = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 7 42 q -6 8 0 16 M 61 42 q 6 8 0 16"
-                }}
-                animate={{
-                    d: "M 9 42 q -6 8 0 16 M 59 42 q 6 8 0 16"
-                }}
+                initial={{d: "M 7 42 q -6 8 0 16 M 61 42 q 6 8 0 16"}}
+                animate={{ d: "M 9 42 q -6 8 0 16 M 59 42 q 6 8 0 16"}}
                 transition={{...transition}}
             />
             {/* mouth */}
@@ -35,12 +31,8 @@ const Chubby = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 36 46 c -4 7 2 10 3 4 l 0 -2 l 0 2 c 1 6 7 3 3 -4"
-                }}
-                animate={{
-                    d: "M 36 45.5 c -4 7 2 10 3 4 l 0 -2 l 0 2 c 1 6 7 3 3 -4"
-                }}
+                initial={{d: "M 36 46 c -4 7 2 10 3 4 l 0 -2 l 0 2 c 1 6 7 3 3 -4"}}
+                animate={{d: "M 36 45.5 c -4 7 2 10 3 4 l 0 -2 l 0 2 c 1 6 7 3 3 -4"}}
                 transition={{...transition}}
             />
             {/* eyes */}
@@ -60,12 +52,8 @@ const Chubby = () => {
                 strokeWidth="1.2"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 58 48.5 c 0 -3 -6 -4 -6 1 c 0 5 6 4 6 1.5"
-                }}
-                animate={{
-                    d: "M 55 48.5 c 0 -3 -6 -4 -6 1 c 0 5 6 4 6 1.5"
-                }}
+                initial={{d: "M 58 48.5 c 0 -3 -6 -4 -6 1 c 0 5 6 4 6 1.5"}}
+                animate={{d: "M 55 48.5 c 0 -3 -6 -4 -6 1 c 0 5 6 4 6 1.5"}}
                 transition={{...transition}}
             />
             {/* hand2 */}
@@ -76,12 +64,8 @@ const Chubby = () => {
                 strokeWidth="0.8"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 11 48 c 13 -7 15 4 7 6"
-                }}
-                animate={{
-                    d: "M 15 48 c 13 -7 15 4 7 6"
-                }}
+                initial={{d: "M 11 48 c 13 -7 15 4 7 6"}}
+                animate={{d: "M 15 48 c 13 -7 15 4 7 6"}}
                 transition={{...transition}}
             />
         </svg>

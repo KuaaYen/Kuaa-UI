@@ -9,7 +9,6 @@ const Blush2 = () => {
         repeatType: 'reverse',
     } as Transition
 
-
     return (
         <svg viewBox="0 39 66 20" xmlns="http://www.w3.org/2000/svg"  height="1em" width="3.3em">
             {/* face */}
@@ -78,7 +77,6 @@ const Blush2 = () => {
                 animate={{rotate: -30}}
                 transition={{...transition}}
             />
-
         </svg>
     )
 }

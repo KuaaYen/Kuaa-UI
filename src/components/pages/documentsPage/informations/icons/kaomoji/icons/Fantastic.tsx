@@ -57,9 +57,7 @@ const Fantastic = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 9 52 q -2 0 -2 -7 c -1 -7 -8 5 0 1"
-                }}
+                initial={{d: "M 9 52 q -2 0 -2 -7 c -1 -7 -8 5 0 1"}}
                 animate={{
                     d:[
                         "M 9 52 q -3 0 -2 -4 c -1 -7 -8 5 0 1",
@@ -78,9 +76,7 @@ const Fantastic = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 55 54 q 8 2 7 -6 c -1 -4 -5 3 0 2"
-                }}
+                initial={{d: "M 55 54 q 8 2 7 -6 c -1 -4 -5 3 0 2"}}
                 animate={{
                     d: [
                         "M 55 54 q 6 0 5 -9 c -1 -4 -5 3 0 2",

@@ -10,50 +10,31 @@ const Hehe = () => {
         repeatDelay: 0.3,
     } as Transition
 
-    const svgStyle = {
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        height: '1em',
-        width: '2.65em',
-    } as React.CSSProperties;
-
     return (
-        <div
-            style={{
-                position: 'relative',
-                height: '1em',
-                width: '2.65em',
-                display: 'inline-block',
-            }}
-        >
-            <svg viewBox="0 39 53 20" xmlns="http://www.w3.org/2000/svg" style={{...svgStyle, zIndex: 1}}>
-                {/* face */}
-                <path 
-                    d="M 7 42 q -6 8 0 16 M 46 42 q 6 8 0 16"
-                    fill="transparent"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                    strokeLinecap="butt"
-                    strokeLinejoin="miter"
-                />             
-                {/* blush */}
-                <path 
-                    d="M 11 42 l 0 2 l -1.723 -0.47 m 0.578 2.191 l 1.145 -1.721 l 1.3 1.706 m -1.3 -1.706 l 1.783 -0.591 M 42 42 l 0 2 l -1.8 -0.591 m 0.744 2.191 l 1.056 -1.6 l 1.464 1.464 m -1.464 -1.464 l 1.948 -0.591"
-                    fill="transparent"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                    strokeLinecap="butt"
-                    strokeLinejoin="miter"
-                />
-            </svg>
-            <motion.svg viewBox="0 39 53 20" xmlns="http://www.w3.org/2000/svg" style={{...svgStyle, zIndex: 2}}
-                initial={{
-                    x: '-0.5%', y: '-0.5%'
-                }}
-                animate={{
-                    x: ['-0.5%', '0.5%', '-0.5%', '0.5%', '-0.5%'], y: ['-0.5%', '0.5%', '-0.5%', '0.5%', '-0.5%']
-                }}
+        <svg viewBox="0 39 53 20" xmlns="http://www.w3.org/2000/svg" width="2.65em" height="1em">
+            {/* face */}
+            <path 
+                d="M 7 42 q -6 8 0 16 M 46 42 q 6 8 0 16"
+                fill="transparent"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinecap="butt"
+                strokeLinejoin="miter"
+            />             
+            {/* blush */}
+            <path 
+                d={`M 11 42 l 0 2 l -1.723 -0.47 m 0.578 2.191 l 1.145 -1.721 l 1.3 1.706 
+                    m -1.3 -1.706 l 1.783 -0.591 M 42 42 l 0 2 l -1.8 -0.591 
+                    m 0.744 2.191 l 1.056 -1.6 l 1.464 1.464 m -1.464 -1.464 l 1.948 -0.591`}
+                fill="transparent"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinecap="butt"
+                strokeLinejoin="miter"
+            />
+            <motion.g
+                initial={{x: '-1%', y: '-1%'}}
+                animate={{x: ['-1%', '1%', '-1%', '1%', '-1%'], y: ['-1%', '1%', '-1%', '1%', '-1%']}}
                 transition={{...transition}}
             >
                 {/* eyes */}
@@ -74,8 +55,8 @@ const Hehe = () => {
                     strokeLinecap="butt"
                     strokeLinejoin="miter"
                 />
-            </motion.svg>
-        </div>
+            </motion.g>
+        </svg>
     )
 }
 export default Hehe;

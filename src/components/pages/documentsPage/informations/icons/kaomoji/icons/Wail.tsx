@@ -51,9 +51,10 @@ const Wail = () => {
         const dotLength = dotsData.length;
         return dotsData.map((dot, index) => {
             return (
-                <motion.rect 
+                <motion.circle 
                     key={`dot-${index}`} 
-                    x={dot.x} y={dot.y} rx={dot.size/2} ry={dot.size/2} width={dot.size} height={dot.size} fill="currentColor" 
+                    cx={dot.x} cy={dot.y} r={dot.size/2}
+                    fill="currentColor" 
                     initial={{opacity: 1}}
                     animate={{opacity: [0, 1, 1, 0]}}
                     transition={{...dotTransition, times: [(1/dotLength)*(index), (1/dotLength)*(index)+0.1, 0.8 ,1]}}
@@ -133,12 +134,8 @@ const Wail = () => {
                     strokeWidth="1"
                     strokeLinecap="butt"
                     strokeLinejoin="miter"
-                    initial={{
-                        d: "M 24.5 53.5 Q 27 52 27 45 L 33 45 L 33 53.5 M 24 58 l 0 -4.5 l 10 0 L 34 58"
-                    }}
-                    animate={{
-                        d: "M 24.5 54.5 Q 27 52 27 45 L 33 45 L 33 54.5 M 24 58 l 0 -3.5 l 10 0 L 34 58"
-                    }}
+                    initial={{d: "M 24.5 53.5 Q 27 52 27 45 L 33 45 L 33 53.5 M 24 58 l 0 -4.5 l 10 0 L 34 58"}}
+                    animate={{d: "M 24.5 54.5 Q 27 52 27 45 L 33 45 L 33 54.5 M 24 58 l 0 -3.5 l 10 0 L 34 58"}}
                     transition={{...mouthTransition}}
                 />
                 {/* hand */}

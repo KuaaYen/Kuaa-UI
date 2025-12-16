@@ -7,15 +7,14 @@ const ImJustAKid = () => {
         ease: 'easeInOut',
         repeat: Infinity,
         repeatType: 'reverse',
-        // repeatDelay: 0.2,
     } as Transition
 
     const eyebrowTransition = {
-        duration: 0.8,
+        duration: 0.5,
         ease: 'easeInOut',
         repeat: Infinity,
         repeatType: 'loop',
-        repeatDelay: 0.3,
+        repeatDelay: 0.2,
     } as Transition
 
     return (
@@ -46,12 +45,8 @@ const ImJustAKid = () => {
                 strokeWidth="0.8"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                initial={{
-                    d: "M 29 50 c 2 -2 4 1 1.043 1.611 c 2.561 -0.481 2.3 3.286 -1.081 2.109"
-                }}
-                animate={{
-                    d: "M 29.5 50 c 2 -2 4 1 1.043 1.611 c 2.561 -0.481 2.3 3.286 -1.081 2.109"
-                }}
+                initial={{x: '0%'}}
+                animate={{x: '15%'}}
                 transition={{...transition}}
             />
             {/* eyebrows */}
@@ -62,18 +57,8 @@ const ImJustAKid = () => {
                 strokeWidth="0"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                initial={{
-                    d: "M 22 39 l 2 0 l -2 2 l -1 0 l 1 -2 M 37 39 l 2 0 l 1 2 l -1 0 l -2 -2"
-                }}
-                animate={{
-                    d: [
-                        "M 22 39.5 l 2 0 l -2 2 l -1 0 l 1 -2 M 37 39.5 l 2 0 l 1 2 l -1 0 l -2 -2",
-                        "M 22 39 l 2 0 l -2 2 l -1 0 l 1 -2 M 37 39 l 2 0 l 1 2 l -1 0 l -2 -2",
-                        "M 22 39.5 l 2 0 l -2 2 l -1 0 l 1 -2 M 37 39.5 l 2 0 l 1 2 l -1 0 l -2 -2",
-                        "M 22 39 l 2 0 l -2 2 l -1 0 l 1 -2 M 37 39 l 2 0 l 1 2 l -1 0 l -2 -2",
-                        "M 22 39.5 l 2 0 l -2 2 l -1 0 l 1 -2 M 37 39.5 l 2 0 l 1 2 l -1 0 l -2 -2",
-                    ]
-                }}
+                initial={{ y: '0%'}}
+                animate={{ y: ['0%', '30%', '0%']}}
                 transition={{...eyebrowTransition}}
             />
             {/* blush 1*/}

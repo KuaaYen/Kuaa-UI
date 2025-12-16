@@ -62,12 +62,8 @@ const HeartForYou = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 41 53 c 4 0 8 -3 7 -8 c -2 -6 -10 -2 -5 2"
-                }}
-                animate={{
-                    d: "M 41.5 53 c 4 0 9 -2 9 -7 c 0 -6 -9 -4 -6 2"
-                }}
+                initial={{d: "M 41 53 c 4 0 8 -3 7 -8 c -2 -6 -10 -2 -5 2"}}
+                animate={{d: "M 41.5 53 c 4 0 9 -2 9 -7 c 0 -6 -9 -4 -6 2"}}
                 transition={{...transition}}
             />
             {/* heart */}

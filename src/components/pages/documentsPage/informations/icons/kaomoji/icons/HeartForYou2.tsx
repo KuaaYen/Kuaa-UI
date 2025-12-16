@@ -10,7 +10,6 @@ const HeartForYou2 = () => {
         repeatDelay: 0.2,
     } as Transition
 
-
     return (
         <svg viewBox="0 39 68 20" xmlns="http://www.w3.org/2000/svg"  height="1em" width="3.4em">
             {/* face */}
@@ -80,7 +79,6 @@ const HeartForYou2 = () => {
                     x: {...transition, times: [0, 0.35]},
                 }}
             />            
-
         </svg>
     )
 }

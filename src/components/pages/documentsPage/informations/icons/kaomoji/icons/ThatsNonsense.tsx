@@ -10,7 +10,6 @@ const ThatsNonsense = () => {
         repeatDelay: 0.3,
     } as Transition
 
-
     return (
         <svg viewBox="0 39 55 20" xmlns="http://www.w3.org/2000/svg"  height="1em" width="2.75em">
             {/* face */}

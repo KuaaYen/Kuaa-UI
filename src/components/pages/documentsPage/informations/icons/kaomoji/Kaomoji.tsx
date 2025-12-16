@@ -3,6 +3,7 @@ import useMediaTypeContext from "../../../../../../context/useMediaTypeContext";
 // import DialogContent from "../../dialog/content/DialogContent";
 import KaomojiContent from "./KaomojiContent";
 import '../icons.css';
+import LinkButtons from "../../sharedComponent/buttons/linkButtons/LinkButtons";
 
 const Kaomoji = () => {
     
@@ -20,7 +21,7 @@ const Kaomoji = () => {
         >
             <div className='documents-page-component-info-title'>
                 <span style={{ fontSize: mediaType === 'mobile' ? '3rem' : '4rem' }}> Kaomoji </span>
-                {/* <LinkButtons links={[{text: 'motion/react', link: 'https://motion.dev/', title: 'build with motion'}]} /> */}
+                <LinkButtons links={[{text: 'motion/react', link: 'https://motion.dev/', title: 'built with motion'}]} />
             </div>
             <div className='documents-page-component-info-container'>
                 <div className='documents-page-component-info-content'>

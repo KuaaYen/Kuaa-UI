@@ -1,54 +1,61 @@
-import { motion } from "motion/react";
+import { motion, Transition } from "motion/react";
 
 const Sadge = () => {
-    const createTears = ({cx, cy, r, dropDelay}: {cx: number, cy: number, r: number, dropDelay: number}) => {
+    const transition = {
+        duration: 2,
+        ease: 'easeInOut',
+        repeat: Infinity,
+        repeatType: 'loop',
+    } as Transition
+
+    const createTears = () => {
+
+        const circleData = [
+            {x: 23, y: 40, r: 1.3, dropDelay: 0},
+            {x: 23, y: 40, r: 1.3, dropDelay: 0.6},
+            {x: 23, y: 40, r: 1.3, dropDelay: 1.2},
+            {x: 40, y: 40, r: 1.3, dropDelay: 0.1},
+            {x: 40, y: 40, r: 1.3, dropDelay: 0.7},
+            {x: 40, y: 40, r: 1.3, dropDelay: 1.3},
+        ]
+
+        const createCircles = () => {
+            return circleData.map((circle, index) => {
+                return (
+                    <motion.circle
+                        key={`circle-${index}`}
+                        cx={circle.x}
+                        cy={circle.y}
+                        r={circle.r}
+                        fill="transparent"
+                        stroke="currentColor"
+                        strokeWidth="0.25"
+                        strokeLinecap="butt"
+                        strokeLinejoin="miter"
+                        initial={{r: 0, y: '0%', opacity: 1}}
+                        animate={{r: circle.r, y: '600%', opacity: [0, 1, 1, 0]}}
+                        transition={{
+                            r: {...transition, delay: circle.dropDelay},
+                            y: {...transition, delay: circle.dropDelay},
+                            opacity: {...transition, times: [0, 0.3, 0.6, 0.9], delay: circle.dropDelay},
+                        }}
+                    />
+                )
+            })
+        }
+
         return (
             <motion.svg viewBox="0 39 60 20" xmlns="http://www.w3.org/2000/svg"
                 style={{
                     position: 'absolute',
                     left: 0,
-                    top: 0,
+                    top: '55%',
                     height: '1em',
                     width: '3em',
                     zIndex: 2,
                 }}
-                initial={{y: '-30%', opacity: 1}}
-                animate={{y: '50%',opacity: [0, 1, 1, 0]}}
-                transition={{
-                    duration: 2,
-                    ease: 'easeInOut',
-                    repeat: Infinity,
-                    repeatType: 'loop',
-                    delay: dropDelay,
-                    opacity: {
-                        times: [0, 0.3, 0.6, 0.9],
-                        duration: 2,
-                        ease: 'easeInOut',
-                        repeat: Infinity,
-                        repeatType: 'loop',
-                        delay: dropDelay,
-                    },
-                }}
             >
-                <motion.circle
-                    cx={cx}
-                    cy={cy}
-                    r={r}
-                    fill="transparent"
-                    stroke="currentColor"
-                    strokeWidth="0.5"
-                    strokeLinecap="butt"
-                    strokeLinejoin="miter"
-                    initial={{r: 0}}
-                    animate={{r: r}}
-                    transition={{
-                        duration: 2,
-                        ease: 'easeInOut',
-                        repeat: Infinity,
-                        repeatType: 'loop',
-                        delay: dropDelay,
-                    }}
-                />
+                {createCircles()}
             </motion.svg>
         )
     }
@@ -69,7 +76,7 @@ const Sadge = () => {
                     top: 0,
                     height: '1em',
                     width: '3em',
-                    zIndex: 2,
+                    zIndex: 1,
                 }}
             >
                 {/* face */}
@@ -100,12 +107,7 @@ const Sadge = () => {
                     strokeLinejoin="miter"
                 />
             </svg>
-                {createTears({cx: 23, cy: 55, r: 1.3, dropDelay: 0})}
-                {createTears({cx: 23, cy: 55, r: 1.3, dropDelay: 0.6})}
-                {createTears({cx: 23, cy: 55, r: 1.3, dropDelay: 1.2})}
-                {createTears({cx: 40, cy: 55, r: 1.3, dropDelay: 0.1})}
-                {createTears({cx: 40, cy: 55, r: 1.3, dropDelay: 0.7})}
-                {createTears({cx: 40, cy: 55, r: 1.3, dropDelay: 1.3})}
+            {createTears()}
         </div>
     )
 }

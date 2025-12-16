@@ -1,6 +1,13 @@
-import { motion } from "motion/react";
+import { motion, Transition } from "motion/react";
 
 const Yay = () => {
+
+    const transition = {
+        duration: 0.3,
+        ease: 'easeInOut',
+        repeat: Infinity,
+        repeatType: 'reverse',
+    } as Transition
 
     return (
         <svg viewBox="2 39 80 20" xmlns="http://www.w3.org/2000/svg" height="1em" width="4em">
@@ -21,18 +28,9 @@ const Yay = () => {
                 strokeWidth="0.8"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 11 52 Q 9 48 6 47 M 72 54 Q 76 49 74 42"
-                }}
-                animate={{
-                    d: "M 11 52 Q 9 47 10 43 M 72 54 Q 77 50 78 44"
-                }}
-                transition={{
-                    duration: 0.3,
-                    ease: 'easeInOut',
-                    repeat: Infinity,
-                    repeatType: 'reverse',
-                }}
+                initial={{d: "M 11 52 Q 9 48 6 47 M 72 54 Q 76 49 74 42"}}
+                animate={{d: "M 11 52 Q 9 47 10 43 M 72 54 Q 77 50 78 44"}}
+                transition={{...transition}}
             />
             {/* eyes */}
             <path 

@@ -10,7 +10,6 @@ const YouCanDoIt2 = () => {
         repeatDelay: 0.2,
     } as Transition
 
-
     return (
         <svg viewBox="0 39 75 20" xmlns="http://www.w3.org/2000/svg"  height="1em" width="3.75em">
             {/* face */}
@@ -42,12 +41,13 @@ const YouCanDoIt2 = () => {
             />
             {/* blush */}
             <path 
-                d="M 16 54 c 3 -6 -3 -8 -5 -5 c -2.408 3.715 3.378 6.953 3.573 2.133 a 1 1 0 0 0 -1.823 -0.76 a 1 1 0 0 0 1.6 1.117"
+                d={`M 16 54 c 3 -6 -3 -8 -5 -5 c -2.408 3.715 3.378 6.953 3.573 2.133 
+                    a 1 1 0 0 0 -1.823 -0.76 a 1 1 0 0 0 1.6 1.117`}
                 fill="transparent"
                 stroke="currentColor"
                 strokeWidth="1"
-                strokeLinecap="butt"
-                strokeLinejoin="miter"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             {/* eyebrows  */}
             <motion.path 
@@ -66,9 +66,7 @@ const YouCanDoIt2 = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 53 54 q 6 0 5 -9 c -1 -4 -5 3 0 2"
-                }}
+                initial={{d: "M 53 54 q 6 0 5 -9 c -1 -4 -5 3 0 2"}}
                 animate={{
                     d: [
                         "M 53 54 q 6 0 5 -9 c -1 -4 -5 3 0 2",
@@ -87,14 +85,8 @@ const YouCanDoIt2 = () => {
                 strokeWidth="0"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    scale: 0,
-                    opacity: 0,
-                }}
-                animate={{
-                    scale: [0, 1, 1, 0],
-                    opacity: [0, 1, 1, 0],
-                }}
+                initial={{scale: 0,opacity: 0}}
+                animate={{scale: [0, 1, 1, 0],opacity: [0, 1, 1, 0]}}
                 transition={{...transition, times: [0, 0.3, 0.6, 1]}}
             />
 

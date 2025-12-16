@@ -7,7 +7,6 @@ const Cool = () => {
         ease: 'easeInOut',
         repeat: Infinity,
         repeatType: 'reverse',
-        // repeatDelay: 0.3,
     } as Transition
 
     return (
@@ -47,15 +46,10 @@ const Cool = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 14 54 c 4 0 8 -3 7 -8 c -2 -6 -10 -2 -5 2"
-                }}
-                animate={{
-                    d: "M 14 54 c 4 0 9 -2 9 -7 c 0 -6 -9 -4 -6 2",
-                }}
+                initial={{d: "M 14 54 c 4 0 8 -3 7 -8 c -2 -6 -10 -2 -5 2"}}
+                animate={{d: "M 14 54 c 4 0 9 -2 9 -7 c 0 -6 -9 -4 -6 2"}}
                 transition={{...transition}}
             />
-
             {/* hand 2*/}
             <motion.path 
                 d="M 63 54 c 4 0 8 -3 7 -8 c -2 -6 -10 -2 -5 2"
@@ -64,15 +58,10 @@ const Cool = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 63 54 c 4 0 9 -2 9 -7 c 0 -6 -9 -4 -6 2",
-                }}
-                animate={{
-                    d: "M 63 54 c 4 0 8 -3 7 -8 c -2 -6 -10 -2 -5 2"
-                }}
+                initial={{d: "M 63 54 c 4 0 9 -2 9 -7 c 0 -6 -9 -4 -6 2"}}
+                animate={{d: "M 63 54 c 4 0 8 -3 7 -8 c -2 -6 -10 -2 -5 2"}}
                 transition={{...transition}}
             />
-
         </svg>
     )
 }

@@ -26,8 +26,8 @@ const YouCanDoIt = () => {
                 fill="transparent"
                 stroke="currentColor"
                 strokeWidth="1"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                strokeLinecap="butt"
+                strokeLinejoin="miter"
             />
             {/* eyes */}
             <path 
@@ -49,7 +49,8 @@ const YouCanDoIt = () => {
             />
             {/* blush 1*/}
             <path 
-                d="M 25 54 c 3 -6 -3 -8 -5 -5 c -2.408 3.715 3.378 6.953 3.573 2.133 a 1 1 0 0 0 -1.823 -0.76 a 1 1 0 0 0 1.6 1.117"
+                d={`M 25 54 c 3 -6 -3 -8 -5 -5 c -2.408 3.715 3.378 6.953 3.573 2.133 
+                    a 1 1 0 0 0 -1.823 -0.76 a 1 1 0 0 0 1.6 1.117`}
                 fill="transparent"
                 stroke="currentColor"
                 strokeWidth="1.2"
@@ -58,7 +59,8 @@ const YouCanDoIt = () => {
             />
             {/* blush 2*/}
             <path 
-                d="M 58 54 c 3 -6 -3 -8 -5 -5 c -2.408 3.715 3.378 6.953 3.573 2.133 a 1 1 0 0 0 -1.823 -0.76 a 1 1 0 0 0 1.6 1.117"
+                d={`M 58 54 c 3 -6 -3 -8 -5 -5 c -2.408 3.715 3.378 6.953 3.573 2.133 
+                    a 1 1 0 0 0 -1.823 -0.76 a 1 1 0 0 0 1.6 1.117`}
                 fill="transparent"
                 stroke="currentColor"
                 strokeWidth="1.2"
@@ -73,12 +75,8 @@ const YouCanDoIt = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 10 52 q -2 1 -3 -3 c -1 -7 -8 5 0 1"
-                }}
-                animate={{
-                    d: "M 10 52 q -2 0 -2 -7 c -1 -7 -8 5 0 1"
-                }}
+                initial={{d: "M 10 52 q -2 1 -3 -3 c -1 -7 -8 5 0 1"}}
+                animate={{d: "M 10 52 q -2 0 -2 -7 c -1 -7 -8 5 0 1"}}
                 transition={{...transition}}
             />
             {/* hand 2*/}
@@ -89,12 +87,8 @@ const YouCanDoIt = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 70 52 q 0 -5 4 -7 c -10 4 -3 -7 0 -1"
-                }}
-                animate={{
-                    d: "M 70 52 q 1 -2 5 -4 c -10 4 -3 -7 0 -1 "
-                }}
+                initial={{d: "M 70 52 q 0 -5 4 -7 c -10 4 -3 -7 0 -1"}}
+                animate={{d: "M 70 52 q 1 -2 5 -4 c -10 4 -3 -7 0 -1"}}
                 transition={{...transition}}
             />
         </svg>

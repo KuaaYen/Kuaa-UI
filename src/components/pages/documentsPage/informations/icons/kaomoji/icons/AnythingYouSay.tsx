@@ -9,7 +9,6 @@ const AnythingYouSay = () => {
         repeatType: 'reverse',
     } as Transition
 
-
     return (
         <svg viewBox="0 39 80 20" xmlns="http://www.w3.org/2000/svg"  height="1em" width="4em">
             {/* face */}
@@ -56,15 +55,10 @@ const AnythingYouSay = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 71 52 c 6 -1 1 -4 -2 -5"
-                }}
-                animate={{
-                    d: "M 71 52 c 6 -1 3 -5 2 -10"
-                }}
+                initial={{d: "M 71 52 c 6 -1 1 -4 -2 -5"}}
+                animate={{d: "M 71 52 c 6 -1 3 -5 2 -10"}}
                 transition={{...transition}}
             />
-
         </svg>
     )
 }

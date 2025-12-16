@@ -10,7 +10,6 @@ const Tasty = () => {
         repeatDelay: 0.2,
     } as Transition
 
-
     return (
         <svg viewBox="0 39 62 20" xmlns="http://www.w3.org/2000/svg"  height="1em" width="3.1em">
             {/* face */}
@@ -69,23 +68,24 @@ const Tasty = () => {
             />
             {/* blush 1*/}
             <path 
-                d="M 16 54 c 3 -6 -3 -8 -5 -5 c -2.408 3.715 3.378 6.953 3.573 2.133 a 1 1 0 0 0 -1.823 -0.76 a 1 1 0 0 0 1.6 1.117"
+                d= {`M 16 54 c 3 -6 -3 -8 -5 -5 c -2.408 3.715 3.378 6.953 3.573 2.133 
+                    a 1 1 0 0 0 -1.823 -0.76 a 1 1 0 0 0 1.6 1.117`}
                 fill="transparent"
                 stroke="currentColor"
                 strokeWidth="1"
-                strokeLinecap="butt"
-                strokeLinejoin="miter"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             {/* blush 2*/}
             <path 
-                d="M 51 54 c 3 -6 -3 -8 -5 -5 c -2.408 3.715 3.378 6.953 3.573 2.133 a 1 1 0 0 0 -1.823 -0.76 a 1 1 0 0 0 1.6 1.117"
+                d={`M 51 54 c 3 -6 -3 -8 -5 -5 c -2.408 3.715 3.378 6.953 3.573 2.133 
+                    a 1 1 0 0 0 -1.823 -0.76 a 1 1 0 0 0 1.6 1.117`}
                 fill="transparent"
                 stroke="currentColor"
                 strokeWidth="1"
-                strokeLinecap="butt"
-                strokeLinejoin="miter"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
-
         </svg>
     )
 }

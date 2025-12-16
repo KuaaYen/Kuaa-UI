@@ -3,7 +3,7 @@ import { motion, Transition } from "motion/react";
 const YeahOkSure = () => {
 
     const transition = {
-        duration: 0.3,
+        duration: 0.5,
         ease: 'easeInOut',
         repeat: Infinity,
         repeatType: 'reverse',
@@ -47,12 +47,8 @@ const YeahOkSure = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 14 42 c 0 2 4 2 4 0 M 42 42 c 0 2 4 2 4 0"
-                }}
-                animate={{
-                    d: "M 14 42 c 0 1 4 1 4 0 M 42 42 c 0 1 4 1 4 0"
-                }}
+                initial={{d: "M 14 42 c 0 2 4 2 4 0 M 42 42 c 0 2 4 2 4 0"}}
+                animate={{d: "M 14 42 c 0 1 4 1 4 0 M 42 42 c 0 1 4 1 4 0"}}
                 transition={{...transition}}
             />
         </svg>

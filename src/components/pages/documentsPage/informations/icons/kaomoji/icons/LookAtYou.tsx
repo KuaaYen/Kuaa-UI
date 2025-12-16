@@ -7,9 +7,7 @@ const LookAtYou = () => {
         ease: 'easeInOut',
         repeat: Infinity,
         repeatType: 'reverse',
-        // repeatDelay: 0.1,
     } as Transition
-
 
     return (
         <svg viewBox="0 39 55 20" xmlns="http://www.w3.org/2000/svg"  height="1em" width="2.75em">
@@ -64,7 +62,6 @@ const LookAtYou = () => {
                 animate={{x:"0%"}}
                 transition={{...transition, delay: 0.1}}
             />
-
         </svg>
     )
 }

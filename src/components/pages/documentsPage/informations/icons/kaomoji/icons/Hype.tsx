@@ -9,7 +9,6 @@ const Hype = () => {
         repeatType: 'reverse',
     } as Transition
 
-
     return (
         <svg viewBox="0 39 100 20" xmlns="http://www.w3.org/2000/svg"  height="1em" width="5em">
             {/* face */}
@@ -41,12 +40,13 @@ const Hype = () => {
             />
             {/* blush */}
             <path 
-                d="M 36 54 c 3 -6 -3 -8 -5 -5 c -2.408 3.715 3.378 6.953 3.573 2.133 a 1 1 0 0 0 -1.823 -0.76 a 1 1 0 0 0 1.6 1.117"
+                d={`M 36 54 c 3 -6 -3 -8 -5 -5 c -2.408 3.715 3.378 6.953 3.573 2.133 
+                    a 1 1 0 0 0 -1.823 -0.76 a 1 1 0 0 0 1.6 1.117`}
                 fill="transparent"
                 stroke="currentColor"
                 strokeWidth="1.2"
-                strokeLinecap="butt"
-                strokeLinejoin="miter"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             {/* hand 1 */}
             <motion.path 
@@ -56,12 +56,8 @@ const Hype = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 21 52 q -2 0 -1 -3 c -1 -7 -8 5 0 1"
-                }}
-                animate={{
-                    d: "M 21 52 q -2 0 -2 -7 c -1 -7 -8 5 0 1"
-                }}
+                initial={{d: "M 21 52 q -2 0 -1 -3 c -1 -7 -8 5 0 1"}}
+                animate={{d: "M 21 52 q -2 0 -2 -7 c -1 -7 -8 5 0 1"}}
                 transition={{...transition}}
             />
             {/* hand 2 */}
@@ -72,12 +68,8 @@ const Hype = () => {
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
-                initial={{
-                    d: "M 80 53 q -1 -2 3 -4 c -10 4 -3 -7 0 -1"
-                }}
-                animate={{
-                    d: "M 80 53 q 0 -5 4 -7 c -10 4 -3 -7 0 -1"
-                }}
+                initial={{d: "M 80 53 q -1 -2 3 -4 c -10 4 -3 -7 0 -1"}}
+                animate={{d: "M 80 53 q 0 -5 4 -7 c -10 4 -3 -7 0 -1"}}
                 transition={{...transition}}
             />
             {/* smoke 1 */}
@@ -102,25 +94,27 @@ const Hype = () => {
             />
             {/* smoke 2 */}
             <motion.path 
-                d="M 87 49 c 0 -1 1 -2 2 -2 c 3 0 3 3.7 0 3.7 l -0.5 0 l 0 0 c 4 0 4 4 0.3 3.9 c -1.2 -0.2 -1.9 -0.8 -2.1 -2"
+                d={`M 87 49 c 0 -1 1 -2 2 -2 c 3 0 3 3.7 0 3.7 l -0.5 0 l 0 0 
+                    c 4 0 4 4 0.3 3.9 c -1.2 -0.2 -1.9 -0.8 -2.1 -2`}
                 fill="transparent"
                 stroke="currentColor"
                 strokeWidth="1"
                 strokeLinecap="butt"
                 strokeLinejoin="miter"
                 initial={{
-                    d: "M 87 49 c 0 -1 1 -2 2 -2 c 3 0 3 3.7 0 3.7 l -0.5 0 l 0 0 c 4 0 4 4 0.3 3.9 c -1.2 -0.2 -1.9 -0.8 -2.1 -2",
+                    d: `M 87 49 c 0 -1 1 -2 2 -2 c 3 0 3 3.7 0 3.7 l -0.5 0 l 0 0 
+                        c 4 0 4 4 0.3 3.9 c -1.2 -0.2 -1.9 -0.8 -2.1 -2`,
                     x: '-30%',
                     scale: 0.7,
                 }}
                 animate={{
-                    d: "M 87 49 c 0 -1 1 -2 2 -2 c 3 0 3 3.7 0 3.7 l -0.5 0 l 0 0 c 4 0 4 4 0.3 3.9 c -1.2 -0.2 -1.9 -0.8 -2.1 -2",
+                    d: `M 87 49 c 0 -1 1 -2 2 -2 c 3 0 3 3.7 0 3.7 l -0.5 0 l 0 0 
+                        c 4 0 4 4 0.3 3.9 c -1.2 -0.2 -1.9 -0.8 -2.1 -2`,
                     x: '20%',
                     scale: 1,
                 }}
                 transition={{...transition}}
             />
-
         </svg>
     )
 }

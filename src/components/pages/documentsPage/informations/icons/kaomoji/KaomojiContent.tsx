@@ -14,7 +14,7 @@ import MysteriousSmile from "./icons/MysteriousSmile";
 import GoAway from "./icons/GoAway";
 import WhatDoYouMean from "./icons/WhatDoYouMean";
 import Chubby from "./icons/Chubby";
-import MegaThrowPetals from "./icons/MegaThrowPetals";
+import ThrowPetals2 from "./icons/ThrowPetals2";
 import Sigh from "./icons/Sigh";
 import Blush from "./icons/Blush";
 import Shy from "./icons/Shy";
@@ -37,18 +37,25 @@ import HeartForYou2 from "./icons/HeartForYou2";
 import LookAtYou from "./icons/LookAtYou";
 import Blush2 from "./icons/Blush2";
 import Wail from "./icons/Wail";
+import Why from "./icons/Why";
+import WhatThe2 from "./icons/WhatThe2";
+import ZokuZoku1 from "./icons/ZokuZoku1";
+import ZokuZoku2 from "./icons/ZokuZoku2";
 
 const KaomojiContent = () => {
     const mediaType = useMediaTypeContext();
     const isMobile = mediaType === 'mobile';
     
     const itemsData = [
-        {name: 'CanIHaveSome', icon: <CanIHaveSome/>},
+        {name: 'CanIHaveSome', icon: <CanIHaveSome/>, maxSize: 96},
         {name: 'BokuSaikyou', icon: <BokuSaikyou/>},
         {name: 'Sadge', icon: <Sadge/>},
         {name: 'ThrowPetals', icon: <ThrowPetals/>},
+        {name: 'ThrowPetals2', icon: <ThrowPetals2/>, maxSize: 96},
         {name: 'WhatThe', icon: <WhatThe/>},
+        {name: 'WhatThe2', icon: <WhatThe2/>},
         {name: 'Noooo', icon: <Noooo/>},
+        {name: 'Hehe', icon: <Hehe/>},
         {name: 'Hehehe', icon: <Hehehe/>},
         {name: 'IGiveUp', icon: <IGiveUp/>},
         {name: 'Yay', icon: <Yay/>},
@@ -56,7 +63,6 @@ const KaomojiContent = () => {
         {name: 'GoAway', icon: <GoAway/>},
         {name: 'WhatDoYouMean', icon: <WhatDoYouMean/>},
         {name: 'Chubby', icon: <Chubby/>},
-        {name: 'MegaThrowPetals', icon: <MegaThrowPetals/>, maxSize: 96},
         {name: 'Sigh', icon: <Sigh/>},
         {name: 'Blush', icon: <Blush/>},
         {name: 'Blush2', icon: <Blush2/>},
@@ -75,10 +81,12 @@ const KaomojiContent = () => {
         {name: 'ThatsNonsense', icon: <ThatsNonsense/>},
         {name: 'Hype', icon: <Hype/>, maxSize: 96},
         {name: 'AnythingYouSay', icon: <AnythingYouSay/>},
-        {name: 'Hehe', icon: <Hehe/>},
         {name: 'Tasty', icon: <Tasty/>},
         {name: 'LookAtYou', icon: <LookAtYou/>},
         {name: 'Wail', icon: <Wail/>, maxSize: 96},
+        {name: 'Why', icon: <Why/>},
+        {name: 'ZokuZoku1', icon: <ZokuZoku1/>, maxSize: 96},
+        {name: 'ZokuZoku2', icon: <ZokuZoku2/>, maxSize: 96},
     ];
 
     const createItems = (itemsData: {name: string, icon: React.ReactNode, maxSize?: number}[]) => {
@@ -91,7 +99,15 @@ const KaomojiContent = () => {
         }
 
         return itemsData.map((item) => (
-            <IconItem key={item.name} name={item.name} icon={item.icon} maxSize={getMaxSize(item.maxSize)} width={isMobile ? '8rem' : '9rem'} fontSize={isMobile ? '1.6rem' : '1.8rem'} />
+            <IconItem 
+                key={item.name} 
+                name={item.name} 
+                icon={item.icon} 
+                maxSize={getMaxSize(item.maxSize)} 
+                width={isMobile ? '8rem' : '9rem'} 
+                fontSize={isMobile ? '1.6rem' : '1.8rem'}
+                group='kaomoji'
+            />
         ))
     }
 

@@ -30,7 +30,7 @@
 
 .icon-components-item-wrapper:hover{
     .icon-components-item{
-        scale: 1.03;
+        scale: 1.05;
         color: var(--basic-brick);
     }
     .icon-components-item-name{

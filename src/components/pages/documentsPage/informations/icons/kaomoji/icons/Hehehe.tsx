@@ -1,6 +1,7 @@
 import { motion, Transition } from "motion/react";
 
 const Hehehe = () => {
+    
     const transition = {
         duration: 0.5,
         ease: 'easeInOut',
@@ -10,12 +11,7 @@ const Hehehe = () => {
     } as Transition
 
     return (
-        <svg viewBox="0 39 74 20" xmlns="http://www.w3.org/2000/svg"
-            style={{
-                height: '1em',
-                // width: '3.75em',
-            }}
-        >
+        <svg viewBox="0 39 73 20" xmlns="http://www.w3.org/2000/svg" height="1em" width="3.65em">
             {/* face */}
             <path 
                 d="M 7 42 q -6 8 0 16 m 59 -16 q 6 8 0 16"
@@ -51,8 +47,8 @@ const Hehehe = () => {
             />             
             {/* heart */}
             <motion.path 
-                d="M 14 52 c -3 -2 -4.5 -4 -4.5 -6 c 0 -2 2.5 -4 4.5 -1 c 2 -3 4.5 -1 4.5 1 c 0 2 -1.5 4 -4.5 6 Z
-                    M 59 52 c -3 -2 -4.5 -4 -4.5 -6 c 0 -2 2.5 -4 4.5 -1 c 2 -3 4.5 -1 4.5 1 c 0 2 -1.5 4 -4.5 6 Z"
+                d={`M 14 52 c -3 -2 -4.5 -4 -4.5 -6 c 0 -2 2.5 -4 4.5 -1 c 2 -3 4.5 -1 4.5 1 c 0 2 -1.5 4 -4.5 6 Z
+                    M 59 52 c -3 -2 -4.5 -4 -4.5 -6 c 0 -2 2.5 -4 4.5 -1 c 2 -3 4.5 -1 4.5 1 c 0 2 -1.5 4 -4.5 6 Z`}
                 fill="currentColor"
                 stroke="currentColor"
                 strokeWidth="0.8"
