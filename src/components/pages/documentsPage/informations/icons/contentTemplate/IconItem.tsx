@@ -33,7 +33,7 @@ const IconItem = ({
     }
 
     const {code, usage, name: iconName} = getSnippet() || {code: 'CODE', usage: 'USAGE', name: 'Icon-Name'};
-    console.log('usage', usage, 'name', name);
+    // console.log('usage', usage, 'name', name);
     // const {code, usage, name: iconName} = getIconCode({name}) || {code: 'CODE', usage: 'USAGE', name: 'Icon-Name'};
     return (
         <>

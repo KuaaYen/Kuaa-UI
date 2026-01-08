@@ -21,11 +21,22 @@ import VolumeLow from "./icons/stroke/volume/VolumeLow";
 import VolumeMid from "./icons/stroke/volume/VolumeMid";
 import VolumeMax from "./icons/stroke/volume/VolumeMax";
 import VolumeMute from "./icons/stroke/volume/VolumeMute";
+import Maximize from "./icons/stroke/Maximize";
+import Minimize from "./icons/stroke/Minimize";
+import Restore from "./icons/stroke/Restore";
+import Gear from "./icons/stroke/Gear";
+
 // fill
 import CheckBoxFill from "./icons/fill/CheckBoxFill";
 import CheckCircleFill from "./icons/fill/CheckCircleFill";
 import CrossBoxFill from "./icons/fill/CrossBoxFill";
 import CrossCircleFill from "./icons/fill/CrossCircleFill";
+import PinFill from "./icons/fill/PinFill";
+import ComputerFill from "./icons/fill/ComputerFill";
+import ComputerHalfFill from "./icons/fill/ComputerHalfFill";
+import BellFill from "./icons/fill/BellFill";
+import BellRingFill from "./icons/fill/BellRingFill";
+
 // outline
 import CheckBoxOutline from "./icons/outline/CheckBoxOutline";
 import CheckCircleOutline from "./icons/outline/CheckCircleOutline";
@@ -38,6 +49,10 @@ import VolumeLowHollow from "./icons/hollow/volume/VolumeLowHollow";
 import VolumeMidHollow from "./icons/hollow/volume/VolumeMidHollow";
 import VolumeMaxHollow from "./icons/hollow/volume/VolumeMaxHollow";
 import VolumeMuteHollow from "./icons/hollow/volume/VolumeMuteHollow";
+import PinHollow from "./icons/hollow/PinHollow";
+import ComputerHollow from "./icons/hollow/ComputerHollow";
+import BellHollow from "./icons/hollow/BellHollow";
+import BellRingHollow from "./icons/hollow/BellRingHollow";
 
 const StaticIconsContent = ({mediaType}: {mediaType: 'pc' | 'mobile' | 'tablet'}) => {
     const isMobile = mediaType === 'mobile';
@@ -77,6 +92,19 @@ const StaticIconsContent = ({mediaType}: {mediaType: 'pc' | 'mobile' | 'tablet'}
         {name: 'CrossCircleFill', icon: <CrossCircleFill/>},
         {name: 'CheckCircleOutline', icon: <CheckCircleOutline/>},
         {name: 'CrossCircleOutline', icon: <CrossCircleOutline/>},
+        {name: 'PinFill', icon: <PinFill/>},
+        {name: 'PinHollow', icon: <PinHollow/>},
+        {name: 'Minimize', icon: <Minimize/>},
+        {name: 'Restore', icon: <Restore/>},
+        {name: 'Maximize', icon: <Maximize/>},
+        {name: 'Gear', icon: <Gear/>},
+        {name: 'ComputerHollow', icon: <ComputerHollow/>},
+        {name: 'ComputerFill', icon: <ComputerFill/>},
+        {name: 'ComputerHalfFill', icon: <ComputerHalfFill/>},
+        {name: 'BellFill', icon: <BellFill/>},
+        {name: 'BellRingFill', icon: <BellRingFill/>},
+        {name: 'BellHollow', icon: <BellHollow/>},
+        {name: 'BellRingHollow', icon: <BellRingHollow/>},
     ];
 
     const createItems = (itemsData: {name: string, icon: React.ReactNode}[]) => {

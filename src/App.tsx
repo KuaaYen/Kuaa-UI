@@ -5,7 +5,6 @@ import MediaTypeProvider from './context/MediaTypeProvider';
 import NavBar from './components/nav/NavBar';
 import NoiseMask from './components/mask/NoiseMask';
 import LandingPage from './components/pages/landingPage/LandingPage';
-// import Footer from './components/footer/Footer';
 import ArtsPage from './components/pages/artsPage/ArtsPage';
 import DocumentsPage from './components/pages/documentsPage/DocumentsPage';
 import './app.css';
@@ -23,12 +22,8 @@ import Dialog from './components/pages/documentsPage/informations/dialog/Dialog'
 import StaticIcons from './components/pages/documentsPage/informations/icons/staticIcons/StaticIcons';
 import Kaomoji from './components/pages/documentsPage/informations/icons/kaomoji/Kaomoji';
 import ToTopButton from './components/shared/components/buttons/toTopButton/ToTopButton';
-// import MarchingAnts from './components/shared/components/marchingAnts/MarchingAnts';
-// import useMediaTypeContext from './context/useMediaTypeContext';
 
 function AppContent() {
-  // const mediaType = useMediaTypeContext();
-
   const AnimatedOutlet = () => {
     const location = useLocation();
     const outlet = useOutlet();
@@ -50,28 +45,14 @@ function AppContent() {
     return (
       <>
         <NavBar />
-        <div className='app-container'>
+        <main className='app-container'>
           <NoiseMask />
-
-          {/* {mediaType === 'pc' && (
-              <MarchingAnts
-                path='M 10 0 C 2 29 26 17 52 16 C 71 16 90 21 101 37'
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    right: 0,
-                    width: '40%',
-                }}
-                svgStyle={{transform: 'translateX(10%)'}}
-              />          
-          )} */}
           <AnimatedOutlet />
           <ToTopButton targetType='page' initialColor='rgb(172, 175, 177)' hoverColor='var(--basic-purple)' />
-          {/* <Footer /> */}
-      </div>
-    </>
-    );
-  };
+        </main>
+      </>
+      );
+    };
 
   const router = createBrowserRouter([
     {

@@ -10,6 +10,10 @@ import threadsCode from '../icons/stroke/ThreadsIcon.tsx?raw';
 import mailCode from '../icons/stroke/MailIcon.tsx?raw';
 import checkCode from '../icons/stroke/CheckIcon.tsx?raw';
 import crossCode from '../icons/stroke/CrossIcon.tsx?raw';
+import maximizeCode from '../icons/stroke/Maximize.tsx?raw';
+import minimizeCode from '../icons/stroke/Minimize.tsx?raw';
+import restoreCode from '../icons/stroke/Restore.tsx?raw';
+import gearCode from '../icons/stroke/Gear.tsx?raw';
 
 // ========== stroke/arrow ==========
 import arrowLeftCode from '../icons/stroke/arrow/ArrowLeft.tsx?raw';
@@ -29,6 +33,11 @@ import checkBoxFillCode from '../icons/fill/CheckBoxFill.tsx?raw';
 import checkCircleFillCode from '../icons/fill/CheckCircleFill.tsx?raw';
 import crossBoxFillCode from '../icons/fill/CrossBoxFill.tsx?raw';
 import crossCircleFillCode from '../icons/fill/CrossCircleFill.tsx?raw';
+import pinFillCode from '../icons/fill/PinFill.tsx?raw';
+import computerFillCode from '../icons/fill/ComputerFill.tsx?raw';
+import computerHalfFillCode from '../icons/fill/ComputerHalfFill.tsx?raw';
+import bellFillCode from '../icons/fill/BellFill.tsx?raw';
+import bellRingFillCode from '../icons/fill/BellRingFill.tsx?raw';
 
 // ========== outline icons ==========
 import checkBoxOutlineCode from '../icons/outline/CheckBoxOutline.tsx?raw';
@@ -38,6 +47,10 @@ import crossCircleOutlineCode from '../icons/outline/CrossCircleOutline.tsx?raw'
 
 // ========== hollow icons ==========
 import githubHollowCode from '../icons/hollow/GithubHollow.tsx?raw';
+import pinHollowCode from '../icons/hollow/PinHollow.tsx?raw';
+import computerHollowCode from '../icons/hollow/ComputerHollow.tsx?raw';
+import bellHollowCode from '../icons/hollow/BellHollow.tsx?raw';
+import bellRingHollowCode from '../icons/hollow/BellRingHollow.tsx?raw';
 
 // ========== hollow/volume ==========
 import volumeZeroHollowCode from '../icons/hollow/volume/VolumeZeroHollow.tsx?raw';
@@ -224,6 +237,71 @@ const getIconCode = ({name}: {name: string}) => {
             name: 'github-hollow',
             code: githubHollowCode,
             usage: '<GithubHollow />',
+        },
+        PinFill: {
+            name: 'pin-fill',
+            code: pinFillCode,
+            usage: '<PinFill />',
+        },
+        PinHollow: {
+            name: 'pin-hollow',
+            code: pinHollowCode,
+            usage: '<PinHollow />',
+        },
+        Maximize: {
+            name: 'maximize',
+            code: maximizeCode,
+            usage: '<Maximize />',
+        },
+        Restore: {
+            name: 'restore',
+            code: restoreCode,
+            usage: '<Restore />',
+        },
+        Minimize: {
+            name: 'minimize',
+            code: minimizeCode,
+            usage: '<Minimize />',
+        },
+        Gear: {
+            name: 'gear',
+            code: gearCode,
+            usage: '<Gear />',
+        },
+        ComputerHollow: {
+            name: 'computer-hollow',
+            code: computerHollowCode,
+            usage: '<ComputerHollow />',
+        },
+        ComputerFill: {
+            name: 'computer-fill',
+            code: computerFillCode,
+            usage: '<ComputerFill />',
+        },
+        ComputerHalfFill: {
+            name: 'computer-half-fill',
+            code: computerHalfFillCode,
+            usage: '<ComputerHalfFill />',
+        },
+        BellFill: {
+            name: 'bell-fill',
+            code: bellFillCode,
+            usage: '<BellFill />',
+        },
+        BellRingFill: {
+            name: 'bell-ring-fill',
+            code: bellRingFillCode,
+            usage: '<BellRingFill />',
+        },
+        BellHollow: {
+            name: 'bell-hollow',
+            code: bellHollowCode,
+            usage: '<BellHollow />',
+        },
+        BellRingHollow: {
+            name: 'bell-ring-hollow',
+            code: bellRingHollowCode,
+            usage: '<BellRingHollow />',
         },
     }
     return iconCodeMap[name as keyof typeof iconCodeMap];
