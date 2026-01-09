@@ -90,10 +90,8 @@ const IconContentTemplate = ({
                     snippet={code}
                     language="jsx"
                     type="modal"
-                    // showTitle={false}
                     theme="github-light-default"
                     delay={500}
-                    // showCopyButton={false}
                 />
             </div>
             {/* <div className="static-content-template-copy-button-container">
