@@ -52,24 +52,29 @@ const Snippet = ({
     const getTextPositionDefault = useMemo(() => {
         const lines = snippet.split('\n');
         const calculatedHeight = lines.length*16 + (lines.length-1)*4.5 + 40;
-        const maxHeight = window.innerHeight * 0.8; // 80dvh 轉換為 px
+        const maxHeight = typeof window !== 'undefined' ? window.innerHeight * 0.8 : Infinity;
         
         if (calculatedHeight <= maxHeight) {
             return {
+                needsToTop: false,
                 alignItems: 'center',
                 paddingTop: '0px'
             };
         } else {
             const visibleCenterPosition = maxHeight / 2;
-
-            setShowToTop(true);
-
             return {
+                needsToTop: true,
                 alignItems: 'flex-start',
-                paddingTop: `${visibleCenterPosition - 12}px` // 12px 是文字高度的一半
+                paddingTop: `${visibleCenterPosition - 12}px`
             };
         }
     }, [snippet]);
+
+    useEffect(() => {
+        if (getTextPositionDefault.needsToTop) {
+            setShowToTop(true);
+        }
+    }, [getTextPositionDefault.needsToTop]);
 
     const getWrapperStyle = () => {
         if (type === 'modal') {

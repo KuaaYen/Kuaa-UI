@@ -15,6 +15,7 @@
 
   --primary-color: rgb(242, 251, 255);
   --basic-ivory: #F4F1DE;
+  --basic-white: #FFFFFF;
   --basic-eggshell: #f8f7f0;
   --dark-eggshell: #a39f92;
   --eggshell-shadow: #f8f7f080;
@@ -103,8 +104,8 @@ button {
 
 .footer-content {
   position: relative;
-  width: 1250px;
-  max-width: 90dvw;
+  width: 90%;
+  max-width: 1250px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -240,6 +241,7 @@ button {
   gap: 1rem;
   /* padding: 0rem 1rem; */
   font-size: 0.8rem;
+  margin-right: 4rem;
   /* border: 1px solid blue; */
 }
 

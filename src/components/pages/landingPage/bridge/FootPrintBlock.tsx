@@ -9,9 +9,10 @@ interface FootPrintBlockProps {
         color: string;
     }[];
     blockHeight?: number;
+    mediaType?: 'pc' | 'tablet' | 'mobile';
 }
 
-const FootPrintBlock = ({footPrintData, blockHeight=300}: FootPrintBlockProps) => {
+const FootPrintBlock = ({footPrintData, blockHeight=300, mediaType='pc'}: FootPrintBlockProps) => {
 
     const createFootPrints = () => {
         return footPrintData.map((data, index) => {
@@ -25,7 +26,7 @@ const FootPrintBlock = ({footPrintData, blockHeight=300}: FootPrintBlockProps) =
                         transform: `rotate(${data.rotate})`,
                     }}
                 >
-                    <FootPrints stepLength={data.stepLength} color={data.color} />
+                    <FootPrints stepLength={data.stepLength} color={data.color} mediaType={mediaType} />
                 </div>
             )
         })

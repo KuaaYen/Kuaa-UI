@@ -17,6 +17,8 @@ const ReportModal = ({isModalOpen, setIsModalOpen}: {isModalOpen: boolean, setIs
     }
 
 
+    if (typeof document === 'undefined') return null;
+
     return (
         createPortal(
             <AnimatePresence mode="wait">

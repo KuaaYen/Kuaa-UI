@@ -64,7 +64,7 @@ const LandingHero = ({handleChangeOiiaoAnimation}: {handleChangeOiiaoAnimation: 
             return (
                 <div className='landing-page-hero-content-text-container'>
                     <div className='landing-page-hero-content-text-mobile'>
-                        Build your project with
+                        {mediaType === 'mobile' ? 'Build with' : 'Build your project with'}
                     </div>
                     <div className='landing-page-hero-content-text-mobile'>
                         <span className='landing-page-brick-highlight'>{createSplitText('creative', 0.9)}</span>

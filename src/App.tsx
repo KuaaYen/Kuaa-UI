@@ -1,13 +1,7 @@
-import { createBrowserRouter, RouterProvider, useLocation, useOutlet } from 'react-router-dom';
-import { AnimatePresence } from 'motion/react';
-import React from 'react';
-import MediaTypeProvider from './context/MediaTypeProvider';
-import NavBar from './components/nav/NavBar';
-import NoiseMask from './components/mask/NoiseMask';
+import RootLayout from './RootLayout';
 import LandingPage from './components/pages/landingPage/LandingPage';
 import ArtsPage from './components/pages/artsPage/ArtsPage';
 import DocumentsPage from './components/pages/documentsPage/DocumentsPage';
-import './app.css';
 import SplitText from './components/pages/documentsPage/informations/splitText/SplitText';
 import MaskReveal from './components/pages/documentsPage/informations/maskReveal/MaskReveal';
 import RollingNumbers from './components/pages/documentsPage/informations/rollingNumbers/RollingNumbers';
@@ -21,128 +15,83 @@ import LiquidGlass from './components/pages/documentsPage/informations/liquidGla
 import Dialog from './components/pages/documentsPage/informations/dialog/Dialog';
 import StaticIcons from './components/pages/documentsPage/informations/icons/staticIcons/StaticIcons';
 import Kaomoji from './components/pages/documentsPage/informations/icons/kaomoji/Kaomoji';
-import ToTopButton from './components/shared/components/buttons/toTopButton/ToTopButton';
+import './app.css';
 
-function AppContent() {
-  const AnimatedOutlet = () => {
-    const location = useLocation();
-    const outlet = useOutlet();
-    
-    // 只取第一層路徑作為 key
-    const getAnimationKey = (pathname: string) => {
-      const segments = pathname.split('/').filter(Boolean);
-      return segments.length > 0 ? `/${segments[0]}` : '/';
-    };
-    
-    return (
-      <AnimatePresence mode='wait'>
-        {outlet && React.cloneElement(outlet, { key: getAnimationKey(location.pathname) })}
-      </AnimatePresence>
-    );
-  };
-
-  const RootLayout = () => {
-    return (
-      <>
-        <NavBar />
-        <main className='app-container'>
-          <NoiseMask />
-          <AnimatedOutlet />
-          <ToTopButton targetType='page' initialColor='rgb(172, 175, 177)' hoverColor='var(--basic-purple)' />
-        </main>
-      </>
-      );
-    };
-
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <RootLayout />,
-      children: [
-        {
-          index: true,
-          path: '/',
-          element: <LandingPage />,
-        },
-        {
-          path: 'arts',
-          element: <ArtsPage />,
-        },
-        {
-          path: 'documents',
-          element: <DocumentsPage />,
-          children: [
-            {
-              index: true,
-              element: <RollingNumbers />, // 預設顯示的組件
-            },
-            {
-              path: 'splittext',
-              element: <SplitText />,
-            },
-            {
-              path: 'maskreveal',
-              element: <MaskReveal />,
-            },
-            { 
-              path: 'rollingnumbers',
-              element: <RollingNumbers />,
-            },
-            {
-              path: 'glitcheffect',
-              element: <GlitchEffect />,
-            },
-            {
-              path: 'carousel',
-              element: <Carousel />,
-            },
-            {
-              path: 'decodetext',
-              element: <DecodeText />,
-            },
-            {
-              path: 'typeText',
-              element: <TypeText />,
-            },
-            {
-              path: 'blob',
-              element: <Blob />,
-            },
-            {
-              path: 'borderbeam',
-              element: <BorderBeam />,
-            },
-            {
-              path: 'liquidglass',
-              element: <LiquidGlass />,
-            },
-            {
-              path: 'dialog',
-              element: <Dialog />,
-            },
-            {
-              path: 'staticIcons',
-              element: <StaticIcons />,
-            },
-            {
-              path: 'kaomoji',
-              element: <Kaomoji />,
-            },
-          ]
-        },
-      ],
-    },
-  ]);
-
-  return <RouterProvider router={router} />;
-}
-
-function App() {
-  return (
-    <MediaTypeProvider>
-      <AppContent />
-    </MediaTypeProvider>
-  );
-}
-
-export default App;
+export const routes = [
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <LandingPage />,
+      },
+      {
+        path: 'arts',
+        element: <ArtsPage />,
+      },
+      {
+        path: 'documents',
+        element: <DocumentsPage />,
+        children: [
+          {
+            index: true,
+            element: <RollingNumbers />,
+          },
+          {
+            path: 'splittext',
+            element: <SplitText />,
+          },
+          {
+            path: 'maskreveal',
+            element: <MaskReveal />,
+          },
+          {
+            path: 'rollingnumbers',
+            element: <RollingNumbers />,
+          },
+          {
+            path: 'glitcheffect',
+            element: <GlitchEffect />,
+          },
+          {
+            path: 'carousel',
+            element: <Carousel />,
+          },
+          {
+            path: 'decodetext',
+            element: <DecodeText />,
+          },
+          {
+            path: 'typeText',
+            element: <TypeText />,
+          },
+          {
+            path: 'blob',
+            element: <Blob />,
+          },
+          {
+            path: 'borderbeam',
+            element: <BorderBeam />,
+          },
+          {
+            path: 'liquidglass',
+            element: <LiquidGlass />,
+          },
+          {
+            path: 'dialog',
+            element: <Dialog />,
+          },
+          {
+            path: 'staticIcons',
+            element: <StaticIcons />,
+          },
+          {
+            path: 'kaomoji',
+            element: <Kaomoji />,
+          },
+        ],
+      },
+    ],
+  },
+];

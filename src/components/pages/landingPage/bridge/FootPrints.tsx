@@ -1,6 +1,6 @@
 import { motion, Variants } from "motion/react";
 
-const FootPrints = ({stepLength=50, color='#3D405B'}: {stepLength: number, color: string}) => {
+const FootPrints = ({stepLength=50, color='#3D405B', mediaType='pc'}: {stepLength: number, color: string, mediaType: 'pc' | 'tablet' | 'mobile'}) => {
 
     const wrapperVariants: Variants = {
         hidden: {
@@ -25,12 +25,15 @@ const FootPrints = ({stepLength=50, color='#3D405B'}: {stepLength: number, color
         }
     }
 
+    const wrapperWidth = mediaType === 'pc' ? '7rem' : mediaType === 'tablet' ? '6rem' : '5rem';
+    const wrapperHeight = mediaType === 'pc' ? '3.5rem' : mediaType === 'tablet' ? '3rem' : '2.5rem';
+
 
     return (
         <motion.div
             style={{
                 position: 'relative',
-                width: '7rem',
+                width: wrapperWidth,
                 aspectRatio: 2/1,
                 // backgroundColor: 'blue',
                 display: 'flex',
@@ -47,7 +50,7 @@ const FootPrints = ({stepLength=50, color='#3D405B'}: {stepLength: number, color
             <motion.div
                 style={{
                     position: 'relative',
-                    height: '3.5rem',
+                    height: wrapperHeight,
                     aspectRatio: 1,
                     // backgroundColor: 'red',
                     transform: `translate(-15%, ${stepLength}%) scaleX(-1)`,
@@ -84,7 +87,7 @@ const FootPrints = ({stepLength=50, color='#3D405B'}: {stepLength: number, color
             <motion.div
                 style={{
                     position: 'relative',
-                    height: '3.5rem',
+                    height: wrapperHeight,
                     aspectRatio: 1,
                     // backgroundColor: 'red',
                     transform: `translate(15%, -${stepLength}%)`,

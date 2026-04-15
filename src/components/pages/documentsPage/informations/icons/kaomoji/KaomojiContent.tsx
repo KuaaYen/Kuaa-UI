@@ -116,8 +116,8 @@ const KaomojiContent = () => {
             <div 
                 className='icon-components-group'
                 style={{
-                    justifyContent: isMobile ? 'space-between' : 'flex-start',
-                    padding: isMobile ? '1rem 2rem' : '1rem 0rem',
+                    justifyContent: isMobile ? 'center' : 'flex-start',
+                    // padding: isMobile ? '1rem 2rem' : '1rem 0rem',
                 }}
             >
                 {createItems(itemsData)}

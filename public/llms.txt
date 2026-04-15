@@ -1,0 +1,32 @@
+# Kuaa UI
+
+> A collection of beautifully animated, copy-paste ready React components built with Motion (Framer Motion). Designed for developers who want production-quality UI with zero friction.
+
+## About
+- [Home](https://kuaa-ui.vercel.app/): Landing page showcasing the library's style and philosophy
+- [Docs](https://kuaa-ui.vercel.app/documents): Component documentation with live demos and copy-paste code
+
+## Components
+- SplitText — Animated text split by characters or words
+- MaskReveal — Reveal text or elements with a sliding mask
+- RollingNumbers — Smooth animated number counter
+- GlitchEffect — Cyberpunk-style glitch animation
+- Carousel — Smooth, draggable carousel component
+- DecodeText — Matrix-style text decode animation
+- TypeText — Typewriter animation
+- Blob — Organic morphing SVG blob
+- BorderBeam — Animated border beam / glow effect
+- LiquidGlass — Frosted glass morphism effect
+- Dialog — Animated modal dialog
+- StaticIcons — Custom SVG icon set
+- Kaomoji — Kaomoji character icon set
+
+## Tech Stack
+- React 18 + TypeScript + Vite
+- Motion (formerly Framer Motion)
+- React Router v6
+- vite-react-ssg (static site generation)
+
+## Contact
+- Email: ycchen034@gmail.com
+- GitHub: https://github.com/KuaaYen/Kuaa-UI

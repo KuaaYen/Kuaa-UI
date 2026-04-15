@@ -42,7 +42,7 @@ const PaperPlane = ({mediaType = 'pc'}: {mediaType?: 'pc' | 'mobile' | 'tablet'}
                 transition={{ duration: 0.8, delay: 0.6 }}
             >
                 <Illustration
-                    zoom={1}
+                    zoom={mediaType === 'mobile' ? 0.75 : 1}
                     dragRotate={isPc ? true : false}
                     style={{width: '100%', height: '100%'}}
                 >

@@ -1,7 +1,17 @@
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 
 const ArtsPage = () => {
     return (
+        <>
+        <Helmet>
+            <title>Arts — Kuaa UI</title>
+            <meta name="description" content="Creative arts and experiments by Kuaa UI." />
+            <link rel="canonical" href="https://kuaa-ui.vercel.app/arts" />
+            <meta property="og:title" content="Arts — Kuaa UI" />
+            <meta property="og:url" content="https://kuaa-ui.vercel.app/arts" />
+            <meta property="og:type" content="website" />
+        </Helmet>
         <motion.div 
             // key="arts"
             style={{
@@ -21,6 +31,7 @@ const ArtsPage = () => {
         >
             <h1>Arts</h1>
         </motion.div>
+        </>
     );
 };
 

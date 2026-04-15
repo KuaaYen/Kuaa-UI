@@ -124,11 +124,13 @@
 .landing-page-hero-CTA-mobile-wrapper {
     position: relative;
     width: 100%;
-    height: fit-content;
+    height: 4rem;
+    flex-shrink: 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    overflow: hidden;
+    /* overflow: hidden; */
+    /* background-color: red; */
 }
 
 .landing-page-CTA-mobile {
@@ -154,18 +156,18 @@
     /* transform: translateY(-50%); */
     height: 9rem;
     aspect-ratio: 1/1;
-    filter: drop-shadow(2px 2px 2px var(--dark-eggshell));
+    filter: drop-shadow(2px 2px 2px var(--dark-eggshell)) drop-shadow(0px 0px 1px var(--basic-purple));
     /* background-color: red; */
 }
 
 .zdog-paper-plane-container-mobile {
     position: absolute;
-    top: 50%;
+    top: 60%;
     right: 0;
     transform: translateY(-50%) scaleX(-1);
-    height: 9rem;
+    height: 8rem;
     aspect-ratio: 1/1;
-    filter: drop-shadow(2px 2px 2px var(--dark-eggshell));
+    filter: drop-shadow(2px 2px 2px var(--dark-eggshell)) drop-shadow(0px 0px 1px var(--basic-purple));
     /* background-color: red; */
 }
 
@@ -258,6 +260,166 @@
     align-items: center;
     z-index: 2;
     /* background-color: rgba(255, 0, 0, 0.233); */
+}
+
+/* mountain-box */
+.landing-page-slogan-block-mountain-box {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 6px solid var(--basic-purple);
+    border-radius: 1rem;
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2),
+                inset 2px 2px 3px 0 rgb(0, 0, 0, 0.2); */
+    /* background-color: red; */
+    margin: 10rem 0rem;
+    overflow: hidden;
+}
+
+/* .landing-page-slogan-block-mountain-box-background {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    height: 200%;
+} */
+
+.landing-page-slogan-sky {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 600px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: #CAF4FF;
+    overflow: hidden;
+}
+
+.landing-page-slogan-sky-light {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    background-color: #DAF5FF;
+    border-radius: 50%;
+}
+
+.landing-page-slogan-sun-moon-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+.landing-page-slogan-sun {
+    position: absolute;
+    top: 25%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    max-width: 100px;
+    aspect-ratio: 1/1;
+    background-color: #FEF5AC;
+    border-radius: 50%;
+}
+
+.landing-page-slogan-moon {
+    position: absolute;
+    top: 25%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    max-width: 100px;
+    aspect-ratio: 1/1;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+.landing-page-slogan-moon-shadow {
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #424769;
+}
+
+/* .landing-page-slogan-moon-damp-2 {
+    position: absolute;
+    top: 65%;
+    left: 32%;
+    transform: translate(-50%, -50%);
+    width: 37%;
+    height: 37%;
+    border-radius: 50%;
+    background-color: #eeeeee;
+    box-shadow: inset 2px -1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.landing-page-slogan-moon-damp-3 {
+    position: absolute;
+    top: 70%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    width: 10%;
+    height: 10%;
+    border-radius: 50%;
+    background-color: #eeeeee;
+    box-shadow: inset 2px -1px 1px rgba(0, 0, 0, 0.1);
+} */
+
+/* .landing-page-slogan-block-mountain-box-cloud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.landing-page-slogan-text-wrapper{
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: 8rem;
+    overflow: hidden;
+    /* background-color: red; */
+}
+
+.landing-page-slogan-text-wrapper h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25em;
+    font-size: 3rem;
+    color: var(--basic-purple);
+    font-family: 'francois', sans-serif;
+}
+
+.landing-page-slogan-text-wrapper .landing-page-brick-highlight{
+    text-wrap: nowrap;
+    color: var(--basic-brick);
+    text-shadow: 1px 1px 0em var(--dark-brick);
 }
 
 /* slogan block */
@@ -430,7 +592,7 @@
     border-radius: 1rem;
     box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2),
                 inset 2px 2px 3px 0 rgb(0, 0, 0, 0.2);
-    background-color: var(--basic-ivory);
+    /* background-color: var(--basic-ivory); */
 }
 
 .landing-page-dashboard-content-half {
@@ -445,7 +607,7 @@
     border-radius: 1rem;
     box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2),
                 inset 2px 2px 3px 0 rgb(0, 0, 0, 0.2);
-    background-color: var(--basic-ivory);
+    /* background-color: var(--basic-ivory); */
     /* background-color: var(--basic-purple); */
 }
 
@@ -473,7 +635,7 @@
     border-radius: 1rem;
     box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2),
                 inset 2px 2px 3px 0 rgb(0, 0, 0, 0.2);
-    background-color: var(--basic-ivory);
+    /* background-color: var(--basic-ivory); */
     overflow: hidden;
 }
 
@@ -485,6 +647,7 @@
     align-items: flex-start;
     flex-direction: column;
     z-index: 1;
+    /* background-color: red; */
     /* gap: 0rem; */
     /* margin: 0;
     padding: 0; */
@@ -569,6 +732,7 @@
     width: 100%;
     height: 100%;
     z-index: 2;
+    /* background-color: rgba(255, 0, 0, 0.247); */
 }
 
 .landing-page-arrow-pointer-container {

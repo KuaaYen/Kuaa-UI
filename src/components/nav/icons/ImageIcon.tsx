@@ -13,8 +13,8 @@ const ImageIcon = ({isMobile}: {isMobile: boolean}) => {
             onMouseEnter={() => handleMouse({type: 'enter'})}
             onMouseLeave={() => handleMouse({type: 'leave'})}
             style={{
-                width: isMobile ? '1.7rem' : '2rem',
-                height: isMobile ? '1.7rem' : '2rem',
+                width: isMobile ? '1.5rem' : '2rem',
+                height: isMobile ? '1.5rem' : '2rem',
             }}
         >
             

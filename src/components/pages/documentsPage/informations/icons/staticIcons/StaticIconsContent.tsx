@@ -119,8 +119,7 @@ const StaticIconsContent = ({mediaType}: {mediaType: 'pc' | 'mobile' | 'tablet'}
             <div 
                 className='icon-components-group'
                 style={{
-                    justifyContent: isMobile ? 'space-between' : 'flex-start',
-                    padding: isMobile ? '1rem 2rem' : '1rem 0rem',
+                    justifyContent: isMobile ? 'center' : 'flex-start',
                 }}
             >
                 {createItems(itemsData)}

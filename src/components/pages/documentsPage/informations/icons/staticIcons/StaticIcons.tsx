@@ -12,7 +12,7 @@ const StaticIcons = () => {
     return (
         <motion.article 
             className='documents-page-component-info'
-            style={{ padding: mediaType === 'mobile' ? '6rem 0.5rem 0.5rem 0.5rem' : '8rem 2rem 2rem 2rem'}}
+            style={{ padding: mediaType === 'mobile' ? '6rem 1rem 0.5rem 1rem' : '8rem 2rem 2rem 2rem'}}
             initial={{ opacity: 0,}}
             animate={{ opacity: 1, }}
             exit={{ opacity: 0, }}

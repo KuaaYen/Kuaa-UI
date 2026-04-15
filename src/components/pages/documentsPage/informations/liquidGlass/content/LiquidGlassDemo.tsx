@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import useMediaTypeContext from "../../../../../../context/useMediaTypeContext";
 
 interface LiquidGlassDemoProps {
     width?: number;
@@ -27,7 +28,7 @@ const LiquidGlassDemo = ({
     // only for demo purposes
     backgroundFilter = 'normal',
 }: LiquidGlassDemoProps) => {
-    
+    const mediaType = useMediaTypeContext();
     const parseRadius = (radius: string | number, containerWidth: number, containerHeight: number) => {
         if (typeof radius === 'number') {
             // 確保不超過最大限制
@@ -210,7 +211,7 @@ const LiquidGlassDemo = ({
                         right: 0,
                         bottom: 0,
                     }}
-                    dragElastic={0.4}
+                    dragElastic={mediaType === 'pc' ? 0.4 : 0.2}
                     dragTransition={{bounceStiffness: 100, bounceDamping: 10}}
                     whileHover={{cursor: 'grab'}}
                     whileTap={{cursor: 'grabbing'}}

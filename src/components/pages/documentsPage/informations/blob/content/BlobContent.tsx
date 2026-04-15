@@ -181,7 +181,7 @@ const BlobContent = () => {
             <section className="documents-page-component-section">
                 <div 
                     className='documents-page-component-demo'
-                    // style={{backgroundColor: 'var(--basic-purple)'}}
+                    style={{overflow: 'hidden'}}
                 >
                     <BlobDemo 
                         key={reloadKey}

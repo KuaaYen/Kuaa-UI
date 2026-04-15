@@ -15,6 +15,8 @@ const IconModal = ({
     const mediaType = useMediaTypeContext();
     const isMobile = mediaType === 'mobile';
 
+    if (typeof document === 'undefined') return null;
+
     return (
         createPortal(
             <AnimatePresence mode="wait">

@@ -27,6 +27,8 @@ const ListModal = ({
 
 
 
+    if (typeof document === 'undefined') return null;
+
     return (
         createPortal(
             <AnimatePresence mode="wait">

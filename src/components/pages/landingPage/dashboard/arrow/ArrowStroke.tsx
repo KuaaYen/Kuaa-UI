@@ -18,9 +18,10 @@ const ArrowStroke = () => {
         if (containerRef.current) {
             const container = containerRef.current;
             const updatePath = () => {
-                const containerRect = container.getBoundingClientRect();
-                const containerWidth = containerRect.width;
-                const containerHeight = containerRect.height;
+                // offsetWidth/offsetHeight 使用 layout 尺寸，不受祖先 CSS transform (scale) 影響
+                // getBoundingClientRect 會受 scale 影響，導致在 tablet 的 scale: 0.8 動畫初始狀態下計算出錯誤的 path
+                const containerWidth = container.offsetWidth;
+                const containerHeight = container.offsetHeight;
                 
                 // 正規化座標（假設原始座標是基於 100x100 的坐标系統）
                 const scaleX = containerWidth / 100;
