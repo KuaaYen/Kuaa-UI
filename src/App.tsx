@@ -15,6 +15,7 @@ import LiquidGlass from './components/pages/documentsPage/informations/liquidGla
 import Dialog from './components/pages/documentsPage/informations/dialog/Dialog';
 import StaticIcons from './components/pages/documentsPage/informations/icons/staticIcons/StaticIcons';
 import Kaomoji from './components/pages/documentsPage/informations/icons/kaomoji/Kaomoji';
+import SwipeSlider from './components/pages/documentsPage/informations/swipeSlider/SwipeSlider';
 import './app.css';
 
 export const routes = [
@@ -57,6 +58,10 @@ export const routes = [
           {
             path: 'carousel',
             element: <Carousel />,
+          },
+          {
+            path: 'swipeslider',
+            element: <SwipeSlider />,
           },
           {
             path: 'decodetext',

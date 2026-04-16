@@ -48,6 +48,10 @@ const ComponentsList = ({setIsMenuOpen}: {setIsMenuOpen?: (isMenuOpen: boolean) 
             path: '/documents/carousel',
         },
         {
+            name: 'Swipe Slider',
+            path: '/documents/swipeslider',
+        },
+        {
             name: 'Blob',
             path: '/documents/blob',
         },
