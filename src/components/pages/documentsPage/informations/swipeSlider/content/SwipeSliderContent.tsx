@@ -9,6 +9,8 @@ import Remark from '../../sharedComponent/remark/Remark';
 import useMediaTypeContext from '../../../../../../context/useMediaTypeContext';
 
 interface DemoProps {
+    width: number;
+    aspectRatio: number;
     dotColor: string;
     loop: boolean;
     itemWidthRatio: number;
@@ -18,6 +20,8 @@ interface DemoProps {
     distanceThreshold: number;
     velocityThreshold: number;
     snapDurationMs: number;
+    showNavButtons: boolean;
+    showIndicator: boolean;
     itemNumbers: number;
 }
 
@@ -25,6 +29,8 @@ const SwipeSliderContent = () => {
     const mediaType = useMediaTypeContext();
     const [reloadKey, setReloadKey] = useState(0);
     const [demoProps, setDemoProps] = useState<DemoProps>({
+        width: 600,
+        aspectRatio: parseFloat((16 / 9).toFixed(2)),
         dotColor: '#E07A5F',
         loop: false,
         itemWidthRatio: 1,
@@ -34,12 +40,19 @@ const SwipeSliderContent = () => {
         distanceThreshold: 0.22,
         velocityThreshold: 0.35,
         snapDurationMs: 500,
+        showNavButtons: true,
+        showIndicator: true,
         itemNumbers: 5,
     });
 
     useEffect(() => {
         setReloadKey((prev) => prev + 1);
     }, [demoProps.itemNumbers]);
+
+    // useEffect(() => {
+    //     const maxWidth = mediaType === 'mobile' ? 300 : mediaType === 'tablet' ? 480 : 700;
+    //     setDemoProps((prev) => ({ ...prev, width: Math.min(prev.width, maxWidth) }));
+    // }, [mediaType]);
 
     const handleReload = () => {
         setReloadKey((prev) => prev + 1);
@@ -63,6 +76,50 @@ const SwipeSliderContent = () => {
         </div>
     ));
 
+    const WidthDesc = () => (
+        <div className="table-desc-container">
+            <div className="table-desc-item">Width of the slider container.</div>
+            <div className="table-desc-item">Accepts a number (treated as px) or any valid CSS width string.</div>
+            <div className="table-desc-item">e.g. <code>600</code>, <code>'100%'</code>, <code>'60vw'</code>, <code>'40rem'</code></div>
+        </div>
+    );
+
+    const AspectRatioDesc = () => (
+        <div className="table-desc-container">
+            <div className="table-desc-item">Aspect ratio (width ÷ height) of the slider container.</div>
+            <div className="table-desc-item">Accepts a number or a CSS aspect-ratio string.</div>
+            <div className="table-desc-item">e.g. <code>1.78</code>, <code>'16/9'</code>, <code>'4/3'</code>, <code>'1'</code></div>
+        </div>
+    );
+
+    const createPropInput = (propName: 'width' | 'aspectRatio') => {
+        if (propName === 'width') {
+            const max = mediaType === 'mobile' ? 300 : mediaType === 'tablet' ? 480 : 700;
+            return (
+                <ValueInput
+                    demoProps={demoProps}
+                    propName="width"
+                    onChange={setDemoProps}
+                    inputType={mediaType === 'pc' ? 'slider' : 'number'}
+                    step={10}
+                    min={200}
+                    max={max}
+                />
+            );
+        }
+        return (
+            <ValueInput
+                demoProps={demoProps}
+                propName="aspectRatio"
+                onChange={setDemoProps}
+                inputType={mediaType === 'pc' ? 'slider' : 'number'}
+                step={0.01}
+                min={0.5}
+                max={2.5}
+            />
+        );
+    };
+
     const tableHeaders = ['Prop', 'Type', 'Value', 'Default', 'Description'];
     const tableData = [
         [
@@ -71,6 +128,20 @@ const SwipeSliderContent = () => {
             '—',
             '—',
             'Slides to display. Each node is placed inside one slide.',
+        ],
+        [
+            'width',
+            'number | string',
+            createPropInput('width'),
+            '600',
+            <WidthDesc />,
+        ],
+        [
+            'aspectRatio',
+            'number | string',
+            createPropInput('aspectRatio'),
+            '1.78',
+            <AspectRatioDesc />,
         ],
         [
             'dotColor',
@@ -202,6 +273,30 @@ const SwipeSliderContent = () => {
             'Duration of the snap animation in milliseconds.',
         ],
         [
+            'showNavButtons',
+            'boolean',
+            <ValueInput
+                demoProps={demoProps}
+                propName="showNavButtons"
+                onChange={setDemoProps}
+                inputType="boolean"
+            />,
+            'true',
+            'When false, the left and right arrow buttons are hidden.',
+        ],
+        [
+            'showIndicator',
+            'boolean',
+            <ValueInput
+                demoProps={demoProps}
+                propName="showIndicator"
+                onChange={setDemoProps}
+                inputType="boolean"
+            />,
+            'true',
+            'When false, the bottom dot index indicator is hidden.',
+        ],
+        [
             'className',
             'string',
             '—',
@@ -220,6 +315,8 @@ const SwipeSliderContent = () => {
                     <SwipeSliderDemo
                         key={reloadKey}
                         items={items}
+                        width={demoProps.width}
+                        aspectRatio={demoProps.aspectRatio}
                         dotColor={demoProps.dotColor}
                         loop={demoProps.loop}
                         itemWidthRatio={demoProps.itemWidthRatio}
@@ -229,6 +326,8 @@ const SwipeSliderContent = () => {
                         distanceThreshold={demoProps.distanceThreshold}
                         velocityThreshold={demoProps.velocityThreshold}
                         snapDurationMs={demoProps.snapDurationMs}
+                        showNavButtons={demoProps.showNavButtons}
+                        showIndicator={demoProps.showIndicator}
                     />
                     <ReloadBtn handler={handleReload} color="rgb(242, 251, 255)" />
                 </div>

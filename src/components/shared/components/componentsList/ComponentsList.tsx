@@ -52,6 +52,10 @@ const ComponentsList = ({setIsMenuOpen}: {setIsMenuOpen?: (isMenuOpen: boolean) 
             path: '/documents/swipeslider',
         },
         {
+            name: 'Stacked Cards',
+            path: '/documents/stackedcards',
+        },
+        {
             name: 'Blob',
             path: '/documents/blob',
         },

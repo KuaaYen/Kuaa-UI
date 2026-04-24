@@ -23,7 +23,10 @@ const Snippets = () => {
     <Carousel 
         // every prop is optional, but you should set at least one item to be able to see the carousel
         itemHeight={280}
-        dotColor={'#E07A5F'}
+        dotColor="#E07A5F"
+        autoPlay={true}
+        autoPlayInterval={3000}
+        autoPlayRest={2000}
         rollInterval={500}
         rollDuration={1000}
         items={items}

@@ -1,4 +1,4 @@
-import Snippet from '../../sharedComponent/snippets/Snippet';
+﻿import Snippet from '../../sharedComponent/snippets/Snippet';
 import { memo } from 'react';
 
 const Snippets = () => {
@@ -19,24 +19,30 @@ const Snippets = () => {
 
     <SwipeSlider
         items={items}
-        enableLoop={false}
-        slideWidthViewportRatio={0.85}
-        gapBetweenSlidesPx={12}
-        edgeDragResistanceFactor={0.32}
-        maxEdgeStretchPx={72}
-        minDragDistanceToChangeSlideRatio={0.22}
-        flickCommitVelocityPxPerMs={0.35}
+        width={600}
+        aspectRatio={16 / 9}
+        dotColor="#E07A5F"
+        loop={false}
+        itemWidthRatio={0.85}
+        gap={12}
+        rubberBandFactor={0.32}
+        maxRubberPx={72}
+        distanceThreshold={0.22}
+        velocityThreshold={0.35}
         snapDurationMs={280}
+        showNavButtons={true}
+        showIndicator={true}
     />
  `;
 
     const CompleteCodeSnippetTS = `
 import { ReactNode, useRef, useState, useEffect, PointerEvent as ReactPointerEvent } from 'react';
 import { motion, useMotionValue, animate } from 'motion/react';
-import '../SwipeSlider.css';
 
 export interface SwipeSliderProps {
     items: ReactNode[];
+    width?: number | string;
+    aspectRatio?: number | string;
     dotColor?: string;
     loop?: boolean;
     itemWidthRatio?: number;
@@ -45,8 +51,9 @@ export interface SwipeSliderProps {
     maxRubberPx?: number;
     distanceThreshold?: number;
     velocityThreshold?: number;
-    /** Snap animation duration in milliseconds */
     snapDurationMs?: number;
+    showNavButtons?: boolean;
+    showIndicator?: boolean;
     className?: string;
 }
 
@@ -59,6 +66,8 @@ const rubberOffset = (delta: number, factor: number, maxPx: number): number => {
 
 const SwipeSlider = ({
     items,
+    width = 600,
+    aspectRatio = 16 / 9,
     dotColor = '#E07A5F',
     loop = false,
     itemWidthRatio = 1,
@@ -68,6 +77,8 @@ const SwipeSlider = ({
     distanceThreshold = 0.22,
     velocityThreshold = 0.35,
     snapDurationMs = 500,
+    showNavButtons = true,
+    showIndicator = true,
     className = '',
 }: SwipeSliderProps) => {
     const viewportRef = useRef<HTMLDivElement>(null);
@@ -257,7 +268,10 @@ const SwipeSlider = ({
     }
 
     return (
-        <div className={\`swipe-slider \${className}\`.trim()}>
+        <div
+            className={\`swipe-slider \${className}\`.trim()}
+            style={{ width: width, aspectRatio: aspectRatio }}
+        >
             <div
                 ref={viewportRef}
                 className="swipe-slider-viewport"
@@ -290,86 +304,92 @@ const SwipeSlider = ({
                 </motion.div>
             </div>
 
-            <motion.button
-                type="button"
-                className="swipe-slider-nav swipe-slider-nav--left"
-                aria-label="Previous slide"
-                disabled={!canPrev || n <= 1}
-                onClick={goPrev}
-                onMouseEnter={() => setIsLeftButtonHovered(true)}
-                onMouseLeave={() => setIsLeftButtonHovered(false)}
-                variants={navButtonVariants}
-                initial="initial"
-                whileHover={!(!canPrev || n <= 1) ? 'hover' : 'initial'}
-                whileTap={!(!canPrev || n <= 1) ? 'tap' : 'initial'}
-                transition={{ type: 'spring', bounce: 0, duration: 0.25 }}
-            >
-                <span className="swipe-slider-nav-icon swipe-slider-nav-icon--left">
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <motion.path
-                            d="M 20 50 L 80 50 M 55 25 L 80 50 L 55 75"
-                            fill="transparent"
-                            stroke="rgba(61, 64, 91, 0.55)"
-                            strokeWidth="10"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            variants={navIconVariants}
-                            initial="initial"
-                            animate={isLeftButtonHovered && canPrev ? 'active' : 'initial'}
-                        />
-                    </svg>
-                </span>
-            </motion.button>
-            <motion.button
-                type="button"
-                className="swipe-slider-nav swipe-slider-nav--right"
-                aria-label="Next slide"
-                disabled={!canNext || n <= 1}
-                onClick={goNext}
-                onMouseEnter={() => setIsRightButtonHovered(true)}
-                onMouseLeave={() => setIsRightButtonHovered(false)}
-                variants={navButtonVariants}
-                initial="initial"
-                whileHover={!(!canNext || n <= 1) ? 'hover' : 'initial'}
-                whileTap={!(!canNext || n <= 1) ? 'tap' : 'initial'}
-                transition={{ type: 'spring', bounce: 0, duration: 0.25 }}
-            >
-                <span className="swipe-slider-nav-icon">
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <motion.path
-                            d="M 20 50 L 80 50 M 55 25 L 80 50 L 55 75"
-                            fill="transparent"
-                            stroke="rgba(61, 64, 91, 0.55)"
-                            strokeWidth="10"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            variants={navIconVariants}
-                            initial="initial"
-                            animate={isRightButtonHovered && canNext ? 'active' : 'initial'}
-                        />
-                    </svg>
-                </span>
-            </motion.button>
-            <div className="swipe-slider-indicator-container">
-                {items.map((_, itemIndex) => {
-                    const isActive = itemIndex === index;
-                    return (
-                        <motion.button
-                            key={\`indicator-\${itemIndex}\`}
-                            type="button"
-                            className="swipe-slider-indicator-button"
-                            aria-label={\`Go to slide \${itemIndex + 1}\`}
-                            onClick={() => snapToIndex(itemIndex)}
-                            animate={{
-                                width: isActive ? 18 : 10,
-                                opacity: isActive ? 1 : 0.5,
-                                backgroundColor: isActive ? dotColor : 'rgba(145, 145, 145, 0.3)',
-                            }}
-                            transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
-                        />
-                    );
-                })}
-            </div>
+            {showNavButtons && (
+                <>
+                    <motion.button
+                        type="button"
+                        className="swipe-slider-nav swipe-slider-nav--left"
+                        aria-label="Previous slide"
+                        disabled={!canPrev || n <= 1}
+                        onClick={goPrev}
+                        onMouseEnter={() => setIsLeftButtonHovered(true)}
+                        onMouseLeave={() => setIsLeftButtonHovered(false)}
+                        variants={navButtonVariants}
+                        initial="initial"
+                        whileHover={!(!canPrev || n <= 1) ? 'hover' : 'initial'}
+                        whileTap={!(!canPrev || n <= 1) ? 'tap' : 'initial'}
+                        transition={{ type: 'spring', bounce: 0, duration: 0.25 }}
+                    >
+                        <span className="swipe-slider-nav-icon swipe-slider-nav-icon--left">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <motion.path
+                                    d="M 20 50 L 80 50 M 55 25 L 80 50 L 55 75"
+                                    fill="transparent"
+                                    stroke="rgba(61, 64, 91, 0.55)"
+                                    strokeWidth="10"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    variants={navIconVariants}
+                                    initial="initial"
+                                    animate={isLeftButtonHovered && canPrev ? 'active' : 'initial'}
+                                />
+                            </svg>
+                        </span>
+                    </motion.button>
+                    <motion.button
+                        type="button"
+                        className="swipe-slider-nav swipe-slider-nav--right"
+                        aria-label="Next slide"
+                        disabled={!canNext || n <= 1}
+                        onClick={goNext}
+                        onMouseEnter={() => setIsRightButtonHovered(true)}
+                        onMouseLeave={() => setIsRightButtonHovered(false)}
+                        variants={navButtonVariants}
+                        initial="initial"
+                        whileHover={!(!canNext || n <= 1) ? 'hover' : 'initial'}
+                        whileTap={!(!canNext || n <= 1) ? 'tap' : 'initial'}
+                        transition={{ type: 'spring', bounce: 0, duration: 0.25 }}
+                    >
+                        <span className="swipe-slider-nav-icon">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <motion.path
+                                    d="M 20 50 L 80 50 M 55 25 L 80 50 L 55 75"
+                                    fill="transparent"
+                                    stroke="rgba(61, 64, 91, 0.55)"
+                                    strokeWidth="10"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    variants={navIconVariants}
+                                    initial="initial"
+                                    animate={isRightButtonHovered && canNext ? 'active' : 'initial'}
+                                />
+                            </svg>
+                        </span>
+                    </motion.button>
+                </>
+            )}
+            {showIndicator && (
+                <div className="swipe-slider-indicator-container">
+                    {items.map((_, itemIndex) => {
+                        const isActive = itemIndex === index;
+                        return (
+                            <motion.button
+                                key={\`indicator-\${itemIndex}\`}
+                                type="button"
+                                className="swipe-slider-indicator-button"
+                                aria-label={\`Go to slide \${itemIndex + 1}\`}
+                                onClick={() => snapToIndex(itemIndex)}
+                                animate={{
+                                    width: isActive ? 18 : 10,
+                                    opacity: isActive ? 1 : 0.5,
+                                    backgroundColor: isActive ? dotColor : 'rgba(145, 145, 145, 0.3)',
+                                }}
+                                transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
+                            />
+                        );
+                    })}
+                </div>
+            )}
         </div>
     );
 };
@@ -380,7 +400,6 @@ export default SwipeSlider;
     const CompleteCodeSnippetJS = `
 import { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, animate } from 'motion/react';
-import '../SwipeSlider.css';
 
 const rubberOffset = (delta, factor, maxPx) => {
     const resisted = Math.sign(delta) * Math.min(Math.abs(delta) * factor, maxPx);
@@ -389,6 +408,8 @@ const rubberOffset = (delta, factor, maxPx) => {
 
 const SwipeSlider = ({
     items,
+    width = 600,
+    aspectRatio = 16 / 9,
     dotColor = '#E07A5F',
     loop = false,
     itemWidthRatio = 1,
@@ -398,6 +419,8 @@ const SwipeSlider = ({
     distanceThreshold = 0.22,
     velocityThreshold = 0.35,
     snapDurationMs = 500,
+    showNavButtons = true,
+    showIndicator = true,
     className = '',
 }) => {
     const viewportRef = useRef(null);
@@ -587,7 +610,10 @@ const SwipeSlider = ({
     }
 
     return (
-        <div className={\`swipe-slider \${className}\`.trim()}>
+        <div
+            className={\`swipe-slider \${className}\`.trim()}
+            style={{ width: width, aspectRatio: aspectRatio }}
+        >
             <div
                 ref={viewportRef}
                 className="swipe-slider-viewport"
@@ -620,86 +646,92 @@ const SwipeSlider = ({
                 </motion.div>
             </div>
 
-            <motion.button
-                type="button"
-                className="swipe-slider-nav swipe-slider-nav--left"
-                aria-label="Previous slide"
-                disabled={!canPrev || n <= 1}
-                onClick={goPrev}
-                onMouseEnter={() => setIsLeftButtonHovered(true)}
-                onMouseLeave={() => setIsLeftButtonHovered(false)}
-                variants={navButtonVariants}
-                initial="initial"
-                whileHover={!(!canPrev || n <= 1) ? 'hover' : 'initial'}
-                whileTap={!(!canPrev || n <= 1) ? 'tap' : 'initial'}
-                transition={{ type: 'spring', bounce: 0, duration: 0.25 }}
-            >
-                <span className="swipe-slider-nav-icon swipe-slider-nav-icon--left">
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <motion.path
-                            d="M 20 50 L 80 50 M 55 25 L 80 50 L 55 75"
-                            fill="transparent"
-                            stroke="rgba(61, 64, 91, 0.55)"
-                            strokeWidth="10"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            variants={navIconVariants}
-                            initial="initial"
-                            animate={isLeftButtonHovered && canPrev ? 'active' : 'initial'}
-                        />
-                    </svg>
-                </span>
-            </motion.button>
-            <motion.button
-                type="button"
-                className="swipe-slider-nav swipe-slider-nav--right"
-                aria-label="Next slide"
-                disabled={!canNext || n <= 1}
-                onClick={goNext}
-                onMouseEnter={() => setIsRightButtonHovered(true)}
-                onMouseLeave={() => setIsRightButtonHovered(false)}
-                variants={navButtonVariants}
-                initial="initial"
-                whileHover={!(!canNext || n <= 1) ? 'hover' : 'initial'}
-                whileTap={!(!canNext || n <= 1) ? 'tap' : 'initial'}
-                transition={{ type: 'spring', bounce: 0, duration: 0.25 }}
-            >
-                <span className="swipe-slider-nav-icon">
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <motion.path
-                            d="M 20 50 L 80 50 M 55 25 L 80 50 L 55 75"
-                            fill="transparent"
-                            stroke="rgba(61, 64, 91, 0.55)"
-                            strokeWidth="10"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            variants={navIconVariants}
-                            initial="initial"
-                            animate={isRightButtonHovered && canNext ? 'active' : 'initial'}
-                        />
-                    </svg>
-                </span>
-            </motion.button>
-            <div className="swipe-slider-indicator-container">
-                {items.map((_, itemIndex) => {
-                    const isActive = itemIndex === index;
-                    return (
-                        <motion.button
-                            key={\`indicator-\${itemIndex}\`}
-                            type="button"
-                            className="swipe-slider-indicator-button"
-                            aria-label={\`Go to slide \${itemIndex + 1}\`}
-                            onClick={() => snapToIndex(itemIndex)}
-                            animate={{
-                                width: isActive ? 18 : 10,
-                                opacity: isActive ? 1 : 0.5,
-                                backgroundColor: isActive ? dotColor : 'rgba(145, 145, 145, 0.3)',
-                            }}
-                            transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
-                        />
-                    );
-                })}
-            </div>
+            {showNavButtons && (
+                <>
+                    <motion.button
+                        type="button"
+                        className="swipe-slider-nav swipe-slider-nav--left"
+                        aria-label="Previous slide"
+                        disabled={!canPrev || n <= 1}
+                        onClick={goPrev}
+                        onMouseEnter={() => setIsLeftButtonHovered(true)}
+                        onMouseLeave={() => setIsLeftButtonHovered(false)}
+                        variants={navButtonVariants}
+                        initial="initial"
+                        whileHover={!(!canPrev || n <= 1) ? 'hover' : 'initial'}
+                        whileTap={!(!canPrev || n <= 1) ? 'tap' : 'initial'}
+                        transition={{ type: 'spring', bounce: 0, duration: 0.25 }}
+                    >
+                        <span className="swipe-slider-nav-icon swipe-slider-nav-icon--left">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <motion.path
+                                    d="M 20 50 L 80 50 M 55 25 L 80 50 L 55 75"
+                                    fill="transparent"
+                                    stroke="rgba(61, 64, 91, 0.55)"
+                                    strokeWidth="10"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    variants={navIconVariants}
+                                    initial="initial"
+                                    animate={isLeftButtonHovered && canPrev ? 'active' : 'initial'}
+                                />
+                            </svg>
+                        </span>
+                    </motion.button>
+                    <motion.button
+                        type="button"
+                        className="swipe-slider-nav swipe-slider-nav--right"
+                        aria-label="Next slide"
+                        disabled={!canNext || n <= 1}
+                        onClick={goNext}
+                        onMouseEnter={() => setIsRightButtonHovered(true)}
+                        onMouseLeave={() => setIsRightButtonHovered(false)}
+                        variants={navButtonVariants}
+                        initial="initial"
+                        whileHover={!(!canNext || n <= 1) ? 'hover' : 'initial'}
+                        whileTap={!(!canNext || n <= 1) ? 'tap' : 'initial'}
+                        transition={{ type: 'spring', bounce: 0, duration: 0.25 }}
+                    >
+                        <span className="swipe-slider-nav-icon">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <motion.path
+                                    d="M 20 50 L 80 50 M 55 25 L 80 50 L 55 75"
+                                    fill="transparent"
+                                    stroke="rgba(61, 64, 91, 0.55)"
+                                    strokeWidth="10"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    variants={navIconVariants}
+                                    initial="initial"
+                                    animate={isRightButtonHovered && canNext ? 'active' : 'initial'}
+                                />
+                            </svg>
+                        </span>
+                    </motion.button>
+                </>
+            )}
+            {showIndicator && (
+                <div className="swipe-slider-indicator-container">
+                    {items.map((_, itemIndex) => {
+                        const isActive = itemIndex === index;
+                        return (
+                            <motion.button
+                                key={\`indicator-\${itemIndex}\`}
+                                type="button"
+                                className="swipe-slider-indicator-button"
+                                aria-label={\`Go to slide \${itemIndex + 1}\`}
+                                onClick={() => snapToIndex(itemIndex)}
+                                animate={{
+                                    width: isActive ? 18 : 10,
+                                    opacity: isActive ? 1 : 0.5,
+                                    backgroundColor: isActive ? dotColor : 'rgba(145, 145, 145, 0.3)',
+                                }}
+                                transition={{ type: 'spring', bounce: 0, duration: 0.2 }}
+                            />
+                        );
+                    })}
+                </div>
+            )}
         </div>
     );
 };
@@ -822,18 +854,6 @@ export default SwipeSlider;
     padding: 0;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-}
-
-.swipe-slider-demo-item-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 1rem;
-    width: 100%;
-    height: 100%;
-    min-height: 160px;
 }
     `;
 

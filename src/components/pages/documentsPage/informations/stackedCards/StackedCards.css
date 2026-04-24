@@ -1,0 +1,42 @@
+.stacked-cards-demo {
+    position: relative;
+    width: min(520px, 80vw);
+    aspect-ratio: 1.6 / 1;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.stacked-cards-demo-viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    touch-action: pan-y;
+    cursor: grab;
+}
+
+.stacked-cards-demo-viewport:active {
+    cursor: grabbing;
+}
+
+.stacked-cards-demo-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--basic-white);
+    overflow: hidden;
+    box-shadow: 4px 6px 14px rgba(0, 0, 0, 0.25);
+    transform-origin: 50% 70%;
+    will-change: transform;
+}
+
+.stacked-cards-demo-card-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: inherit;
+    overflow: hidden;
+}
+
